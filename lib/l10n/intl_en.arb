@@ -1,1 +1,7 @@
-{}
+{
+    "@@locale": "en",
+    "yourAccount": "Your Account",
+    "home": "home",
+    "users": "users",
+    "resources":"resources"
+}
