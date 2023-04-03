@@ -3,7 +3,24 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
 
-final TextTheme theme = GoogleFonts.mPlus2TextTheme();
+final TextTheme theme = GoogleFonts.mPlus2TextTheme().copyWith(
+  headline1: const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 48
+  ),
+  headline2: const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 24
+  ),
+  headline3: const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 18
+  ),
+  headline4: const TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 14
+  )
+);
 
 final ThemeData lightTheme = ThemeData(
   colorSchemeSeed: const Color (0xFF34475C),
