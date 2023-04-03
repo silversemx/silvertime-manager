@@ -5,6 +5,7 @@ import 'package:flutter_work_utils/models/routing_data.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:silvertime/include.dart';
 import 'package:silvertime/layout.dart';
+import 'package:silvertime/screens/home.dart';
 import 'package:silvertime/screens/not_found.dart';
 import 'package:silvertime/screens/splash.dart';
 
@@ -61,9 +62,14 @@ class RouterAdmin {
       // bool dark = Provider.of<UI> (context, listen: false).modeVal == Mode.dark;
 
       switch (routeToLook) {
+        case HomeScreen.routeName:
+          return getMaterialPageRoute (
+            const HomeScreen(),
+            settings, dark, layout: true
+          );
         case SplashScreen.routeName:
           return getMaterialPageRoute(
-            SplashScreen, 
+            const SplashScreen (), 
             settings, dark
           );
         default:
@@ -73,7 +79,7 @@ class RouterAdmin {
           );
 
           return getMaterialPageRoute(
-            NotFoundScreen, 
+            const NotFoundScreen (), 
             settings, dark
           );
       }
