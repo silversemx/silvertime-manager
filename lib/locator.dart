@@ -5,8 +5,9 @@ import 'package:silvertime/include.dart';
 GetIt locator = GetIt.instance;
 
 Future<void> setupLocator () async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   locator.registerLazySingleton(() => NavigationService());
-  locator.registerFactoryAsync(() => SharedPreferences.getInstance());
+  locator.registerLazySingleton(() => prefs);
   locator.registerLazySingleton(() => S ());
   locator.registerLazySingleton(() => RouteObserver());
 }
