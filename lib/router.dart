@@ -8,6 +8,7 @@ import 'package:silvertime/layout.dart';
 import 'package:silvertime/screens/home.dart';
 import 'package:silvertime/screens/not_found.dart';
 import 'package:silvertime/screens/splash.dart';
+import 'package:silvertime/screens/users.dart';
 
 class RouterAdmin {
   static PageTransition getMaterialPageRoute(
@@ -65,6 +66,11 @@ class RouterAdmin {
         case HomeScreen.routeName:
           return getMaterialPageRoute (
             const HomeScreen(),
+            settings, dark, layout: true
+          );
+        case UsersScreen.routeName:
+          return getMaterialPageRoute(
+            const UsersScreen(), 
             settings, dark, layout: true
           );
         case SplashScreen.routeName:
