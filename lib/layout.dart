@@ -1,4 +1,5 @@
 import 'package:silvertime/include.dart';
+import 'package:silvertime/widgets/common/footer.dart';
 import 'package:silvertime/widgets/common/navbar.dart';
 
 class MainLayout extends StatefulWidget {
@@ -45,20 +46,16 @@ class _MainLayoutState extends State<MainLayout> {
         thumbVisibility: true,
         child: SingleChildScrollView(
           controller: _scrollController,
-          child: Container (
-            constraints: BoxConstraints (
-              minHeight: MediaQuery.of(context).size.height
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.15
-            ),
-            child: Column (
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                widget.child
-              ],
-            )
+          child: Column(
+            children: [
+              Container (
+                constraints: BoxConstraints (
+                  minHeight: MediaQuery.of(context).size.height - Navbar.navbarHeight
+                ),
+                child: widget.child
+              ),
+              const Footer()
+            ],
           ),
         ),
       ),
