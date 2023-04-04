@@ -1,6 +1,6 @@
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/style/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -69,6 +69,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       CurvedAnimation(
         parent: _animationController, 
         curve: const Interval (
+          // 0.0,0.0,
           0.4, 0.8,
           curve: Curves.fastOutSlowIn
         )
@@ -193,15 +194,40 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 48),
                     Opacity(
                       opacity: _titleOpacity.value,
-                      child: Text(
-                        "Silvertime",
-                        style: Theme.of(context).textTheme.headline1!.copyWith(
-                          color: UIColors.primary
-                        ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text (
+                            "silvertime",
+                              style: Theme.of(context).textTheme.merge (
+                                GoogleFonts.ralewayTextTheme()
+                              ).headline1!.copyWith(
+                                color: UIColors.primary
+                              ),
+                          ),
+                          const SizedBox(height: 16),
+                          RichText (
+                            textAlign: TextAlign.center,
+                            text: TextSpan (
+                              text: "powered by\n",
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                TextSpan(
+                                  text: "silverse",
+                                  style: Theme.of(context).textTheme.merge (
+                                    GoogleFonts.ralewayTextTheme()
+                                  ).headline2
+                                )
+                              ]
+                            ),
+                          )
+                        ],
                       ),
+                      
                     ),
                   ],
                 ),
