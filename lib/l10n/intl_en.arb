@@ -1,7 +1,19 @@
 {
     "@@locale": "en",
+    "@welcomeBack": {
+        "desc": "Welcome Back text",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
     "yourAccount": "Your Account",
     "home": "home",
     "users": "users",
-    "resources":"resources"
+    "resources":"resources",
+    "welcomeBack": "Welcome Back, {name}!",
+    "aboutAstra": "About AstraZeneca",
+    "legal": "Legal",
+    "cookiesAdvice": "Cookies advertisement"
 }

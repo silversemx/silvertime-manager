@@ -89,6 +89,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome Back, {name}!`
+  String welcomeBack(String name) {
+    return Intl.message(
+      'Welcome Back, $name!',
+      name: 'welcomeBack',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `About AstraZeneca`
+  String get aboutAstra {
+    return Intl.message(
+      'About AstraZeneca',
+      name: 'aboutAstra',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Legal`
+  String get legal {
+    return Intl.message(
+      'Legal',
+      name: 'legal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cookies advertisement`
+  String get cookiesAdvice {
+    return Intl.message(
+      'Cookies advertisement',
+      name: 'cookiesAdvice',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

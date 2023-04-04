@@ -3,5 +3,9 @@
     "yourAccount": "Tu cuenta",
     "home": "inicio",
     "users": "usuarios",
-    "resources":"recursos"
+    "resources":"recursos",
+    "welcomeBack": "¡Hola de nuevo!",
+    "aboutAstra": "Sobre Astra Zeneca",
+    "legal": "Legal",
+    "cookiesAdvice": "Aviso de Cookies"
 }
