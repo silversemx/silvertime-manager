@@ -1,6 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/style/colors.dart';
 
 class Navbar extends StatelessWidget  implements PreferredSizeWidget {
   final bool changeColor;
