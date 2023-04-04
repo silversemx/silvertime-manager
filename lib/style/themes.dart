@@ -19,11 +19,23 @@ final TextTheme theme = GoogleFonts.mPlus2TextTheme().copyWith(
   headline4: const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 14
-  )
+  ),
+  bodyText1: const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  ),
+  bodyText2: const TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400
+  ),
+  caption: const TextStyle(
+      fontSize: 10,
+    ),
 );
 
 final ThemeData lightTheme = ThemeData(
-  colorSchemeSeed: const Color (0xFF34475C),
+  colorSchemeSeed: UIColors.primary,
+  scaffoldBackgroundColor: UIColors.lightBackground,
   brightness: Brightness.light,
   textTheme: theme.apply(
     bodyColor: UIColors.black,
@@ -38,24 +50,31 @@ final ThemeData lightTheme = ThemeData(
     backgroundColor: UIColors.white,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ),
-  inputDecorationTheme: const InputDecorationTheme(
-    enabledBorder: UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: UIColors.black,
-        width: 1
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    border: OutlineInputBorder(
+      borderSide:
+          const BorderSide(color: UIColors.white),
+      borderRadius: BorderRadius.circular(16.0),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide:
+          const BorderSide(color: UIColors.white),
+      borderRadius: BorderRadius.circular(16.0),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(16),
+      borderSide: const BorderSide (
+        color: UIColors.white
       )
     ),
-    focusedBorder: UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: UIColors.primary,
-        width: 1
-      )
-    ),
-    hintStyle: TextStyle(
+    fillColor: UIColors.lightBackground,
+    focusColor: UIColors.lightBackground,
+    hintStyle: const TextStyle(
       fontSize: 10,
       color: UIColors.hint,
     ),
-    labelStyle: TextStyle(
+    labelStyle: const TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.bold,
       color: UIColors.hint,
@@ -78,15 +97,25 @@ final ThemeData lightTheme = ThemeData(
       overlayColor: MaterialStateProperty.all(Colors.transparent)
     )
   ),
+  buttonTheme: const ButtonThemeData (
+    highlightColor: Colors.transparent,
+    hoverColor: Colors.transparent,
+    splashColor: Colors.transparent,
+    focusColor: Colors.transparent
+  ),
   textButtonTheme: TextButtonThemeData (
     style: ButtonStyle (
       textStyle: MaterialStateProperty.all(theme.headline3)
     )
+  ),
+  checkboxTheme: CheckboxThemeData (
+    shape: const StadiumBorder ( ),
+    fillColor: MaterialStateProperty.all(UIColors.inputSuccess)
   )
 );
 
 final ThemeData darkTheme = ThemeData(
-  colorSchemeSeed: const Color (0xFF34475C),
+  colorSchemeSeed: UIColors.primary,
   brightness: Brightness.dark,
   textTheme: theme.apply(
     bodyColor: UIColors.white,
