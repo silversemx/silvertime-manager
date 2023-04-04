@@ -1,0 +1,161 @@
+import 'package:http_request_utils/models/http_exception.dart';
+import 'package:provider/provider.dart';
+import 'package:silvertime/include.dart';
+import 'package:silvertime/models/user.dart';
+import 'package:silvertime/providers/users.dart';
+import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
+import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
+import 'package:silvertime/widgets/inputs/custom_input_field.dart';
+import 'package:silvertime/widgets/utils/confirm_row.dart';
+
+class UserDialog extends StatefulWidget {
+  final User? user;
+  const UserDialog({super.key, this.user});
+
+  @override
+  State<UserDialog> createState() => _UserDialogState();
+}
+
+class _UserDialogState extends State<UserDialog> {
+  late User user;
+  bool _saving = false;
+  final _formKey = GlobalKey<FormState> ();
+  Map<String, bool> validation = {};
+
+  @override
+  void initState() {
+    super.initState();
+    user = widget.user ?? User.empty ();
+  }
+
+  void _save () async {
+    setState(() {
+      validation = user.isComplete();
+    });
+    bool formComplete = _formKey.currentState!.validate();
+    if (validation ["total"]! && formComplete) {
+      try {
+        setState(() {
+          _saving = true;
+        });
+        if (widget.user == null) {
+          await Provider.of<Users> (context, listen: false).createUser(user);
+        } else {
+          await Provider.of<Users> (context, listen: false).updateUser(
+            widget.user!.id, user
+          );
+        }
+        Navigator.of(context).pop (true);
+      } on HttpException catch (error) {
+        showErrorDialog (context, exception: error);
+      } finally {
+        if (mounted) {
+          setState(() {
+            _saving = false;
+          });
+        }
+      }
+    }
+  }
+
+  Widget _form () {
+    return Form (
+      key: _formKey,
+      child: Column (
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CustomInputField (
+            initialValue: user.name,
+            label: S.of(context).name,
+            type: TextInputType.name,
+            onChanged: (val) {
+              user.name = val;
+            },
+            action: TextInputAction.next,
+          ),
+          CustomInputField (
+            initialValue: user.email,
+            label: S.of(context).email,
+            type: TextInputType.emailAddress,
+            onChanged: (val) {
+              user.email = val;
+            },
+            action: TextInputAction.next,
+          ),
+          CustomInputField (
+            initialValue: user.username,
+            label: S.of(context).username,
+            type: TextInputType.text,
+            onChanged: (val) {
+              user.username = val;
+            },
+            action: TextInputAction.done,
+          ),
+          CustomDropdownFormField<String> (
+            value: user.role,
+            items: const [
+              //TODO: Add real roles
+            ],
+            name: (val) {
+              if (val.isEmpty) {
+                return S.of(context).selectOne;
+              } else {
+                // return Provider.of<Roles> (
+                //   context, listen: false
+                // ).firstWhere ((role) => role.id == val).name;
+                return "";
+              }
+            },
+            label: S.of (context).role,
+            onChanged: (val) {
+              user.role = val!;
+            },
+            validation: validation ['role'],
+            hintItem: 0,
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: UIColors.white,
+      insetPadding: EdgeInsets.symmetric(
+        horizontal: constrainedBigWidth(
+          context, MediaQuery.of(context).size.width * 0.3,
+          constraintWidth: 40
+        )
+      ),
+      child: Container (
+        padding: const EdgeInsets.symmetric(
+          horizontal: 32,
+        ),
+        child: Column (
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 16),
+            Text (
+              widget.user == null
+              ? S.of(context).createUser
+              : S.of(context).editUser,
+              style: Theme.of(context).textTheme.headline2,
+            ),
+            const SizedBox(height: 16),
+            _form (),
+            const SizedBox(height: 16),
+            ConfirmRow (
+              okayLoading: _saving,
+              onPressedOkay: _save,
+              onPressedCancel: Navigator.of(context).pop,
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
