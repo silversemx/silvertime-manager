@@ -1,6 +1,5 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/style/colors.dart';
 
 
 class Footer extends StatelessWidget {
@@ -53,12 +52,30 @@ class Footer extends StatelessWidget {
   }
 
   Widget _astraColumn (BuildContext context) {
-    return Image.asset (
-      "assets/logos/astrazeneca-logo.png",
-      height: 50,
-      fit: BoxFit.contain,
-      filterQuality: FilterQuality.medium,
-      alignment: Alignment.topCenter,
+    return ConstrainedBox(
+      constraints: BoxConstraints (
+        minHeight: minHeight(context)
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text (
+            S.of(context).about,
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+              color: UIColors.white
+            ),
+          ),
+          const SizedBox(height: 16),
+          Image.asset (
+            "assets/logos/astrazeneca-logo.png",
+            height: 50,
+            fit: BoxFit.contain,
+            filterQuality: FilterQuality.medium,
+            alignment: Alignment.topCenter,
+          ),
+        ],
+      ),
     );
   }
 
@@ -99,12 +116,12 @@ class Footer extends StatelessWidget {
             Theme.of(context).primaryColorDark,
             Theme.of(context).primaryColorLight,
           ],
-          focalRadius: 0.5,
-          radius: 20,
+          focalRadius: 0.7,
+          radius: 18,
           focal: Alignment.bottomLeft,
           center: Alignment.topRight,
           stops: const [
-            0.0, 0.27, 1
+            0, 0.5, 1
           ],
         ),
         borderRadius: const BorderRadius.only (
@@ -119,7 +136,7 @@ class Footer extends StatelessWidget {
       width: double.infinity,
       child: Wrap (
         alignment: WrapAlignment.spaceAround,
-        crossAxisAlignment: WrapCrossAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.start,
         spacing: 8,
         runSpacing: 16,
         children: [
