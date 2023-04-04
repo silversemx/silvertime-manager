@@ -94,22 +94,22 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   
 
   List<Widget> _circles ({CirclesSide side = CirclesSide.right}) {
+    double y = -MediaQuery.of(context).size.height * 0.15;
+    double defase = -MediaQuery.of(context).size.width * (
+      _circlesPosition.value
+    );
     return [
       Positioned (
-        top: -MediaQuery.of(context).size.height * 0.15,
-        bottom: 0,
+        top: y,
+        bottom: y,
         right: side == CirclesSide.right 
-        ? -MediaQuery.of(context).size.width * (
-          _circlesPosition.value + 0.06
-        ) : null,
+        ? defase : null,
         left: side == CirclesSide.left
-        ? -MediaQuery.of(context).size.width * (
-          _circlesPosition.value + 0.06
-        ) : null,
-        child: SingleChildScrollView(
+        ? defase : null,
+        child: Center(
           child: Container (
-            width: MediaQuery.of(context).size.height * 1.3,
-            height: MediaQuery.of(context).size.height * 1.3,
+            width: MediaQuery.of(context).size.width * 0.6,
+            height: MediaQuery.of(context).size.width * 0.6,
             decoration: BoxDecoration (
               color: Theme.of(context).primaryColorLight,
               shape: BoxShape.circle,
@@ -120,20 +120,16 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         ),
       ),
       Positioned (
-        top: -MediaQuery.of(context).size.height * 0.1,
-        bottom: 0,
+        top: y,
+        bottom: y,
         right: side == CirclesSide.right 
-        ? -MediaQuery.of(context).size.width * (
-          _circlesPosition.value + 0.06
-        ) : null,
+        ? defase : null,
         left: side == CirclesSide.left
-        ? -MediaQuery.of(context).size.width * (
-          _circlesPosition.value + 0.06
-        ) : null,
-        child: SingleChildScrollView(
+        ? defase : null,
+        child: Center(
           child: Container (
-            width: MediaQuery.of(context).size.height * 1.2,
-            height: MediaQuery.of(context).size.height * 1.2,
+            width: MediaQuery.of(context).size.width * 0.55,
+            height: MediaQuery.of(context).size.width * 0.55,
             decoration: BoxDecoration (
               color: Theme.of(context).primaryColorDark,
               shape: BoxShape.circle,
@@ -144,20 +140,16 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         ),
       ),
       Positioned (
-        top: 0,
-        bottom: 0,
+        top: y,
+        bottom: y,
         right: side == CirclesSide.right 
-        ? -MediaQuery.of(context).size.width * (
-          _circlesPosition.value
-        ) : null,
+        ? defase : null,
         left: side == CirclesSide.left
-        ? -MediaQuery.of(context).size.width * (
-          _circlesPosition.value
-        ) : null,
-        child: SingleChildScrollView(
+        ? defase : null,
+        child: Center(
           child: Container (
-            width: MediaQuery.of(context).size.height * 1,
-            height: MediaQuery.of(context).size.height * 1,
+            width: MediaQuery.of(context).size.width * 0.5,
+            height: MediaQuery.of(context).size.width * 0.5,
             decoration: const BoxDecoration (
               color: UIColors.primary,
               shape: BoxShape.circle,
@@ -201,6 +193,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                         ),
                       ),
                     ),
+                    const SizedBox(height: 16),
                     Opacity(
                       opacity: _titleOpacity.value,
                       child: Text(
