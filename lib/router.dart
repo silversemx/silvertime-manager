@@ -7,6 +7,8 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/layout.dart';
 import 'package:silvertime/screens/home.dart';
 import 'package:silvertime/screens/not_found.dart';
+import 'package:silvertime/screens/resources.dart';
+import 'package:silvertime/screens/service.dart';
 import 'package:silvertime/screens/splash.dart';
 import 'package:silvertime/screens/users.dart';
 
@@ -68,15 +70,25 @@ class RouterAdmin {
             const HomeScreen(),
             settings, dark, layout: true
           );
-        case UsersScreen.routeName:
+        case ResourcesScreen.routeName:
           return getMaterialPageRoute(
-            const UsersScreen(), 
+            const ResourcesScreen (), 
+            settings, dark, layout: true
+          );
+        case ServiceScreen.routeName:
+          return getMaterialPageRoute(
+            const ServiceScreen(), 
             settings, dark, layout: true
           );
         case SplashScreen.routeName:
           return getMaterialPageRoute(
             const SplashScreen (), 
             settings, dark
+          );
+        case UsersScreen.routeName:
+          return getMaterialPageRoute(
+            const UsersScreen(), 
+            settings, dark, layout: true
           );
         default:
           settings = settings.copyWith (
