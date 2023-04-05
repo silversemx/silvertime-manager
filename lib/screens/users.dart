@@ -2,13 +2,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http_request_utils/models/http_exception.dart';
 import 'package:provider/provider.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/models/user.dart';
+import 'package:silvertime/models/user/user.dart';
+import 'package:silvertime/providers/roles.dart';
 import 'package:silvertime/providers/users.dart';
 import 'package:silvertime/style/container.dart';
 import 'package:silvertime/widgets/buttons/create_button.dart';
 import 'package:silvertime/widgets/custom_table.dart';
 import 'package:silvertime/widgets/in_app_messages/confirm_dialog.dart';
 import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
+import 'package:silvertime/widgets/in_app_messages/progress_dialog.dart';
 import 'package:silvertime/widgets/in_app_messages/status_snackbar.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
 import 'package:silvertime/widgets/inputs/custom_input_search_field.dart';
@@ -69,7 +71,7 @@ class _UsersScreenState extends State<UsersScreen> {
       _loading = true;
     });
     try {
-      // TODO: Fetch Roles
+      await Provider.of<Roles> (context, listen: false).getRoles (limit: 0);
       await fetchUsers(showError: false);
     } on HttpException catch(error) {
       showErrorDialog(context, exception: error);
@@ -118,14 +120,26 @@ class _UsersScreenState extends State<UsersScreen> {
     );
 
     if (retval ?? false) {
+      Users users = Provider.of<Users> (context, listen: false);
       try {
-        await Provider.of<Users> (context, listen: false).removeUsers(
-          selectedUsers.toList()
+        await showDialog(
+          context: context, 
+          builder: (ctx) => ProgressDialog(
+            progress: users.removeUsers(
+              selectedUsers
+            ),
+            title: S.of(context).deletingUsers,
+          )
         );
+
+        if (users.users.length == 1 && _currentPage > 0) {
+          _currentPage --;
+        }
+        fetchUsers();
       } on HttpException catch (error) {
         showErrorDialog(context, exception: error);
         if (error.status != 502 || error.status != 504) {
-          await fetchUsers();
+          fetchUsers();
         }
       }
     }
