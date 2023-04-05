@@ -103,13 +103,16 @@ class User {
   Map<String, bool> isComplete () {
     bool name = this.name.isNotEmpty;
     bool username = this.username.isNotEmpty;
+    bool role = this.role.isNotEmpty;
 
     return {
       "name": !name,
       "username": !username,
+      "role": !role,
       "total": 
         name &&
-        username
+        username &&
+        role
     };
   }
 
