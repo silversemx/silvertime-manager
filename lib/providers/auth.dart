@@ -8,7 +8,7 @@ import 'package:http_request_utils/body_utils.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:silvertime/cookies.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/models/user.dart';
+import 'package:silvertime/models/user/user.dart';
 
 class AuthProvider extends ChangeNotifier {
   late Auth _auth;
