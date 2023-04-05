@@ -14,6 +14,7 @@ class CustomDropdownFormField<T> extends StatelessWidget {
   final num? itemWidth;
   final TextStyle? labelStyle;
   final TextStyle? textStyle;
+  final Color? dropdownColor;
 
   const CustomDropdownFormField({ 
     Key? key,
@@ -23,6 +24,7 @@ class CustomDropdownFormField<T> extends StatelessWidget {
     required this.name,
     required this.label,
     required this.validation,
+    this.dropdownColor,
     this.hintItem,
     this.itemWidth,
     this.labelStyle,
@@ -77,18 +79,32 @@ class CustomDropdownFormField<T> extends StatelessWidget {
             decoration: InputDecoration(
               labelText: label,
               labelStyle: labelStyle,
-              enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder!.copyWith(
-                borderSide: (validation ?? false) ?
-                BorderSide (
-                  color: Theme.of(context).secondaryHeaderColor
-                )
-                : null
-              )
+              // enabledBorder: Theme.of(context).inputDecorationTheme
+              // .enabledBorder!.copyWith(
+              //   borderSide: (validation ?? false) ?
+              //   const BorderSide (
+              //     color: UIColors.error
+              //   )
+              //   : null
+              // ),
+              errorStyle: Theme.of(context).textTheme.caption?.copyWith(
+                color: Colors.red
+              ),
             ),
             focusColor: UIColors.hint,
             dropdownColor: textStyle != null
             ? getColorContrast(textStyle!.color!)
-            : Theme.of(context).scaffoldBackgroundColor,
+            : dropdownColor ?? Theme.of(context).scaffoldBackgroundColor,
+            validator: (T? value) {
+              if (hintItem != null) {
+                if (value == items [hintItem!]) {
+                  return S.of(context).notSelected;
+                }
+              } else if (validation ?? false) {
+                return S.of(context).missingValue;
+              }
+              return null;
+            },
           ),
         ),
       ),
