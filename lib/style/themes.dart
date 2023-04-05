@@ -68,6 +68,12 @@ final ThemeData lightTheme = ThemeData(
         color: UIColors.white
       )
     ),
+    errorBorder: OutlineInputBorder (
+      borderRadius: BorderRadius.circular(16),
+      borderSide: const BorderSide (
+        color: UIColors.error
+      )
+    ),
     fillColor: UIColors.lightBackground,
     focusColor: UIColors.lightBackground,
     hintStyle: const TextStyle(
@@ -111,6 +117,9 @@ final ThemeData lightTheme = ThemeData(
   checkboxTheme: CheckboxThemeData (
     shape: const StadiumBorder ( ),
     fillColor: MaterialStateProperty.all(UIColors.inputSuccess)
+  ),
+  scrollbarTheme: ScrollbarThemeData (
+    thumbVisibility: MaterialStateProperty.all(true)
   )
 );
 
