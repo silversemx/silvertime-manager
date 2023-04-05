@@ -2,9 +2,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/providers/auth.dart';
+import 'package:silvertime/providers.dart';
 import 'package:silvertime/providers/ui.dart';
-import 'package:silvertime/providers/users.dart';
 import 'package:silvertime/router.dart';
 import 'package:silvertime/screens/splash.dart';
 import 'package:silvertime/style/themes.dart';
@@ -49,16 +48,9 @@ class _SilverTimeState extends State<SilverTime> {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: UI ()
-        ),
-        ChangeNotifierProvider.value(
-          value: Auth ()
-        ),
-        ChangeNotifierProxyProvider<Auth, Users>(
-          create: (ctx) => Users (), 
-          update: (ctx, auth, users) => users!..update (auth)
-        )
+        ...mainProviders,
+        ...userProviders,
+        ...resourceProviders,
       ],
       child: Consumer<UI>(
         builder: (ctx, ui, _) {
