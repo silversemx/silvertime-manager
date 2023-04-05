@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http_request_utils/body_utils.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/models/user.dart';
+import 'package:silvertime/models/user/user.dart';
 import 'package:silvertime/providers/auth.dart';
 
 class Users extends AuthProvider {
@@ -22,9 +22,6 @@ class Users extends AuthProvider {
     String? username, UserStatus? status, String? role
   }) async {
     await Future.delayed(const Duration (seconds: 3));
-    _users = [
-      User (id: "1", role: "god", name: "Juan", email: "juan@gmail.com", username: "djcharles26", status: UserStatus.active)
-    ];
 
     _userPages = 1;
     const url = "$serverURL/api/users";
@@ -50,43 +47,41 @@ class Users extends AuthProvider {
     _status = status;
     _role = role;
 
-    notifyListeners();
-
-    // try {
-    //   final res = await http.get(
-    //     Uri.parse(url).replace(
-    //       queryParameters: queryParams
-    //     ), 
-    //     headers: {"Authorization": auth.token!}
-    //   );
+    try {
+      final res = await http.get(
+        Uri.parse(url).replace(
+          queryParameters: queryParams
+        ), 
+        headers: {"Authorization": auth.token!}
+      );
     
-    //   switch(res.statusCode){
-    //     case 200:
-    //       final decoded = json.decode(res.body);
-    //       _users = decoded ['users'].map<User> (
-    //         (user) => User.fromJson (user)
-    //       ).toList ();
+      switch(res.statusCode){
+        case 200:
+          final decoded = json.decode(res.body);
+          _users = decoded ['users'].map<User> (
+            (user) => User.fromJson (user)
+          ).toList ();
 
-    //       if (limit > 0) {
-    //         _userPages = (decoded ['count'] / limit).ceil ();
-    //       } else {
-    //         _userPages = 1;
-    //       }
-    //       notifyListeners();
-    //     break;
-    //     default:
-    //       throw HttpException(
-    //         res.body, code: Code.request, status: res.statusCode, route: url
-    //       );
-    //   }
-    // } on HttpException {
-    //   rethrow;
-    // } catch (error, bt) {
-    //   if(runtime == "Development"){
-    //     Completer().completeError(error, bt);
-    //   }
-    //   throw HttpException(error.toString(), code: Code.system, route: url);
-    // }
+          if (limit > 0) {
+            _userPages = (decoded ['count'] / limit).ceil ();
+          } else {
+            _userPages = 1;
+          }
+          notifyListeners();
+        break;
+        default:
+          throw HttpException(
+            res.body, code: Code.request, status: res.statusCode, route: url
+          );
+      }
+    } on HttpException {
+      rethrow;
+    } catch (error, bt) {
+      if(runtime == "Development"){
+        Completer().completeError(error, bt);
+      }
+      throw HttpException(error.toString(), code: Code.system, route: url);
+    }
   }
 
   Future<void> _getUsersInternal () => getUsers (
@@ -153,10 +148,14 @@ class Users extends AuthProvider {
     }
   }
 
-  Future<void> removeUsers (List<String> users) async {
+  Stream<double> removeUsers (Iterable<String> users) async* {
+    int total = users.length;
+    int current = 0;
     for (String user in users) {
       await removeUser(user);
+      yield ++current / total;
     }
+    yield 1;
   }
 
   Future<void> removeUser (String user) async {
