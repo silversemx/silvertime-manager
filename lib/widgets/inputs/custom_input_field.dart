@@ -11,7 +11,7 @@ class CustomInputField extends StatelessWidget {
   final TextInputAction action;
   final TextStyle? labelStyle;
   final TextStyle? textStyle;
-  final bool validation;
+  final bool? validation;
   final bool missing;
   final bool enable;
   final bool requiredValue;
@@ -107,20 +107,21 @@ class CustomInputField extends StatelessWidget {
           isDense: true,
           labelText: label + (requiredValue ? "*" : ""),
           labelStyle: _labelStyle.copyWith(
-            color: validation ? Theme.of(context).secondaryHeaderColor : null
+            color: (validation ?? false) ? Theme.of(context).secondaryHeaderColor : null
           ),
           hintText: hint,
           errorStyle: Theme.of(context).textTheme.caption?.copyWith(
             color: Colors.red
           ),
-          enabledBorder: validation 
-          ? Theme.of(context).inputDecorationTheme.enabledBorder!.copyWith(
-            borderSide: BorderSide(
-              color: Theme.of(context).secondaryHeaderColor,
-              width: 1
-            )
-          )
-          : null
+          // enabledBorder: validation 
+          // ? Theme.of(context).inputDecorationTheme.enabledBorder!.copyWith(
+          //   borderSide: BorderSide(
+          //     color: Theme.of(context).secondaryHeaderColor,
+          //     width: 1
+          //   )
+          // )
+          // : null,
+
         ),
         validator: (value) {
           if((value?.isEmpty ?? true) && requiredValue) {
@@ -129,7 +130,7 @@ class CustomInputField extends StatelessWidget {
             type == TextInputType.emailAddress && !EmailValidator.validate(value!)
           ) {
             return S.of(context).invalidEmail;
-          } else if (validation) {
+          } else if (validation ?? false) {
             return S.of(context).error;
           }
           
