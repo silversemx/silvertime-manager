@@ -26,7 +26,7 @@ class Navbar extends StatelessWidget  implements PreferredSizeWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: SizedBox(
-        width: 32,
+        width: 48,
         child: DropdownButtonFormField2(
           onChanged: (_){},
           customButton:  Icon (
