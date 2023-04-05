@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sobre Astra Zeneca"),
         "actions": MessageLookupByLibrary.simpleMessage("Acciones"),
         "activeUsers": MessageLookupByLibrary.simpleMessage("Usuarios Activos"),
+        "address": MessageLookupByLibrary.simpleMessage("Dirección"),
+        "alias": MessageLookupByLibrary.simpleMessage("Álias"),
         "anErrorOcurred":
             MessageLookupByLibrary.simpleMessage("Un error ha ocurrido"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("¿Estás seguro?"),
@@ -40,10 +42,44 @@ class MessageLookup extends MessageLookupByLibrary {
         "cookiesAdvice":
             MessageLookupByLibrary.simpleMessage("Aviso de Cookies"),
         "create": MessageLookupByLibrary.simpleMessage("Crear"),
+        "createDisk": MessageLookupByLibrary.simpleMessage("Crear disco"),
+        "createMachine":
+            MessageLookupByLibrary.simpleMessage("Crear Computadora"),
+        "createNetwork": MessageLookupByLibrary.simpleMessage("Crear Red"),
+        "createService": MessageLookupByLibrary.simpleMessage("Crear Servicio"),
         "createUser": MessageLookupByLibrary.simpleMessage("Crear Usuario"),
         "dailyAccess":
             MessageLookupByLibrary.simpleMessage("Acesso Diario Promedio"),
         "deleteSelected": m0,
+        "deletingDisks":
+            MessageLookupByLibrary.simpleMessage("Eliminando Discos"),
+        "deletingMachines":
+            MessageLookupByLibrary.simpleMessage("Eliminando Computadoras"),
+        "deletingNetworks":
+            MessageLookupByLibrary.simpleMessage("Eliminando redes"),
+        "deletingServices":
+            MessageLookupByLibrary.simpleMessage("Eliminando servicios"),
+        "deletingUsers": MessageLookupByLibrary.simpleMessage("Deleting users"),
+        "description": MessageLookupByLibrary.simpleMessage("Descripción"),
+        "deviceName": MessageLookupByLibrary.simpleMessage("Nombre del equipo"),
+        "disk": MessageLookupByLibrary.simpleMessage("Disco"),
+        "diskSuccessfullyCreated":
+            MessageLookupByLibrary.simpleMessage("Disco correctamente creado"),
+        "diskSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Disco correctamente eliminado"),
+        "diskSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Disco correctamente actualizado"),
+        "diskType_balanced": MessageLookupByLibrary.simpleMessage("Balanceado"),
+        "diskType_extreme": MessageLookupByLibrary.simpleMessage("Extremo"),
+        "diskType_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "diskType_ssd": MessageLookupByLibrary.simpleMessage("SSD"),
+        "diskType_standard": MessageLookupByLibrary.simpleMessage("Estandar"),
+        "disks": MessageLookupByLibrary.simpleMessage("Discos"),
+        "editDisk": MessageLookupByLibrary.simpleMessage("Editar disco"),
+        "editMachine":
+            MessageLookupByLibrary.simpleMessage("Editar Computadora"),
+        "editNetwork": MessageLookupByLibrary.simpleMessage("Editar Red"),
+        "editService": MessageLookupByLibrary.simpleMessage("Editar Servicio"),
         "editUser": MessageLookupByLibrary.simpleMessage("Editar Usuario"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emptyFieldValidation":
@@ -60,7 +96,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "El servidor se encuentra caido o no responde, reintenta en unos minutos"),
         "error_504": MessageLookupByLibrary.simpleMessage(
             "El tiempo de espera se ha sobrepasado, revisa tu conexión de internet"),
+        "format": MessageLookupByLibrary.simpleMessage("Formato"),
+        "history": MessageLookupByLibrary.simpleMessage("Historial"),
         "home": MessageLookupByLibrary.simpleMessage("inicio"),
+        "image": MessageLookupByLibrary.simpleMessage("Imagen"),
         "inAuthorization":
             MessageLookupByLibrary.simpleMessage("En la autorización"),
         "inDashboard": MessageLookupByLibrary.simpleMessage("en el Dashboard"),
@@ -68,23 +107,116 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalid": MessageLookupByLibrary.simpleMessage("Inválido"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Email Invalido"),
         "legal": MessageLookupByLibrary.simpleMessage("Legal"),
+        "machine": MessageLookupByLibrary.simpleMessage("Instancia"),
+        "machineConfigurationUpdatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage(
+                "La configuración de la máquina fue actualizada correctamente"),
+        "machineSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "La maquina fue creada correctamente"),
+        "machineSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "La maquina fue eliminada correctamente"),
+        "machineSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "La maquina fue actualizada correctamente"),
+        "machineType_cloud": MessageLookupByLibrary.simpleMessage("Nube"),
+        "machineType_local": MessageLookupByLibrary.simpleMessage("Local"),
+        "machineType_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "machines": MessageLookupByLibrary.simpleMessage("Maquinas"),
         "missingValue": MessageLookupByLibrary.simpleMessage("Campo vacío"),
         "mobile": MessageLookupByLibrary.simpleMessage("Móvil"),
         "monthlyAccess":
             MessageLookupByLibrary.simpleMessage("Acceso Mensual Promedio"),
         "name": MessageLookupByLibrary.simpleMessage("Nombre"),
+        "network": MessageLookupByLibrary.simpleMessage("Red"),
+        "networkSuccessfullyCreated":
+            MessageLookupByLibrary.simpleMessage("Red creada correctamente"),
+        "networkSuccessfullyDeleted":
+            MessageLookupByLibrary.simpleMessage("Red eliminada correctamente"),
+        "networkSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Red actualizada correctamente"),
+        "networking": MessageLookupByLibrary.simpleMessage("Networking"),
+        "networks": MessageLookupByLibrary.simpleMessage("Redes"),
         "noInformation":
             MessageLookupByLibrary.simpleMessage("No hay información"),
+        "notSelected": MessageLookupByLibrary.simpleMessage(
+            "Por favor selecciona una opción"),
         "okay": MessageLookupByLibrary.simpleMessage("Okay"),
+        "path": MessageLookupByLibrary.simpleMessage("Path"),
         "platformOverview":
             MessageLookupByLibrary.simpleMessage("Resumen de plataforma"),
+        "progress": MessageLookupByLibrary.simpleMessage("Progreso"),
+        "region": MessageLookupByLibrary.simpleMessage("Región"),
         "resources": MessageLookupByLibrary.simpleMessage("recursos"),
         "role": MessageLookupByLibrary.simpleMessage("Rol"),
         "selectOne": MessageLookupByLibrary.simpleMessage("Selecciona Uno"),
+        "serviceInstanceType_cloud":
+            MessageLookupByLibrary.simpleMessage("Nube"),
+        "serviceInstanceType_local":
+            MessageLookupByLibrary.simpleMessage("Local"),
+        "serviceInstanceType_none":
+            MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "serviceInstanceType_other":
+            MessageLookupByLibrary.simpleMessage("Otros"),
+        "serviceSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "Servicio creado correctamente!"),
+        "serviceSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Servicio eliminado correctamente"),
+        "serviceSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Servicio actualizado correctamente"),
+        "serviceTags":
+            MessageLookupByLibrary.simpleMessage("Etiquetas de servicios"),
+        "services": MessageLookupByLibrary.simpleMessage("Servicios"),
+        "size": MessageLookupByLibrary.simpleMessage("Tamaño"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
+        "status_active": MessageLookupByLibrary.simpleMessage("Activo"),
+        "status_available": MessageLookupByLibrary.simpleMessage("Disponible"),
+        "status_complete": MessageLookupByLibrary.simpleMessage("Completo"),
+        "status_completed": MessageLookupByLibrary.simpleMessage("Completado"),
+        "status_created": MessageLookupByLibrary.simpleMessage("Creada"),
+        "status_deprecated": MessageLookupByLibrary.simpleMessage("Depreciada"),
+        "status_disabled":
+            MessageLookupByLibrary.simpleMessage("Deshabilitada"),
+        "status_down": MessageLookupByLibrary.simpleMessage("Abajo"),
+        "status_ended": MessageLookupByLibrary.simpleMessage("Terminada"),
+        "status_inactive": MessageLookupByLibrary.simpleMessage("Inactivo"),
+        "status_maintenance":
+            MessageLookupByLibrary.simpleMessage("Mantenimiento"),
+        "status_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "status_ready": MessageLookupByLibrary.simpleMessage("Listo"),
+        "status_removed": MessageLookupByLibrary.simpleMessage("Eliminada"),
+        "status_stopped": MessageLookupByLibrary.simpleMessage("Detenido"),
+        "status_waiting": MessageLookupByLibrary.simpleMessage("Esperando"),
+        "status_working": MessageLookupByLibrary.simpleMessage("Trabajando"),
+        "storage": MessageLookupByLibrary.simpleMessage("Almacenamiento"),
+        "storageGoal_backup": MessageLookupByLibrary.simpleMessage("Respaldo"),
+        "storageGoal_cache": MessageLookupByLibrary.simpleMessage("Caché"),
+        "storageGoal_general": MessageLookupByLibrary.simpleMessage("General"),
+        "storageGoal_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "storageGoal_output": MessageLookupByLibrary.simpleMessage("Salidas"),
+        "storageGoal_recon":
+            MessageLookupByLibrary.simpleMessage("Reconocimiento"),
+        "storageGoal_temp": MessageLookupByLibrary.simpleMessage("Temporal"),
+        "storageGoal_uploads": MessageLookupByLibrary.simpleMessage("Subidas"),
+        "storageScope_general": MessageLookupByLibrary.simpleMessage("General"),
+        "storageScope_organization":
+            MessageLookupByLibrary.simpleMessage("Organización"),
+        "storageScope_project":
+            MessageLookupByLibrary.simpleMessage("Proyecto"),
+        "storageScope_service":
+            MessageLookupByLibrary.simpleMessage("Servicio"),
+        "storageSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "El almacenamiento fue creado correctamente"),
+        "storageSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "El almacenamiento fue eliminado correctamente"),
+        "storageSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "El almacenamiento fue actualizado correctamente"),
+        "storages": MessageLookupByLibrary.simpleMessage("Almacenamientos"),
         "success": MessageLookupByLibrary.simpleMessage("Exito"),
         "thisActionCantBeUndone": MessageLookupByLibrary.simpleMessage(
             "¡Esta acción no se puede deshacer!"),
+        "tier": MessageLookupByLibrary.simpleMessage("Tier"),
+        "type": MessageLookupByLibrary.simpleMessage("Tipo"),
+        "updateStatus":
+            MessageLookupByLibrary.simpleMessage("Actualizar Status"),
         "userStatus_active": MessageLookupByLibrary.simpleMessage("Activo"),
         "userStatus_blocked": MessageLookupByLibrary.simpleMessage("Bloqueado"),
         "userStatus_inactive": MessageLookupByLibrary.simpleMessage("Inactivo"),
@@ -100,6 +232,37 @@ class MessageLookup extends MessageLookupByLibrary {
         "weeklyAccess":
             MessageLookupByLibrary.simpleMessage("Acceso Semanal Promedio"),
         "welcomeBack": m1,
-        "yourAccount": MessageLookupByLibrary.simpleMessage("Tu cuenta")
+        "workerInstanceSpeed_background":
+            MessageLookupByLibrary.simpleMessage("Background"),
+        "workerInstanceSpeed_backup":
+            MessageLookupByLibrary.simpleMessage("Backup"),
+        "workerInstanceSpeed_common":
+            MessageLookupByLibrary.simpleMessage("Común"),
+        "workerInstanceSpeed_general":
+            MessageLookupByLibrary.simpleMessage("General"),
+        "workerInstanceSpeed_none":
+            MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "workerInstanceSpeed_priority":
+            MessageLookupByLibrary.simpleMessage("Prioritario"),
+        "workerResourceSuccessfullyCreated":
+            MessageLookupByLibrary.simpleMessage(
+                "Recurso de Worker creado correctamente"),
+        "workerResourceSuccessfullyDeleted":
+            MessageLookupByLibrary.simpleMessage(
+                "Recurso de Worker eliminado correctamente"),
+        "workerResourceSuccessfullyUpdated":
+            MessageLookupByLibrary.simpleMessage(
+                "Recurso de Worker actualizado correctamente"),
+        "workerResources":
+            MessageLookupByLibrary.simpleMessage("Recursos de worker"),
+        "workerSuccessfullyCreated":
+            MessageLookupByLibrary.simpleMessage("Worker creado correctamente"),
+        "workerSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Worker eliminado correctamente"),
+        "workerSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Worker actualizado correctamente"),
+        "workers": MessageLookupByLibrary.simpleMessage("Workers"),
+        "yourAccount": MessageLookupByLibrary.simpleMessage("Tu cuenta"),
+        "zone": MessageLookupByLibrary.simpleMessage("Zona")
       };
 }
