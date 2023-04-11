@@ -7,9 +7,10 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/layout.dart';
 import 'package:silvertime/screens/home.dart';
 import 'package:silvertime/screens/not_found.dart';
-import 'package:silvertime/screens/resources.dart';
-import 'package:silvertime/screens/service.dart';
+import 'package:silvertime/screens/resources/resources.dart';
+import 'package:silvertime/screens/resources/service.dart';
 import 'package:silvertime/screens/splash.dart';
+import 'package:silvertime/screens/status.dart';
 import 'package:silvertime/screens/users.dart';
 
 class RouterAdmin {
@@ -84,6 +85,11 @@ class RouterAdmin {
           return getMaterialPageRoute(
             const SplashScreen (), 
             settings, dark
+          );
+        case StatusScreen.routeName:
+          return getMaterialPageRoute(
+            const StatusScreen(), 
+            settings, dark, layout: true
           );
         case UsersScreen.routeName:
           return getMaterialPageRoute(
