@@ -129,28 +129,31 @@ class _ServiceDialogState extends State<ServiceDialog> {
       ),
       child: Scrollbar(
         controller: _scrollController,
-        child: Container (
-          padding: const EdgeInsets.all(16),
-          child: Column (
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text (
-                widget.service == null
-                ? S.of(context).createService
-                : S.of(context).editService,
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              const SizedBox(height: 16),
-              _form (),
-              const SizedBox(height: 16),
-              ConfirmRow (
-                onPressedOkay: _save,
-                onPressedCancel: Navigator.of(context).pop,
-                okayLoading: _saving,
-              ),
-              const SizedBox(height: 16),
-            ],
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Container (
+            padding: const EdgeInsets.all(16),
+            child: Column (
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text (
+                  widget.service == null
+                  ? S.of(context).createService
+                  : S.of(context).editService,
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                const SizedBox(height: 16),
+                _form (),
+                const SizedBox(height: 16),
+                ConfirmRow (
+                  onPressedOkay: _save,
+                  onPressedCancel: Navigator.of(context).pop,
+                  okayLoading: _saving,
+                ),
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),

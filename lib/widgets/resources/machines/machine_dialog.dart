@@ -151,28 +151,31 @@ class _MachineDialogState extends State<MachineDialog> {
       ),
       child: Scrollbar(
         controller: _scrollController,
-        child: Container (
-          padding: const EdgeInsets.all(16),
-          child: Column (
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text (
-                widget.machine == null
-                ? S.of(context).createMachine
-                : S.of(context).editMachine,
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              const SizedBox(height: 16),
-              _form (),
-              const SizedBox(height: 16),
-              ConfirmRow (
-                onPressedOkay: _save,
-                onPressedCancel: Navigator.of(context).pop,
-                okayLoading: _saving,
-              ),
-              const SizedBox(height: 16),
-            ],
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Container (
+            padding: const EdgeInsets.all(16),
+            child: Column (
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text (
+                  widget.machine == null
+                  ? S.of(context).createMachine
+                  : S.of(context).editMachine,
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                const SizedBox(height: 16),
+                _form (),
+                const SizedBox(height: 16),
+                ConfirmRow (
+                  onPressedOkay: _save,
+                  onPressedCancel: Navigator.of(context).pop,
+                  okayLoading: _saving,
+                ),
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
         ),
       ),
