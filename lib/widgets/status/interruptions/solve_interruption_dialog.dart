@@ -21,12 +21,14 @@ class _SolveInterruptionDialogState extends State<SolveInterruptionDialog> {
   final ScrollController _scrollController = ScrollController();
   bool _saving = false;
   String solution = "";
+  bool _missingSolution = false;
   DateTime end = DateTime.now ();
 
   void _save () async {
     if (solution.isNotEmpty) {
       Duration duration = end.difference(widget.interruption.start);
       setState(() {
+        _missingSolution = false;
         _saving = true;
       }); 
       try {
@@ -45,7 +47,9 @@ class _SolveInterruptionDialogState extends State<SolveInterruptionDialog> {
         }
       }
     } else {
-      //TODO: Add solution missing text
+      setState(() {
+        _missingSolution = true;
+      });
     }
   }
 
@@ -140,6 +144,7 @@ class _SolveInterruptionDialogState extends State<SolveInterruptionDialog> {
                     onUpdate: (val) {
                       solution = val;
                     },
+                    validation: _missingSolution,
                   ),
                 ),
                 const SizedBox(height: 16),
