@@ -14,16 +14,13 @@ class Users extends AuthProvider {
   int _userPages = 0;
   int get userPages => _userPages;
   int _skip = 0, _limit = 20;
-  String? _username, _role;
+  String? _role;
   UserStatus? _status;
 
   Future<void> getUsers ({
     int skip = 0, int limit = 20,
-    String? username, UserStatus? status, String? role
+    UserStatus? status, String? role
   }) async {
-    await Future.delayed(const Duration (seconds: 3));
-
-    _userPages = 1;
     const url = "$serverURL/api/users";
     
     Map<String, String> queryParams = {
@@ -31,9 +28,6 @@ class Users extends AuthProvider {
       "limit": limit.toString()
     };
 
-    if (username != null) {
-      queryParams ['username'] = username;
-    }
     if (status != null) {
       queryParams ['status'] = status.index.toString();
     }
@@ -43,7 +37,6 @@ class Users extends AuthProvider {
 
     _skip = skip;
     _limit = limit;
-    _username = username;
     _status = status;
     _role = role;
 
@@ -85,17 +78,21 @@ class Users extends AuthProvider {
   }
 
   Future<void> _getUsersInternal () => getUsers (
-    skip: _skip, limit: _limit, username: _username, status: _status, role: _role
+    skip: _skip, limit: _limit, status: _status, role: _role
   );
 
-  Future<void> createUser (User user) async {
+  Future<void> createUser (User user, String password, String confirm) async {
     const url = "$serverURL/api/users/create";
     
     try {
       final res = await http.post(Uri.parse(url), 
         headers: {"Authorization": auth.token!},
         body: json.encode (
-          user.toJson()
+          {
+            "password": password.diggest,
+            "confirm": password.diggest,
+            ...user.toJson(),
+          }
         )
       );
     
