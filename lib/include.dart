@@ -6,4 +6,5 @@ export 'package:silvertime/locator.dart';
 export 'package:silvertime/style/colors.dart';
 export 'package:silvertime/utils/dates.dart';
 export 'package:silvertime/utils/sizes.dart';
+export 'package:silvertime/utils/string.dart';
 export 'package:silvertime/values.dart';
