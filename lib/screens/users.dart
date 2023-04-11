@@ -13,7 +13,6 @@ import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
 import 'package:silvertime/widgets/in_app_messages/progress_dialog.dart';
 import 'package:silvertime/widgets/in_app_messages/status_snackbar.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
-import 'package:silvertime/widgets/inputs/custom_input_search_field.dart';
 import 'package:silvertime/widgets/users/user_dialog.dart';
 
 class UsersScreen extends StatefulWidget {
@@ -30,7 +29,6 @@ class _UsersScreenState extends State<UsersScreen> {
     "Id",
     S.of(context).name,
     S.of(context).email,
-    S.of(context).username,
     S.of(context).status,
     S.of(context).editUser
   ];
@@ -42,8 +40,22 @@ class _UsersScreenState extends State<UsersScreen> {
     fetchUsers ();
   }
 
-  String? username, role;
-  UserStatus? status;
+  String? _role;
+  String? get role => _role;
+  UserStatus? _status;
+  UserStatus? get status => _status;
+
+  set role (String? data) {
+    _role = data;
+    _currentPage = 0;
+    fetchUsers();
+  }
+
+  set status (UserStatus? data) {
+    _status = data;
+    _currentPage = 0;
+    fetchUsers();
+  }
 
   @override
   void initState() {
@@ -55,7 +67,7 @@ class _UsersScreenState extends State<UsersScreen> {
     try {
       await Provider.of<Users> (context, listen: false).getUsers (
         skip: 20 * _currentPage, limit: 20,
-        username: username, role: role, status: status
+        role: role, status: status
       );
     } on HttpException catch (error) {
       if (showError) {
@@ -135,6 +147,7 @@ class _UsersScreenState extends State<UsersScreen> {
         if (users.users.length == 1 && _currentPage > 0) {
           _currentPage --;
         }
+        selectedUsers.clear ();
         fetchUsers();
       } on HttpException catch (error) {
         showErrorDialog(context, exception: error);
@@ -154,7 +167,7 @@ class _UsersScreenState extends State<UsersScreen> {
         children: [
           Text (
             S.of(context).users,
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           Row (
             mainAxisAlignment: MainAxisAlignment.end,
@@ -199,22 +212,6 @@ class _UsersScreenState extends State<UsersScreen> {
               context, MediaQuery.of(context).size.width * 0.25,
               constraintWidth: 200
             ),
-            child: CustomInputSearchField<String> (
-              label: S.of(context).username,
-              showSuggestions: false,
-              fetch: (username) async {
-                setState(() {
-                  this.username = username;
-                });
-                return null;
-              },
-            )
-          ),
-          SizedBox(
-            width: constrainedBigWidth(
-              context, MediaQuery.of(context).size.width * 0.25,
-              constraintWidth: 200
-            ),
             child: CustomDropdownFormField<UserStatus> (
               value: status ?? UserStatus.none,
               items: UserStatus.values,
@@ -229,24 +226,44 @@ class _UsersScreenState extends State<UsersScreen> {
               validation: false,
             ),
           ),
-          SizedBox(
-            width: constrainedBigWidth(
-              context, MediaQuery.of(context).size.width * 0.25,
-              constraintWidth: 200
-            ),
-            child: CustomDropdownFormField<UserStatus> (
-              value: status ?? UserStatus.none,
-              items: UserStatus.values,
-              label: S.of(context).status,
-              name: (status) => status.name(context),
-              margin: EdgeInsets.zero,
-              onChanged: (val) {
-                setState(() {
-                  status = val;
-                });
-              },
-              validation: false,
-            ),
+          Consumer<Roles> (
+            builder: (context, roles, _) {
+              return SizedBox(
+                width: constrainedBigWidth(
+                  context, MediaQuery.of(context).size.width * 0.25,
+                  constraintWidth: 200
+                ),
+                child: CustomDropdownFormField<String> (
+                  value: role ?? "",
+                  items: roles.roles.map<String> (
+                    (role) => role.id
+                  ).toList()
+                  ..insert (0, ""),
+                  label: S.of(context).role,
+                  name: (val) {
+                    if (val.isEmpty) {
+                      return S.of(context).selectOne;
+                    } else {
+                      return roles.roles.firstWhere(
+                        (element) => element.id == val
+                      ).name;
+                    }
+                  },
+                  margin: EdgeInsets.zero,
+                  onChanged: (val) {
+                    if (val?.isEmpty ?? true) {
+                      setState(() {
+                        role = null;
+                      });
+                    }
+                    setState(() {
+                      role = val;
+                    });
+                  },
+                  validation: false,
+                ),
+              );
+            }
           ),
         ],
       ),
@@ -272,15 +289,15 @@ class _UsersScreenState extends State<UsersScreen> {
           Center (
             child: SelectableText (
               user.id,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           )
         ),
         DataCell (
           Center (
             child: SelectableText (
-              user.name,
-              style: Theme.of(context).textTheme.bodyText1,
+              "${user.firstName} ${user.lastName}",
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           )
         ),
@@ -288,15 +305,7 @@ class _UsersScreenState extends State<UsersScreen> {
           Center (
             child: SelectableText (
               user.email,
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          )
-        ),
-        DataCell (
-          Center (
-            child: SelectableText (
-              user.username,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           )
         ),
@@ -336,7 +345,7 @@ class _UsersScreenState extends State<UsersScreen> {
                 return Center (
                   child: Text (
                     S.of(context).noInformation,
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                 );
               } else {
