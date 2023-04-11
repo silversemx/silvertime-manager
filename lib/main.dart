@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:silvertime/include.dart';
 import 'package:silvertime/providers.dart';
+import 'package:silvertime/providers/auth.dart';
 import 'package:silvertime/providers/ui.dart';
 import 'package:silvertime/router.dart';
 import 'package:silvertime/screens/splash.dart';
@@ -54,9 +55,9 @@ class _SilverTimeState extends State<SilverTime> {
         ...statusProviders
       ],
       child: Consumer<UI>(
-        builder: (ctx, ui, _) {
+        builder: (context, ui, _) {
           ui.fetchSettings ();
-          //Provider.of<Auth> (context, listen: false).tryAutoLogin ();
+          Provider.of<Auth> (context, listen: false).tryAutoLogin ();
           return MaterialApp(
             title: appName,
             debugShowCheckedModeBanner: runtime == "Test",
