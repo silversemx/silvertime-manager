@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_work_utils/models/routing_data.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:silvertime/include.dart';
 import 'package:silvertime/layout.dart';
+import 'package:silvertime/providers/auth.dart';
+import 'package:silvertime/providers/ui.dart';
 import 'package:silvertime/screens/home.dart';
 import 'package:silvertime/screens/not_found.dart';
 import 'package:silvertime/screens/resources/resources.dart';
@@ -52,18 +55,19 @@ class RouterAdmin {
       );
 
       // bool auth = true;
-      // bool auth = Provider.of<Auht> (context, listen: false).tryAutoLogin ();
+      bool auth = Provider.of<Auth> (context, listen: false).tryAutoLogin ();
       if (routingData.route != "/splash") {
-        // if (!auth) {
-        //   printWarning ("Not authenticated");
-        //   printWarning ("Redirecting");
-        // }
+        if (!auth) {
+          printWarning ("Not authenticated");
+          printWarning ("Redirecting");
+          forceRoute = "/unauthorized";
+          settings = RouteSettings(name: forceRoute, arguments: settings.arguments);
+        }
       }
 
       String routeToLook = forceRoute ?? routingData.route ?? "";
 
-      bool dark = false;
-      // bool dark = Provider.of<UI> (context, listen: false).modeVal == Mode.dark;
+      bool dark = Provider.of<UI> (context, listen: false).modeVal == Mode.dark;
 
       switch (routeToLook) {
         case HomeScreen.routeName:
@@ -97,7 +101,7 @@ class RouterAdmin {
             settings, dark, layout: true
           );
         default:
-          settings = settings.copyWith (
+          settings = const RouteSettings(
             name: "/not-found",
             arguments: {}
           );
