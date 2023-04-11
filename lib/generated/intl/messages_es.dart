@@ -36,29 +36,42 @@ class MessageLookup extends MessageLookupByLibrary {
         "anErrorOcurred":
             MessageLookupByLibrary.simpleMessage("Un error ha ocurrido"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("¿Estás seguro?"),
+        "backToResources":
+            MessageLookupByLibrary.simpleMessage("Regresar a recursos"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "clearSelection":
             MessageLookupByLibrary.simpleMessage("Limpiar selección"),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirmar contraseña"),
+        "content": MessageLookupByLibrary.simpleMessage("Contenido"),
         "cookiesAdvice":
             MessageLookupByLibrary.simpleMessage("Aviso de Cookies"),
         "create": MessageLookupByLibrary.simpleMessage("Crear"),
         "createDisk": MessageLookupByLibrary.simpleMessage("Crear disco"),
+        "createInterruption":
+            MessageLookupByLibrary.simpleMessage("Crear Interrupción"),
         "createMachine":
             MessageLookupByLibrary.simpleMessage("Crear Computadora"),
         "createNetwork": MessageLookupByLibrary.simpleMessage("Crear Red"),
         "createService": MessageLookupByLibrary.simpleMessage("Crear Servicio"),
+        "createServiceInstance":
+            MessageLookupByLibrary.simpleMessage("Crear instancia de servicio"),
         "createUser": MessageLookupByLibrary.simpleMessage("Crear Usuario"),
         "dailyAccess":
             MessageLookupByLibrary.simpleMessage("Acesso Diario Promedio"),
         "deleteSelected": m0,
         "deletingDisks":
             MessageLookupByLibrary.simpleMessage("Eliminando Discos"),
+        "deletingInterruptions":
+            MessageLookupByLibrary.simpleMessage("Eliminando interrupciones"),
         "deletingMachines":
             MessageLookupByLibrary.simpleMessage("Eliminando Computadoras"),
         "deletingMaintenances":
             MessageLookupByLibrary.simpleMessage("Eliminando mantenimientos"),
         "deletingNetworks":
             MessageLookupByLibrary.simpleMessage("Eliminando redes"),
+        "deletingServiceInstances":
+            MessageLookupByLibrary.simpleMessage("Eliminando instancias"),
         "deletingServiceTags":
             MessageLookupByLibrary.simpleMessage("Eliminando Tags"),
         "deletingServices":
@@ -80,10 +93,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "diskType_standard": MessageLookupByLibrary.simpleMessage("Estandar"),
         "disks": MessageLookupByLibrary.simpleMessage("Discos"),
         "editDisk": MessageLookupByLibrary.simpleMessage("Editar disco"),
+        "editInterruption":
+            MessageLookupByLibrary.simpleMessage("Editar Interrupción"),
         "editMachine":
             MessageLookupByLibrary.simpleMessage("Editar Computadora"),
         "editNetwork": MessageLookupByLibrary.simpleMessage("Editar Red"),
         "editService": MessageLookupByLibrary.simpleMessage("Editar Servicio"),
+        "editServiceInstance": MessageLookupByLibrary.simpleMessage(
+            "Editar instancia de servicio"),
         "editUser": MessageLookupByLibrary.simpleMessage("Editar Usuario"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emptyFieldValidation":
@@ -101,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "El servidor se encuentra caido o no responde, reintenta en unos minutos"),
         "error_504": MessageLookupByLibrary.simpleMessage(
             "El tiempo de espera se ha sobrepasado, revisa tu conexión de internet"),
+        "execution": MessageLookupByLibrary.simpleMessage("Execución"),
         "executionExit_error": MessageLookupByLibrary.simpleMessage("Error"),
         "executionExit_interruption":
             MessageLookupByLibrary.simpleMessage("Interrupción"),
@@ -120,6 +138,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "executionType_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
         "executionType_other": MessageLookupByLibrary.simpleMessage("Otro"),
         "executionType_test": MessageLookupByLibrary.simpleMessage("Pruebas"),
+        "exit": MessageLookupByLibrary.simpleMessage("Salida"),
+        "firstName": MessageLookupByLibrary.simpleMessage("Nombre(s)"),
         "format": MessageLookupByLibrary.simpleMessage("Formato"),
         "history": MessageLookupByLibrary.simpleMessage("Historial"),
         "home": MessageLookupByLibrary.simpleMessage("inicio"),
@@ -130,9 +150,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("En la autorización"),
         "inDashboard": MessageLookupByLibrary.simpleMessage("en el Dashboard"),
         "inServer": MessageLookupByLibrary.simpleMessage("en el servidor"),
+        "instance": MessageLookupByLibrary.simpleMessage("Instancia"),
+        "instanceIdCopiedToClipboard": MessageLookupByLibrary.simpleMessage(
+            "Id de instancia copiada al portapapeles"),
+        "instanceSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "Instancia creada correctamente"),
+        "instanceSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Instancia eliminada correctamente"),
+        "instanceSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Instancia actualizada correctamente"),
+        "instances": MessageLookupByLibrary.simpleMessage("Instancias"),
+        "internalAddress":
+            MessageLookupByLibrary.simpleMessage("Dirección Interna"),
+        "interruption": MessageLookupByLibrary.simpleMessage("Interrupción"),
+        "interruptionSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "Interrupción creada correctamente"),
+        "interruptionSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Interrupción eliminada correctamente"),
+        "interruptionSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Interrupción actualizada correctamente"),
         "interruptions": MessageLookupByLibrary.simpleMessage("Interrupciones"),
         "invalid": MessageLookupByLibrary.simpleMessage("Inválido"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Email Invalido"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Apellido(s)"),
         "legal": MessageLookupByLibrary.simpleMessage("Legal"),
         "machine": MessageLookupByLibrary.simpleMessage("Instancia"),
         "machineConfigurationUpdatedSuccessfully":
@@ -177,18 +217,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "networks": MessageLookupByLibrary.simpleMessage("Redes"),
         "noInformation":
             MessageLookupByLibrary.simpleMessage("No hay información"),
+        "noInstances":
+            MessageLookupByLibrary.simpleMessage("No hay instancias"),
+        "noServices": MessageLookupByLibrary.simpleMessage("No hay servicios"),
         "notSelected": MessageLookupByLibrary.simpleMessage(
             "Por favor selecciona una opción"),
         "okay": MessageLookupByLibrary.simpleMessage("Okay"),
+        "options": MessageLookupByLibrary.simpleMessage("Opciones"),
+        "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "path": MessageLookupByLibrary.simpleMessage("Path"),
         "platformOverview":
             MessageLookupByLibrary.simpleMessage("Resumen de plataforma"),
+        "privateAddress":
+            MessageLookupByLibrary.simpleMessage("Dirección Privada"),
         "progress": MessageLookupByLibrary.simpleMessage("Progreso"),
+        "publicAddress":
+            MessageLookupByLibrary.simpleMessage("Dirección pública"),
         "region": MessageLookupByLibrary.simpleMessage("Región"),
         "resources": MessageLookupByLibrary.simpleMessage("recursos"),
         "role": MessageLookupByLibrary.simpleMessage("Rol"),
         "scope": MessageLookupByLibrary.simpleMessage("Acance"),
         "selectOne": MessageLookupByLibrary.simpleMessage("Selecciona Uno"),
+        "service": MessageLookupByLibrary.simpleMessage("Servicio"),
+        "serviceIdCopiedToClipboard": MessageLookupByLibrary.simpleMessage(
+            "Id de servicio copiado al portapeles"),
         "serviceInstanceType_cloud":
             MessageLookupByLibrary.simpleMessage("Nube"),
         "serviceInstanceType_local":
@@ -213,6 +265,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Etiquetas de servicios"),
         "services": MessageLookupByLibrary.simpleMessage("Servicios"),
         "size": MessageLookupByLibrary.simpleMessage("Tamaño"),
+        "solution": MessageLookupByLibrary.simpleMessage("Solución"),
         "start": MessageLookupByLibrary.simpleMessage("Inicio"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "status_active": MessageLookupByLibrary.simpleMessage("Activo"),
@@ -271,6 +324,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "¡Esta acción no se puede deshacer!"),
         "tier": MessageLookupByLibrary.simpleMessage("Tier"),
         "time": MessageLookupByLibrary.simpleMessage("Tiempo"),
+        "title": MessageLookupByLibrary.simpleMessage("Título"),
         "type": MessageLookupByLibrary.simpleMessage("Tipo"),
         "updateStatus":
             MessageLookupByLibrary.simpleMessage("Actualizar Status"),
@@ -289,6 +343,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "web": MessageLookupByLibrary.simpleMessage("Web"),
         "weeklyAccess":
             MessageLookupByLibrary.simpleMessage("Acceso Semanal Promedio"),
+        "weight": MessageLookupByLibrary.simpleMessage("Peso"),
         "welcomeBack": m1,
         "workerInstanceSpeed_background":
             MessageLookupByLibrary.simpleMessage("Background"),
@@ -320,6 +375,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "workerSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
             "Worker actualizado correctamente"),
         "workers": MessageLookupByLibrary.simpleMessage("Workers"),
+        "youAreNotAuthenticated": MessageLookupByLibrary.simpleMessage(
+            "No estás autenticado\nredirigiendo"),
         "yourAccount": MessageLookupByLibrary.simpleMessage("Tu cuenta"),
         "zone": MessageLookupByLibrary.simpleMessage("Zona")
       };

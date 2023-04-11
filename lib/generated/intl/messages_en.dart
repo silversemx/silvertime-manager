@@ -35,18 +35,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "anErrorOcurred":
             MessageLookupByLibrary.simpleMessage("An error ocurred"),
         "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
+        "backToResources":
+            MessageLookupByLibrary.simpleMessage("Back to resources"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "clearSelection":
             MessageLookupByLibrary.simpleMessage("Clear selection"),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "content": MessageLookupByLibrary.simpleMessage("Content"),
         "cookiesAdvice":
             MessageLookupByLibrary.simpleMessage("Cookies advertisement"),
         "create": MessageLookupByLibrary.simpleMessage("Create"),
         "createDisk": MessageLookupByLibrary.simpleMessage("Create Disk"),
+        "createInterruption":
+            MessageLookupByLibrary.simpleMessage("Create Interruption"),
         "createMachine": MessageLookupByLibrary.simpleMessage("Create Machine"),
         "createMaintenance":
             MessageLookupByLibrary.simpleMessage("Create Maintenance"),
         "createNetwork": MessageLookupByLibrary.simpleMessage("Create Network"),
         "createService": MessageLookupByLibrary.simpleMessage("Create Service"),
+        "createServiceInstance":
+            MessageLookupByLibrary.simpleMessage("Create Service Instance"),
         "createServiceTag":
             MessageLookupByLibrary.simpleMessage("Create Service Tag"),
         "createUser": MessageLookupByLibrary.simpleMessage("Create User"),
@@ -54,12 +63,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Average Daily Access"),
         "deleteSelected": m0,
         "deletingDisks": MessageLookupByLibrary.simpleMessage("Deleting disks"),
+        "deletingInterruptions":
+            MessageLookupByLibrary.simpleMessage("Deleting interruptions"),
         "deletingMachines":
             MessageLookupByLibrary.simpleMessage("Deleting Machines"),
         "deletingMaintenances":
             MessageLookupByLibrary.simpleMessage("Deleting Maintenances"),
         "deletingNetworks":
             MessageLookupByLibrary.simpleMessage("Deleting Networks"),
+        "deletingServiceInstances":
+            MessageLookupByLibrary.simpleMessage("Deleting service instances"),
         "deletingServiceTags":
             MessageLookupByLibrary.simpleMessage("Deleting Service Tags"),
         "deletingServices":
@@ -81,11 +94,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "diskType_standard": MessageLookupByLibrary.simpleMessage("Standard"),
         "disks": MessageLookupByLibrary.simpleMessage("Disks"),
         "editDisk": MessageLookupByLibrary.simpleMessage("Edit Disk"),
+        "editInterruption":
+            MessageLookupByLibrary.simpleMessage("Edit Interruption"),
         "editMachine": MessageLookupByLibrary.simpleMessage("Edit Machine"),
         "editMaintenance":
             MessageLookupByLibrary.simpleMessage("Edit Maintenance"),
         "editNetwork": MessageLookupByLibrary.simpleMessage("Edit Network"),
         "editService": MessageLookupByLibrary.simpleMessage("Edit Service"),
+        "editServiceInstance":
+            MessageLookupByLibrary.simpleMessage("Edit Service Instance"),
         "editServiceTag":
             MessageLookupByLibrary.simpleMessage("Edit Service Tag"),
         "editUser": MessageLookupByLibrary.simpleMessage("Edit User"),
@@ -105,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Server is down or not responding, wait a few minutes"),
         "error_504": MessageLookupByLibrary.simpleMessage(
             "Timeout reached, check your internet connection"),
+        "execution": MessageLookupByLibrary.simpleMessage("Execution"),
         "executionExit_error": MessageLookupByLibrary.simpleMessage("Error"),
         "executionExit_interruption":
             MessageLookupByLibrary.simpleMessage("Interruption"),
@@ -125,6 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "executionType_none": MessageLookupByLibrary.simpleMessage("None"),
         "executionType_other": MessageLookupByLibrary.simpleMessage("Other"),
         "executionType_test": MessageLookupByLibrary.simpleMessage("Test"),
+        "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "firstName": MessageLookupByLibrary.simpleMessage("First Name(s)"),
         "format": MessageLookupByLibrary.simpleMessage("Format"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
@@ -134,9 +154,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "inAuthorization": MessageLookupByLibrary.simpleMessage("in auth"),
         "inDashboard": MessageLookupByLibrary.simpleMessage("in Dashboard"),
         "inServer": MessageLookupByLibrary.simpleMessage("in server"),
+        "instance": MessageLookupByLibrary.simpleMessage("Instance"),
+        "instanceIdCopiedToClipboard": MessageLookupByLibrary.simpleMessage(
+            "Instance id copied to clipboard!"),
+        "instanceSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "Intance successfully created"),
+        "instanceSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Instance successfully deleted"),
+        "instanceSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Instance succesfully updated"),
+        "instances": MessageLookupByLibrary.simpleMessage("Instances"),
+        "internalAddress":
+            MessageLookupByLibrary.simpleMessage("Internal address"),
+        "interruption": MessageLookupByLibrary.simpleMessage("Interruption"),
+        "interruptionSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "Interruption successfully created"),
+        "interruptionSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Interruption successfully deleted"),
+        "interruptionSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Interruption successfully updated"),
         "interruptions": MessageLookupByLibrary.simpleMessage("Interruptions"),
         "invalid": MessageLookupByLibrary.simpleMessage("Invalid"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid Email"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last Name(s)"),
         "legal": MessageLookupByLibrary.simpleMessage("Legal"),
         "machine": MessageLookupByLibrary.simpleMessage("Machine"),
         "machineConfigurationUpdatedSuccessfully":
@@ -184,18 +224,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "networks": MessageLookupByLibrary.simpleMessage("Networks"),
         "noInformation":
             MessageLookupByLibrary.simpleMessage("No information was found"),
+        "noInstances":
+            MessageLookupByLibrary.simpleMessage("There are no instances"),
+        "noServices":
+            MessageLookupByLibrary.simpleMessage("There are no services"),
         "notSelected":
             MessageLookupByLibrary.simpleMessage("An item must be selected"),
         "okay": MessageLookupByLibrary.simpleMessage("Okay"),
+        "options": MessageLookupByLibrary.simpleMessage("Opciones"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "path": MessageLookupByLibrary.simpleMessage("Path"),
         "platformOverview":
             MessageLookupByLibrary.simpleMessage("Platform overview"),
+        "privateAddress":
+            MessageLookupByLibrary.simpleMessage("Private address"),
         "progress": MessageLookupByLibrary.simpleMessage("Progress"),
+        "publicAddress": MessageLookupByLibrary.simpleMessage("Public address"),
         "region": MessageLookupByLibrary.simpleMessage("Region"),
         "resources": MessageLookupByLibrary.simpleMessage("Resources"),
         "role": MessageLookupByLibrary.simpleMessage("Role"),
         "scope": MessageLookupByLibrary.simpleMessage("Scope"),
         "selectOne": MessageLookupByLibrary.simpleMessage("Select One"),
+        "service": MessageLookupByLibrary.simpleMessage("Service"),
+        "serviceIdCopiedToClipboard": MessageLookupByLibrary.simpleMessage(
+            "Service id copied to clipboard"),
         "serviceInstanceType_cloud":
             MessageLookupByLibrary.simpleMessage("Cloud"),
         "serviceInstanceType_local":
@@ -225,6 +277,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serviceType_web": MessageLookupByLibrary.simpleMessage("Web"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "size": MessageLookupByLibrary.simpleMessage("Size"),
+        "solution": MessageLookupByLibrary.simpleMessage("Solution"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "status_active": MessageLookupByLibrary.simpleMessage("Active"),
@@ -280,6 +333,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "This action can\'t be undone!"),
         "tier": MessageLookupByLibrary.simpleMessage("Tier"),
         "time": MessageLookupByLibrary.simpleMessage("Time"),
+        "title": MessageLookupByLibrary.simpleMessage("Title"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "unexpected": MessageLookupByLibrary.simpleMessage("Unexpected"),
         "updateStatus": MessageLookupByLibrary.simpleMessage("Update Status"),
@@ -298,6 +352,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "web": MessageLookupByLibrary.simpleMessage("Web"),
         "weeklyAccess":
             MessageLookupByLibrary.simpleMessage("Average Weekly Access"),
+        "weight": MessageLookupByLibrary.simpleMessage("Weight"),
         "welcomeBack": m1,
         "workerInstanceSpeed_background":
             MessageLookupByLibrary.simpleMessage("Background"),
@@ -329,6 +384,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "workerSuccessfullyUpdated":
             MessageLookupByLibrary.simpleMessage("Worker successfully updated"),
         "workers": MessageLookupByLibrary.simpleMessage("Workers"),
+        "youAreNotAuthenticated": MessageLookupByLibrary.simpleMessage(
+            "You are not authenticated\nRedirecting"),
         "yourAccount": MessageLookupByLibrary.simpleMessage("Your Account"),
         "zone": MessageLookupByLibrary.simpleMessage("Zone")
       };
