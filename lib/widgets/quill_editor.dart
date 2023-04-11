@@ -8,7 +8,14 @@ class QuillEditorWidget extends StatefulWidget {
   final String? initialValue;
   final String label;
   final Function (String) onUpdate;
-  const QuillEditorWidget({ Key? key, required this.label, required this.onUpdate, this.initialValue }) : super(key: key);
+  final bool? validation;
+  const QuillEditorWidget({ 
+    Key? key,
+    required this.label, 
+    required this.onUpdate,
+    this.initialValue,
+    this.validation
+  }) : super(key: key);
 
   @override
   State<QuillEditorWidget> createState() => _QuillEditorWidgetState();
@@ -62,7 +69,9 @@ class _QuillEditorWidgetState extends State<QuillEditorWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.label, style: Theme.of(context).textTheme.displayMedium,),
+                  Text(
+                    widget.label, style: Theme.of(context).textTheme.displayMedium,
+                  ),
                   const SizedBox(height: 16,),
                   SizedBox(
                     height: 50,
@@ -93,6 +102,16 @@ class _QuillEditorWidgetState extends State<QuillEditorWidget> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  Visibility (
+                    visible: widget.validation ?? false,
+                    child: Text (
+                      S.of(context).missingValue,
+                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                        color: UIColors.error
+                      ),
+                    ),
+                  )
                 ],
               ),
             );
