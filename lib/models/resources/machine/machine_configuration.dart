@@ -1,5 +1,4 @@
 import 'package:http_request_utils/body_utils.dart';
-import 'package:silvertime/models/resources/disk.dart';
 import 'package:silvertime/models/resources/network.dart';
 
 class GPU {
@@ -86,8 +85,6 @@ class MachineConfiguration {
   int cores = 0;
   num memory = 0;
   GPU gpus = GPU.empty ();
-  Disk bootDisk = Disk.empty();
-  List<Disk> disks = [];
   Networking networking = Networking.empty ();
 
   MachineConfiguration ({
@@ -99,8 +96,6 @@ class MachineConfiguration {
     required this.cores,
     required this.memory,
     required this.gpus,
-    required this.bootDisk,
-    required this.disks,
     required this.networking,
   });
 
@@ -116,12 +111,6 @@ class MachineConfiguration {
       cores: jsonField<int> (json, ["cores",],  nullable: false),
       memory: jsonField<num> (json, ["memory"],  nullable: false),
       gpus: GPU.fromJson( jsonField<dynamic> (json, ["gpus",],  nullable: false) ),
-      bootDisk: Disk.fromJson(
-        jsonField<dynamic> (json, ["boot_disk"], nullable: false)
-      ),
-      disks: jsonField<dynamic> (json, ["disks"],  nullable: false).map<Disk> (
-        (disk) => Disk.fromJson (disk),
-      ).toList (),
       networking: Networking.fromJson(
         jsonField<dynamic> (json, ["networking"],  nullable: false),
       )
@@ -135,8 +124,6 @@ class MachineConfiguration {
     bool cores = this.cores > 0;
     bool memory = this.memory > 0;
     bool gpus = this.gpus.isNotEmpty;
-    bool bootDisk = this.bootDisk.id.isNotEmpty;
-    bool disks = this.disks.isNotEmpty;
     bool networking = this.networking.isNotEmpty;
 
     return {
@@ -146,8 +133,6 @@ class MachineConfiguration {
       "cores": !cores,
       "memory": !memory,
       "gpus": !gpus,
-      "bootDisk": !bootDisk,
-      "disks": !disks,
       "networking": !networking,
       "total": platform &&
         series &&
@@ -155,8 +140,6 @@ class MachineConfiguration {
         cores &&
         memory &&
         gpus &&
-        bootDisk &&
-        disks &&
         networking
     };
   }
@@ -169,8 +152,6 @@ class MachineConfiguration {
       "cores": cores,
       "memory": memory,
       "gpus": gpus.toJson(),
-      "boot_disk": bootDisk.id,
-      "disks": disks.map<String> ((disk) => disk.id).toList(),
       "networking": networking.toJson(),
     };
   }
