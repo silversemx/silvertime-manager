@@ -64,12 +64,12 @@ class Interruption {
       )!,
       duration: jsonClassField<Duration> (
         json, ["duration"], 
-        (duration) => Duration (milliseconds: duration), nullable: false
+        (duration) => Duration (milliseconds: duration), defaultValue: Duration.zero
       ),
       status: InterruptionStatus.values[ 
         jsonField<int> (json, ["status",], defaultValue: 0) 
       ],
-      description: jsonField<String> (json, ["description",],  nullable: false),
+      description: jsonField<String> (json, ["description",],  defaultValue: ""),
       solution: jsonField<String> (json, ["solution",]),
       date: dateTimefromMillisecondsNoZero(
         jsonField<int> (json, ["date", "\$date"]),
