@@ -61,9 +61,11 @@ class _TimePickerState extends State<TimePicker> {
 
     _minuteController.addListener(() {
       if (_minuteController.text.isNotEmpty) {
-        if (!_minuteController.text.contains(
-          RegExp (r'^[0-5]{0,1}[0-9]{1}$')
-        )) {
+        if (
+          !_minuteController.text.contains(
+            RegExp (r'^[0-5]{0,1}[0-9]{1}$')
+          )
+        ) {
           _minuteController.clear ();
           _minuteController.selection = const TextSelection.collapsed(offset: 0);
         }
@@ -162,6 +164,7 @@ class _TimePickerState extends State<TimePicker> {
       width: 100,
       child: SearchField<int> (
         focusNode: _hourFocus,
+        suggestionDirection: SuggestionDirection.up,
         controller: _hourController,
         suggestions: hours.map<SearchFieldListItem<int>> (
           (val) => SearchFieldListItem<int> (
@@ -182,6 +185,8 @@ class _TimePickerState extends State<TimePicker> {
         ),
         textInputAction: TextInputAction.next,
         autoCorrect: true,
+        scrollbarAlwaysVisible: true,
+        
         onSuggestionTap: (suggestion) {
           _updateHour (suggestion.item!);
           _hourFocus.unfocus();
@@ -208,6 +213,8 @@ class _TimePickerState extends State<TimePicker> {
       child: SearchField<int> (
         focusNode: _minuteFocus,
         controller: _minuteController,
+        suggestionDirection: SuggestionDirection.up,
+        scrollbarAlwaysVisible: true,
         suggestions: minutes.map<SearchFieldListItem<int>> (
           (val) => SearchFieldListItem<int> (
             val.toString().padLeft(2, "0"),
@@ -229,9 +236,11 @@ class _TimePickerState extends State<TimePicker> {
         autoCorrect: true,
         onSuggestionTap: (suggestion) {
           _updateMinutes (suggestion.item!);
-          unfocus(context);
+          _minuteFocus.unfocus();
+          // _minuteFocus.unfocus();
         },
         onSubmit: (val) {
+          print ("Submitted");
           if (
             minutes.containsLambda((minute) => minute.toString() == val)
           ) {
@@ -254,7 +263,7 @@ class _TimePickerState extends State<TimePicker> {
       children: [
         Text (
           S.of(context).hrs24Format,
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
         Row (
@@ -262,7 +271,7 @@ class _TimePickerState extends State<TimePicker> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _hourInput(),
-            Text (":", style: Theme.of(context).textTheme.headline2,),
+            Text (":", style: Theme.of(context).textTheme.displayMedium,),
             _minuteInput()
           ],
         )
