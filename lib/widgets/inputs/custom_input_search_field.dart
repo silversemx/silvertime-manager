@@ -1,19 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:http_request_utils/models/http_exception.dart';
 import 'package:searchfield/searchfield.dart';
 import 'package:silvertime/include.dart';
+import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
 
 class CustomInputSearchField<T> extends StatefulWidget {
-  final SearchFieldListItem? initialValue;
+  final SearchFieldListItem<T>? initialValue;
   final String label;
-  final Future<List<T>?> Function (String) fetch;
+  final Future<List<T>?> Function (String?) fetch;
   final int seconds;
   final bool showSuggestions;
   final int maxSuggestionsInViewPort;
   final Future<String?> Function (String)? onSubmit;
-  final Function (String)? onSuggestionTap;
-  final SearchFieldListItem<String> Function (T)? searchFieldMap;
+  final Function (T)? onSuggestionTap;
+  final SearchFieldListItem<T> Function (T)? searchFieldMap;
   final Function ()? clearSelection;
   final bool? validation;
 
@@ -48,10 +50,10 @@ class CustomInputSearchField<T> extends StatefulWidget {
   ), super(key: key);
 
   @override
-  State<CustomInputSearchField> createState() => _CustomInputSearchFieldState<T>();
+  State<CustomInputSearchField<T>> createState() => _CustomInputSearchFieldState<T>();
 }
 
-class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField> {
+class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField<T>> {
   String _lastSearch = "";
   Timer? _timer;
   final TextEditingController _textController = TextEditingController();
@@ -62,7 +64,25 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField> {
   @override
   void initState() {
     super.initState();
+    Future.microtask (_fetchInfo);
     _listeners();
+  }
+
+  void _fetchInfo() async {
+    setState(() {
+      _searching = true;
+    });
+    try {
+      if (widget.showSuggestions) {
+        suggestions = (await widget.fetch (null))!;
+      }
+    } on HttpException catch(error) {
+      showErrorDialog(context, exception: error);
+    } finally {
+      setState(() {
+        _searching = false;
+      });
+    }
   }
 
   void _listeners () {
@@ -125,9 +145,9 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SearchField<String>(
+        SearchField<T>(
           suggestions: widget.showSuggestions
-          ? suggestions.map<SearchFieldListItem<String>> (
+          ? suggestions.map<SearchFieldListItem<T>> (
             (T suggestion) => widget.searchFieldMap!(suggestion)
           ).toList()
           : [],
@@ -150,7 +170,7 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField> {
           },
           onSuggestionTap: (suggestion) {
             if (widget.showSuggestions) {
-              widget.onSuggestionTap!(suggestion.item!);
+              widget.onSuggestionTap!(suggestion.item as T);
               _textController.text = suggestion.searchKey;
               _textController.selection = TextSelection.collapsed(
                 offset: suggestion.searchKey.length
@@ -159,6 +179,7 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField> {
                 _selected = true;
               });
             }
+            unfocus (context);
           },
         ),
         Visibility (
@@ -175,7 +196,7 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField> {
             },
             child: Text (
               S.of(context).clearSelection,
-              style: Theme.of(context).textTheme.headline4!.copyWith(
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 decoration: TextDecoration.underline
               ),
             ),
