@@ -235,15 +235,9 @@ class Services extends AuthProvider {
   }
 
   Future<List<StatusUpdate<ServiceStatus>>> getServiceStatusHistory (
-    String? service, String? instance
+    String? service
   ) async {
-    String origin = "services";
-    if (service == null) {
-      origin = "instances";
-    }
-    final url = "$serverURL/api/resources/$origin/${
-      service??instance
-    }/history";
+    final url = "$serverURL/api/resources/services/$service/history";
     
     try {
       final res = await http.get(Uri.parse(url), 
@@ -274,15 +268,10 @@ class Services extends AuthProvider {
   }
 
   Future<void> updateServiceStatus (
-    String? service, String? instance, ServiceStatus status
+    String? service, ServiceStatus status
   ) async {
-    String origin = "services";
-    if (service == null) {
-      origin = "instances";
-    }
-    final url = "$serverURL/api/resources/$origin/${
-      service??instance
-    }/status/update";
+    
+    final url = "$serverURL/api/resources/services/$service/status/update";
     
     try {
       final res = await http.put(Uri.parse(url), 
