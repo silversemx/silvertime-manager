@@ -1,13 +1,20 @@
 import 'package:flutter_date_pickers/flutter_date_pickers.dart';
 import 'package:http_request_utils/models/http_exception.dart';
 import 'package:provider/provider.dart';
+import 'package:searchfield/searchfield.dart';
 import 'package:silvertime/include.dart';
+import 'package:silvertime/models/resources/service/service.dart';
 import 'package:silvertime/models/status/maintenance/maintenance.dart';
+import 'package:silvertime/providers/resources/services/services.dart';
 import 'package:silvertime/providers/status/maintenances.dart';
 import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
+import 'package:silvertime/widgets/inputs/custom_input_field.dart';
+import 'package:silvertime/widgets/inputs/custom_input_search_field.dart';
+import 'package:silvertime/widgets/quill_editor.dart';
 import 'package:silvertime/widgets/utils/confirm_row.dart';
 import 'package:silvertime/widgets/utils/time_picker.dart';
+import 'package:skeletons/skeletons.dart';
 
 class MaintenanceDialog extends StatefulWidget {
   final Maintenance? maintenance;
@@ -19,6 +26,7 @@ class MaintenanceDialog extends StatefulWidget {
 
 class _MaintenanceDialogState extends State<MaintenanceDialog> {
   late Maintenance maintenance;
+  bool _loading = true;
   bool _saving = false;
   Map<String, bool> validation = {};
   final _formKey = GlobalKey<FormState> ();
@@ -28,6 +36,22 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
   void initState() {
     super.initState();
     maintenance = widget.maintenance ?? Maintenance.empty ();
+    Future.microtask(_fetchInfo);
+  }
+
+  void _fetchInfo() async {
+    setState(() {
+      _loading = true;
+    });
+    try {
+      await Provider.of<Services> (context, listen: false).getServices (limit: 0);
+    } on HttpException catch(error) {
+      showErrorDialog(context, exception: error);
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
   }
 
   void _save () async {
@@ -61,6 +85,10 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
           });
         }
       }
+    } else {
+      showErrorDialog(
+        context, title: S.of(context).missingValue, message: validation.toString()
+      );
     }
   }
 
@@ -104,7 +132,6 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
                   maintenance.end = maintenance.end!.copyWith (
                     hour: today.hour , minute: today.minute + 5
                   );
-                  print (maintenance.end);
                 }
                 setState(() { });
               },
@@ -112,7 +139,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
                 maintenance.start, maintenance.end!
               ),
               datePickerStyles: DatePickerRangeStyles (
-                selectedDateStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                selectedDateStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: UIColors.white
                 ),
                 selectedPeriodStartDecoration: BoxDecoration (
@@ -146,7 +173,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
                   children: [
                     Text (
                       S.of (context).start,
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 8),
                     TimePicker (
@@ -166,7 +193,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
                   children: [
                     Text (
                       S.of (context).end,
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     const SizedBox(height: 8),
                     TimePicker (
@@ -216,7 +243,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
             onChanged: (DateTime day) {
               if (day.equalsIgnoreTime(DateTime.now ())){
                 setState(() {
-                  maintenance.start = day;
+                  maintenance.start = DateTime.now ();
                 });
               } else {
                 setState(() {
@@ -228,8 +255,8 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
             },
             selectedDate: maintenance.start,
             datePickerStyles: DatePickerRangeStyles(
-              currentDateStyle: Theme.of(context).textTheme.headline3,
-              selectedDateStyle: Theme.of(context).textTheme.headline3!.copyWith(
+              currentDateStyle: Theme.of(context).textTheme.displaySmall,
+              selectedDateStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
                 color: UIColors.white
               ),
               selectedSingleDateDecoration: BoxDecoration (
@@ -256,13 +283,97 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
   Widget _timePicker () {
     switch (maintenance.time) {
       case MaintenanceTime.none:
-      case MaintenanceTime.other:
       return Container ();  
       case MaintenanceTime.free:
         return _startPicker();
       case MaintenanceTime.range:
         return _rangePicker ();
     }
+  }
+
+  Widget _serviceInput () {
+    return Consumer<Services> (
+      builder: (ctx, services, _) {
+        if (_loading) {
+          return SizedBox (
+            width: double.infinity,
+            child: SkeletonAvatar (
+              style: SkeletonAvatarStyle (
+                borderRadius: BorderRadius.circular(12),
+                height: 24,
+                width: double.infinity,
+              ),
+            ),
+          );
+        } else if (services.services.isEmpty) {
+          return Container (
+            color: Theme.of(context).scaffoldBackgroundColor,
+            padding: const EdgeInsets.all(16),
+            width: double.infinity,
+            child: Text (
+              S.of(context).noServices,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          );
+        } else {
+          return CustomInputSearchField<Service> (
+            initialValue: maintenance.service  != null
+            ? SearchFieldListItem(
+              services.services.firstWhereOrNull (
+                (service) => service.id == maintenance.service
+              )?.name ?? "",
+              item: services.services.firstWhereOrNull(
+                (element) => element.id == maintenance.service
+              )
+            )
+            : null,
+            fetch: (search) async {
+              if (search?.isNotEmpty ?? false) {
+                return services.services.where (
+                  (service) => service.name.contains (search!)
+                ).toList();
+              } else {
+                return services.services;
+              }
+            },
+            searchFieldMap: (service) => SearchFieldListItem<Service> (
+              service.name,
+              item: service
+            ),
+            label: S.of(context).service,
+            clearSelection: () {
+              setState(() {
+                maintenance.service = null;
+              });
+            },
+            onSuggestionTap: (suggestion) {
+              setState(() {
+                maintenance.service = suggestion.id;
+              });
+            },
+            onSubmit: (serviceName) async {
+              Service? serviceFound = services.services.firstWhereOrNull(
+                (element) => element.name.formattedSearchText.contains(
+                  serviceName.formattedSearchText
+                )
+              );
+
+              if (serviceFound != null) {
+                setState(() {
+                  maintenance.service = serviceFound.id;
+                });
+
+                return serviceName;
+              }
+              return null;
+            },
+            
+            showSuggestions: true,
+            validation: validation ['service'],
+          );
+        }
+      },
+    );
   }
 
   Widget _form () {
@@ -272,9 +383,19 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          CustomInputField (
+            label: S.of(context).title,
+            type: TextInputType.text,
+            initialValue: maintenance.title,
+            onChanged: (val) {
+              maintenance.title = val;
+            },
+            action: TextInputAction.next,
+            validation: validation ['title'],
+          ),
           CustomDropdownFormField<ExecutionScope> (
             value: maintenance.scope,
-            items: ExecutionScope.values,
+            items: maintenanceScopes,
             label: S.of(context).scope,
             hintItem: 0,
             name: (val) => val.name(context),
@@ -285,6 +406,13 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
             },
             validation: validation['scope'],
           ),
+          Visibility(
+            visible: [
+              ExecutionScope.service
+            ].contains(maintenance.scope),
+            child: _serviceInput(),
+          ),
+          const SizedBox(height: 16),
           CustomDropdownFormField<MaintenanceTime> (
             value: maintenance.time,
             items: MaintenanceTime.values,
@@ -304,6 +432,16 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
             },
             validation: validation['time'],
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: QuillEditorWidget(
+              initialValue: maintenance.text,
+              label: S.of(context).content, 
+              onUpdate: (text) {
+                maintenance.text = text;
+              }
+            ),
+          ),
           _timePicker (),
         ],
       ),
@@ -315,6 +453,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
     return Dialog(
       insetPadding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.2,
+        vertical: 32
       ),
       child: Scrollbar(
         controller: _scrollController,
@@ -330,7 +469,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
                   widget.maintenance == null
                   ? S.of(context).createMaintenance
                   : S.of(context).editMaintenance,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 const SizedBox(height: 16),
                 _form (),
