@@ -13,7 +13,7 @@ double constrainedWidth (BuildContext context, double preferredWidth, {double? c
   return width;
 }
 
-/// Method to get [preferredWidth] constrained, if is smaller than default width, will return [constraintWidth] if not null, else return media query.
+/// Method to get [preferredWidth] constrained, if is smaller than [constraintWidth], will return [constraintWidth] if not null, else return media query.
 double constrainedBigWidth (BuildContext context, double preferredWidth, {double? constraintWidth}) {
   double width = preferredWidth;
   double def = constraintWidth ?? MediaQuery.of(context).size.width;
