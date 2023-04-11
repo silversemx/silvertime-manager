@@ -29,8 +29,7 @@ enum ExecutionScope {
   none,
   global,
   service,
-  instance,
-  other
+  instance
 }
 
 extension ExecutionScopeExt on ExecutionScope {
@@ -44,11 +43,22 @@ extension ExecutionScopeExt on ExecutionScope {
         return S.of(context).executionScope_service;
       case ExecutionScope.instance:
         return S.of(context).executionScope_instance;
-      case ExecutionScope.other:
-        return S.of(context).executionScope_other;
     }
   }
 }
+
+List<ExecutionScope> get maintenanceScopes => [
+  ExecutionScope.none,
+  ExecutionScope.global,
+  ExecutionScope.service,
+];
+
+List<ExecutionScope> get interruptionScopes => [
+  ExecutionScope.none,
+  ExecutionScope.global,
+  ExecutionScope.service,
+  ExecutionScope.instance,
+];
 
 enum ExecutionType {
   none,
