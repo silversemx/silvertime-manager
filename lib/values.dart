@@ -1,9 +1,9 @@
 const String serverURL = String.fromEnvironment(
-  "SERVER_URL", defaultValue: "https://admin.silverse.mx"
+  "SERVER_URL", defaultValue: "https://time.silverse.mx"
 );
 
 const String loginURL = String.fromEnvironment(
-  "LOGIN_URL", defaultValue: "https://login.silverse.mx"
+  "LOGIN_URL", defaultValue: "https://login.time.silverse.mx"
 );
 
 const String forcedBearerToken = String.fromEnvironment("FORCE_BEARER_TOKEN");
