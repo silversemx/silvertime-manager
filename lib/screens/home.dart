@@ -1,5 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:silvertime/include.dart';
+import 'package:silvertime/providers/auth.dart';
 import 'package:silvertime/style/container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,9 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text (
-          S.of (context).welcomeBack ("Juan"), //TODO: Substitute with real value
-          style: Theme.of(context).textTheme.displayLarge,
+        Consumer<Auth>(
+          builder: (context, auth, _) {
+            return Text (
+              S.of (context).welcomeBack (auth.userValues?.firstName ?? "N/A"),
+              style: Theme.of(context).textTheme.displayLarge,
+            );
+          }
         )
       ],
     );
