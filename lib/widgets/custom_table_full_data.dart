@@ -1,7 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http_request_utils/models/http_exception.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/models/resources/types.dart';
 import 'package:silvertime/widgets/buttons/create_button.dart';
 import 'package:silvertime/widgets/custom_table.dart';
 import 'package:silvertime/widgets/in_app_messages/confirm_dialog.dart';
@@ -10,7 +9,7 @@ import 'package:silvertime/widgets/in_app_messages/progress_dialog.dart';
 import 'package:silvertime/widgets/in_app_messages/status_snackbar.dart';
 
 class ResourceDataWidget<T> extends StatefulWidget {
-  final ResourceType type;
+  final String title;
   final Future<void> Function ({required int skip, required int limit}) fetch;
   final void Function () dismiss;
   final String createSuccessfullyText;
@@ -28,7 +27,7 @@ class ResourceDataWidget<T> extends StatefulWidget {
 
   const ResourceDataWidget({
     Key? key, 
-    required this.type,
+    required this.title,
     required this.fetch,
     required this.dismiss,
     required this.createSuccessfullyText,
@@ -175,7 +174,7 @@ class _ResourceDataWidgetState<T> extends State<ResourceDataWidget<T>> {
         runSpacing: 32,
         children: [
           Text (
-            widget.type.name (context),
+            widget.title,
             style: Theme.of(context).textTheme.headline1,
           ),
           Row (
