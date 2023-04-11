@@ -57,7 +57,7 @@ extension MaintenanceStatusExt on MaintenanceStatus {
       padding: const EdgeInsets.all(4),
       child: Text (
         name (context),
-        style: Theme.of(context).textTheme.headline4!.copyWith(
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
           color: getColorContrast(color)
         ),
       ),
@@ -69,7 +69,7 @@ enum MaintenanceTime {
   none,
   free,
   range,
-  other
+  // other
 }
 
 extension MaintenanceTimeExt on MaintenanceTime {
@@ -81,8 +81,8 @@ extension MaintenanceTimeExt on MaintenanceTime {
         return S.of(context).maintenanceTime_free;
       case MaintenanceTime.range:
         return S.of(context).maintenanceTime_range;
-      case MaintenanceTime.other:
-        return S.of(context).maintenanceTime_other;
+      // case MaintenanceTime.other:
+      //   return S.of(context).maintenanceTime_other;
     }
   }
 }
