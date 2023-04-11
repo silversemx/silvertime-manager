@@ -240,7 +240,6 @@ class _TimePickerState extends State<TimePicker> {
           // _minuteFocus.unfocus();
         },
         onSubmit: (val) {
-          print ("Submitted");
           if (
             minutes.containsLambda((minute) => minute.toString() == val)
           ) {
