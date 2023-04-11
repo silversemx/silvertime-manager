@@ -8,9 +8,7 @@ enum ResourceType {
   disks,
   networks,
   machines,
-  storages,
-  workerResources,
-  workers
+  // storages
 }
 
 extension ResourceTypeExt on ResourceType {
@@ -28,12 +26,8 @@ extension ResourceTypeExt on ResourceType {
         return S.of(context).networks;
       case ResourceType.machines:
         return S.of(context).machines;
-      case ResourceType.storages:
-        return S.of(context).storages;
-      case ResourceType.workerResources:
-        return S.of(context).workerResources;
-      case ResourceType.workers:
-        return S.of(context).workers;
+      // case ResourceType.storages:
+      //   return S.of(context).storages;
     }
   }
 }
