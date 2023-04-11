@@ -1,7 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:silvertime/providers/auth.dart';
-import 'package:silvertime/providers/resources/disks.dart';
 import 'package:silvertime/providers/resources/machines.dart';
 import 'package:silvertime/providers/resources/networks.dart';
 import 'package:silvertime/providers/resources/services/actions.dart';
@@ -10,6 +9,7 @@ import 'package:silvertime/providers/resources/services/options.dart';
 import 'package:silvertime/providers/resources/services/services.dart';
 import 'package:silvertime/providers/resources/services/tags.dart';
 import 'package:silvertime/providers/roles.dart';
+import 'package:silvertime/providers/status/interruptions.dart';
 import 'package:silvertime/providers/status/maintenances.dart';
 import 'package:silvertime/providers/ui.dart';
 import 'package:silvertime/providers/users.dart';
@@ -66,10 +66,6 @@ final List<SingleChildWidget> resourceServicesProviders = [
 ];
 
 final List<SingleChildWidget> resourceProviders = [
-  ChangeNotifierProxyProvider<Auth, Disks>(
-    create: (ctx) => Disks (), 
-    update: (ctx, auth, disks) => disks!..update(auth)
-  ),
   ChangeNotifierProxyProvider<Auth, Machines>(
     create: (ctx) => Machines (), 
     update: (ctx, auth, machines) => machines!..update (auth)
@@ -82,8 +78,12 @@ final List<SingleChildWidget> resourceProviders = [
 ];
 
 final List<SingleChildWidget> statusProviders = [
+  ChangeNotifierProxyProvider<Auth, Interruptions>(
+    create: (ctx) => Interruptions (), 
+    update: (ctx, auth, interruptions) => interruptions!..update(auth)
+  ),
   ChangeNotifierProxyProvider<Auth, Maintenances>(
-    create: (ctx) => Maintenances(), 
+    create: (ctx) => Maintenances (), 
     update: (ctx, auth, maintenances) => maintenances!..update(auth)
   )
 ];
