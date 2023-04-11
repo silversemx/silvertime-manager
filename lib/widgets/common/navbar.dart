@@ -77,6 +77,11 @@ class Navbar extends StatelessWidget  implements PreferredSizeWidget {
               value: "/resources",
               alignment: Alignment.centerLeft,
               child: _label(context, S.of(context).resources, "/resources"),
+            ),
+            DropdownMenuItem<String> (
+              value: "/status",
+              alignment: Alignment.centerLeft,
+              child: _label (context, S.of(context).status, "/status")
             )
           ]
         ),
@@ -109,6 +114,7 @@ class Navbar extends StatelessWidget  implements PreferredSizeWidget {
             _label (context, S.of(context).home, "/home"),
             _label (context, S.of(context).users, "/users"),
             _label (context, S.of(context).resources, "/resources"),
+            _label (context, S.of(context).status, "/status")
           ],
         ),
         Row (
