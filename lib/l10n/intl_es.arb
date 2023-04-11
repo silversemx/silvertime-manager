@@ -258,5 +258,8 @@
     "deletingServiceInstances": "Eliminando instancias",
     "backToResources": "Regresar a recursos",
     "exit": "Salida",
-    "instanceIdCopiedToClipboard": "Id de instancia copiada al portapapeles"
+    "instanceIdCopiedToClipboard": "Id de instancia copiada al portapapeles",
+    "solve": "Solucionar",
+    "solveInterruption": "Resolver interrupción",
+    "interruptionSuccessfullySolved": "¡La interrupción se ha resuelto correctamente!"
 }

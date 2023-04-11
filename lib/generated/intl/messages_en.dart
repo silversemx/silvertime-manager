@@ -171,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Interruption successfully created"),
         "interruptionSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
             "Interruption successfully deleted"),
+        "interruptionSuccessfullySolved": MessageLookupByLibrary.simpleMessage(
+            "Interruption was successfully solved!"),
         "interruptionSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
             "Interruption successfully updated"),
         "interruptions": MessageLookupByLibrary.simpleMessage("Interruptions"),
@@ -278,6 +280,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "size": MessageLookupByLibrary.simpleMessage("Size"),
         "solution": MessageLookupByLibrary.simpleMessage("Solution"),
+        "solve": MessageLookupByLibrary.simpleMessage("Solve"),
+        "solveInterruption":
+            MessageLookupByLibrary.simpleMessage("Solve Interruption"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "status_active": MessageLookupByLibrary.simpleMessage("Active"),

@@ -278,5 +278,8 @@
     "deletingServiceInstances": "Deleting service instances",
     "backToResources": "Back to resources",
     "exit": "Exit",
-    "instanceIdCopiedToClipboard": "Instance id copied to clipboard!"
+    "instanceIdCopiedToClipboard": "Instance id copied to clipboard!",
+    "solve": "Solve",
+    "solveInterruption": "Solve Interruption",
+    "interruptionSuccessfullySolved": "Interruption was successfully solved!"
 }

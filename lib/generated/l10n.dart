@@ -2669,6 +2669,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Solve`
+  String get solve {
+    return Intl.message(
+      'Solve',
+      name: 'solve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Solve Interruption`
+  String get solveInterruption {
+    return Intl.message(
+      'Solve Interruption',
+      name: 'solveInterruption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interruption was successfully solved!`
+  String get interruptionSuccessfullySolved {
+    return Intl.message(
+      'Interruption was successfully solved!',
+      name: 'interruptionSuccessfullySolved',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
