@@ -10,6 +10,7 @@ export 'package:silvertime/models/system/types.dart';
 class Maintenance {
   String id = "";
   String? service;
+  String? serviceName;
   ExecutionScope scope = ExecutionScope.none;
   MaintenanceTime time = MaintenanceTime.none;
   MaintenanceStatus status = MaintenanceStatus.none;
@@ -17,6 +18,7 @@ class Maintenance {
     second: 0, millisecond: 0, microsecond: 0
   );
   DateTime? end;
+  String title = "";
   String text = "";
   DateTime date = DateTime.now ();
 
@@ -24,10 +26,13 @@ class Maintenance {
     required this.id,
     required this.scope,
     required this.time,
+    required this.title,
     required this.text,
     required this.date,
     required this.start,
+    required this.status,
     this.service,
+    this.serviceName,
     this.end,
   });
 
@@ -42,12 +47,17 @@ class Maintenance {
       time: MaintenanceTime.values[ 
         jsonField<int> (json, ["time",], defaultValue: 0)
       ],
+      title: jsonField<String> (json, ["title",],  nullable: false),
       text: jsonField<String> (json, ["text",], nullable: false),
       start: dateTimefromMillisecondsNoZero(
         jsonField<int> (json, ["start", "\$date"]),
         defaultNow: true
       )!,
-      service: jsonField<String> (json, ["service", "\$oid"]),
+      status: MaintenanceStatus.values[
+        jsonField<int> (json, ["status",], defaultValue: 0)
+      ],
+      service: jsonField<String> (json, ["service", "_id", "\$oid"]),
+      serviceName: jsonField<String> (json, ["service", "name"]),
       end: dateTimefromMillisecondsNoZero(
         jsonField<int> (json, ["end", "\$date"]),
       ),
@@ -63,11 +73,10 @@ class Maintenance {
     bool service = this.scope == ExecutionScope.global 
     || (this.service?.isNotEmpty ?? false);
     bool time = this.time != MaintenanceTime.none;
+    bool title = this.title.isNotEmpty;
     bool text = this.text.isNotEmpty;
     bool start = this.start.isAfter(
-      DateTime.now ().subtract(
-        const Duration (seconds: 1)
-      )
+      DateTime (0)
     );
     bool end = this.time != MaintenanceTime.range 
       || (this.end?.isAfter(this.start) ?? false);
@@ -76,11 +85,13 @@ class Maintenance {
       "service": !service,
       "scope": !scope,
       "time": !time,
+      "title": !title,
       "text": !text,
       "start": !start,
       "end": !end,
       "total": service &&
         scope &&
+        title &&
         time &&
         text &&
         start &&
@@ -93,6 +104,7 @@ class Maintenance {
       "service": service,
       "scope": scope.index,
       "time": time.index,
+      "title": title,
       "text": text,
       "start": start.millisecondsSinceEpoch,
       "end": end?.millisecondsSinceEpoch,
