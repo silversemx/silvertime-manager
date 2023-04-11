@@ -7,9 +7,16 @@ import 'package:silvertime/widgets/custom_table_full_data.dart';
 import 'package:silvertime/widgets/in_app_messages/status_snackbar.dart';
 import 'package:silvertime/widgets/in_app_messages/status_update_dialog.dart';
 import 'package:silvertime/widgets/status/interruptions/interruption_dialog.dart';
+import 'package:silvertime/widgets/status/interruptions/solve_interruption_dialog.dart';
 
-class InterruptionData extends StatelessWidget {
+class InterruptionData extends StatefulWidget {
   const InterruptionData({super.key});
+
+  @override
+  State<InterruptionData> createState() => _InterruptionDataState();
+}
+
+class _InterruptionDataState extends State<InterruptionData> {
   List<String> columns (BuildContext context) => [
     "Id", 
     S.of(context).title,
@@ -132,6 +139,19 @@ class InterruptionData extends StatelessWidget {
     ];
   }
 
+  void _solve (Interruption interruption) async {
+    bool? retval = await showDialog (
+      context: context,
+      builder: (ctx) => SolveInterruptionDialog (
+        interruption: interruption,
+      )
+    );
+
+    if (retval ?? false) {
+      showStatusSnackbar(context, S.of (context).interruptionSuccessfullySolved);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Interruptions>(
@@ -152,7 +172,31 @@ class InterruptionData extends StatelessWidget {
           data: interruptions.interruptions, 
           cells: (interruption) => cells (context, interruption), 
           columns: columns (context),
-          pages: interruptions.pages
+          pages: interruptions.pages,
+          actions: (Interruption interruption) {
+            return [
+              Visibility(
+                visible: interruption.status.index < InterruptionStatus.solved.index,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 16),
+                  child: ElevatedButton (
+                    child: Padding (
+                      padding: const EdgeInsets.all(8),
+                      child: Text (
+                        S.of (context).solve,
+                        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                          color: UIColors.white
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      _solve (interruption);
+                    },
+                  ),
+                ),
+              )
+            ];
+          }
         );
       }
     );
