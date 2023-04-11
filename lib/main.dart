@@ -51,6 +51,7 @@ class _SilverTimeState extends State<SilverTime> {
         ...mainProviders,
         ...userProviders,
         ...resourceProviders,
+        ...statusProviders
       ],
       child: Consumer<UI>(
         builder: (ctx, ui, _) {
