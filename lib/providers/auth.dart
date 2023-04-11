@@ -108,16 +108,11 @@ class Auth extends ChangeNotifier {
     }
     
     if(_token == null) {
-      Future.delayed(const Duration(seconds: 2), () {
-        redirect();
-      });
       return false;
     }
 
     printSuccess("Authenticated");
     _userValues = User.fromToken(Jwt.parseJwt(_token!));
-    checkAccess();
-
     return true;
   }
 
