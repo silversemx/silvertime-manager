@@ -22,6 +22,7 @@ class ResourceDataWidget<T> extends StatefulWidget {
   final List<T> data;
   final List<String> columns;
   final List<DataCell> Function (T) cells;
+  final List<Widget> Function (T)? actions;
   final Function (T)? access;
   final int pages;
 
@@ -41,6 +42,7 @@ class ResourceDataWidget<T> extends StatefulWidget {
     required this.cells,
     required this.columns,
     required this.pages,
+    this.actions,
     this.access
   }): super (key: key);
 
@@ -262,6 +264,11 @@ class _ResourceDataWidgetState<T> extends State<ResourceDataWidget<T>> {
                   ),
                   onPressed: () => _updateData (data),
                 ),
+                ... (
+                  widget.actions != null
+                  ? widget.actions! (data)
+                  : []
+                )
               ],
             ),
           )
