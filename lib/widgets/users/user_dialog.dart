@@ -24,6 +24,7 @@ class _UserDialogState extends State<UserDialog> {
   bool _saving = false;
   final _formKey = GlobalKey<FormState> ();
   Map<String, bool> validation = {};
+  String password = "", confirm = "";
 
   @override
   void initState() {
@@ -58,7 +59,9 @@ class _UserDialogState extends State<UserDialog> {
           _saving = true;
         });
         if (widget.user == null) {
-          await Provider.of<Users> (context, listen: false).createUser(user);
+          await Provider.of<Users> (context, listen: false).createUser(
+            user, password, confirm
+          );
         } else {
           await Provider.of<Users> (context, listen: false).updateUser(
             widget.user!.id, user
@@ -85,11 +88,20 @@ class _UserDialogState extends State<UserDialog> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CustomInputField (
-            initialValue: user.name,
-            label: S.of(context).name,
+            initialValue: user.firstName,
+            label: S.of(context).firstName,
             type: TextInputType.name,
             onChanged: (val) {
-              user.name = val;
+              user.firstName = val;
+            },
+            action: TextInputAction.next,
+          ),
+          CustomInputField (
+            initialValue: user.lastName,
+            label: S.of(context).lastName,
+            type: TextInputType.name,
+            onChanged: (val) {
+              user.lastName = val;
             },
             action: TextInputAction.next,
           ),
@@ -101,15 +113,6 @@ class _UserDialogState extends State<UserDialog> {
               user.email = val;
             },
             action: TextInputAction.next,
-          ),
-          CustomInputField (
-            initialValue: user.username,
-            label: S.of(context).username,
-            type: TextInputType.text,
-            onChanged: (val) {
-              user.username = val;
-            },
-            action: TextInputAction.done,
           ),
           Consumer<Roles>(
             builder: (context, roles, _) {
@@ -144,7 +147,36 @@ class _UserDialogState extends State<UserDialog> {
                 );
               }
             }
-          )
+          ),
+          Visibility(
+            visible: widget.user == null,
+            child: CustomInputField (
+              label: S.of(context).password,
+              type: TextInputType.visiblePassword,
+              hideInput: true,
+              onChanged: (val) {
+                setState(() {
+                  password = val;
+                });
+              },
+              action: TextInputAction.next,
+            ),
+          ),
+          Visibility(
+            visible: widget.user == null,
+            child: CustomInputField (
+              label: S.of(context).confirmPassword,
+              type: TextInputType.visiblePassword,
+              hideInput: true,
+              onChanged: (val) {
+                setState(() {
+                  confirm = val;
+                });
+              },
+              action: TextInputAction.done,
+              validation: password != confirm,
+            ),
+          ),
         ],
       ),
     );
@@ -173,7 +205,7 @@ class _UserDialogState extends State<UserDialog> {
               widget.user == null
               ? S.of(context).createUser
               : S.of(context).editUser,
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.displayMedium,
             ),
             const SizedBox(height: 16),
             _form (),
