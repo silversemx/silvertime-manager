@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silvertime/include.dart';
 import 'package:silvertime/style/container.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
+import 'package:silvertime/widgets/status/interruptions/interruption_data.dart';
 import 'package:silvertime/widgets/status/maintenances/maintenance_data.dart';
 
 enum StatusType {
@@ -59,7 +60,7 @@ class _StatusScreenState extends State<StatusScreen> {
         children: [
           Text (
             S.of(context).status,
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           Container (
             decoration: containerDecoration,
@@ -82,7 +83,7 @@ class _StatusScreenState extends State<StatusScreen> {
               validation: false,
               margin: EdgeInsets.zero,
               hintItem: 0,
-              dropdownColor: Theme.of(context).backgroundColor,
+              dropdownColor: Theme.of(context).colorScheme.background,
             ),
           )
         ],
@@ -97,7 +98,7 @@ class _StatusScreenState extends State<StatusScreen> {
       case StatusType.maintenance:
         return const MaintenanceData();
       case StatusType.interruption:
-        return Container ();
+        return const InterruptionData ();
     }
   }
 

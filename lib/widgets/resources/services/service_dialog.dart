@@ -141,7 +141,7 @@ class _ServiceDialogState extends State<ServiceDialog> {
                   widget.service == null
                   ? S.of(context).createService
                   : S.of(context).editService,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 const SizedBox(height: 16),
                 _form (),

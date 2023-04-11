@@ -58,7 +58,7 @@ class _CreateButtonState extends State<CreateButton> {
             )
             : Text (
               widget.text ?? S.of(context).create,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                 color: widget.useColorContrast 
                 ? getColorContrast(backgroundColor) 
                 : UIColors.white

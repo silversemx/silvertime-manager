@@ -205,7 +205,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                             "silvertime",
                               style: Theme.of(context).textTheme.merge (
                                 GoogleFonts.ralewayTextTheme()
-                              ).headline1!.copyWith(
+                              ).displayLarge!.copyWith(
                                 color: UIColors.primary
                               ),
                           ),
@@ -214,13 +214,13 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                             textAlign: TextAlign.center,
                             text: TextSpan (
                               text: "powered by\n",
-                              style: Theme.of(context).textTheme.bodyText2,
+                              style: Theme.of(context).textTheme.bodyMedium,
                               children: [
                                 TextSpan(
                                   text: "silverse",
                                   style: Theme.of(context).textTheme.merge (
                                     GoogleFonts.ralewayTextTheme()
-                                  ).headline2
+                                  ).displayMedium
                                 )
                               ]
                             ),

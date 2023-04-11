@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Text (
           S.of (context).welcomeBack ("Juan"), //TODO: Substitute with real value
-          style: Theme.of(context).textTheme.headline1,
+          style: Theme.of(context).textTheme.displayLarge,
         )
       ],
     );
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text (
                 title,
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.displayMedium,
               ),
               const SizedBox(width: 16),
               Icon (
@@ -99,14 +99,14 @@ class _HomeScreenState extends State<HomeScreen> {
         RichText(
           text: TextSpan (
             text: S.of(context).dailyAccess,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.displaySmall,
             children: [
               const TextSpan (
                 text: "  "
               ),
               TextSpan (
                 text: daily.toStringAsFixed(0),
-                style: Theme.of(context).textTheme.bodyText1
+                style: Theme.of(context).textTheme.bodyLarge
               )
             ]
           )
@@ -115,14 +115,14 @@ class _HomeScreenState extends State<HomeScreen> {
         RichText(
           text: TextSpan (
             text: S.of(context).weeklyAccess,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.displaySmall,
             children: [
               const TextSpan (
                 text: "  "
               ),
               TextSpan (
                 text: weekly.toStringAsFixed(0),
-                style: Theme.of(context).textTheme.bodyText1
+                style: Theme.of(context).textTheme.bodyLarge
               )
             ]
           )
@@ -131,14 +131,14 @@ class _HomeScreenState extends State<HomeScreen> {
         RichText(
           text: TextSpan (
             text: S.of(context).monthlyAccess,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.displaySmall,
             children: [
               const TextSpan (
                 text: "  "
               ),
               TextSpan (
                 text: monthly.toStringAsFixed(0),
-                style: Theme.of(context).textTheme.bodyText1
+                style: Theme.of(context).textTheme.bodyLarge
               )
             ]
           )
@@ -147,14 +147,14 @@ class _HomeScreenState extends State<HomeScreen> {
         RichText(
           text: TextSpan (
             text: S.of(context).activeUsers,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.displaySmall,
             children: [
               const TextSpan (
                 text: "  "
               ),
               TextSpan (
                 text: users.toStringAsFixed(0),
-                style: Theme.of(context).textTheme.bodyText1
+                style: Theme.of(context).textTheme.bodyLarge
               )
             ]
           )
@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Text (
           S.of(context).platformOverview,
-          style: Theme.of(context).textTheme.headline2,
+          style: Theme.of(context).textTheme.displayMedium,
         ),
         const SizedBox(height: 16),
         SizedBox (

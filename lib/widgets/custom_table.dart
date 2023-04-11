@@ -223,7 +223,7 @@ class _CustomTableState extends State<CustomTable> {
                               child: Center(
                                 child: Text (
                                   column,
-                                  style: Theme.of(context).textTheme.headline3,
+                                  style: Theme.of(context).textTheme.displaySmall,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   textAlign: TextAlign.center,

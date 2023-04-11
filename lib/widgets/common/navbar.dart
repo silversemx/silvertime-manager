@@ -15,7 +15,7 @@ class Navbar extends StatelessWidget  implements PreferredSizeWidget {
       },
       child: Text (
         text.toUpperCase(),
-        style: Theme.of(context).textTheme.headline3!.copyWith(
+        style: Theme.of(context).textTheme.displaySmall!.copyWith(
           color: changeColor ? UIColors.white : null
         ),
       ),
@@ -142,7 +142,7 @@ class Navbar extends StatelessWidget  implements PreferredSizeWidget {
           decoration: BoxDecoration (
             color: changeColor 
             ? UIColors.primary
-            : Theme.of(context).backgroundColor,
+            : Theme.of(context).colorScheme.background,
             borderRadius: const BorderRadius.only  (
               bottomLeft: Radius.circular(24),
               bottomRight: Radius.circular(24)

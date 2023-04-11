@@ -68,7 +68,7 @@ Future<dynamic> showErrorDialog(
         horizontal: MediaQuery.of(context).size.width * 0.3
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -80,19 +80,19 @@ Future<dynamic> showErrorDialog(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(title!, textAlign: TextAlign.center, 
-                  style: Theme.of(context).textTheme.headline2?.copyWith(
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: UIColors.error
                   )
                 ),
                 const SizedBox(height: 16,),
                 Text(message!, textAlign: TextAlign.justify,
-                  style: Theme.of(context).textTheme.bodyText1
+                  style: Theme.of(context).textTheme.bodyLarge
                 ),
                 Visibility(
                   visible: true,
                   child: Text(
                     exceptionMessage,
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: UIColors.error,
                       fontSize: 13
                     ),
@@ -102,7 +102,7 @@ Future<dynamic> showErrorDialog(
                   visible: exception?.route != null,
                   child: Text(
                     exception?.route ?? "No Route",
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ),
                 Row(
@@ -115,7 +115,7 @@ Future<dynamic> showErrorDialog(
                       },
                       child: Text(
                         S.of(context).okay, 
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           color: Theme.of(context).primaryColorDark
                         )
                       ),

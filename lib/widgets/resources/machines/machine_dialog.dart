@@ -163,7 +163,7 @@ class _MachineDialogState extends State<MachineDialog> {
                   widget.machine == null
                   ? S.of(context).createMachine
                   : S.of(context).editMachine,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 const SizedBox(height: 16),
                 _form (),

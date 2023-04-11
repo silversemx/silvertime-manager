@@ -164,7 +164,7 @@ class _NetworkDialogState extends State<NetworkDialog> {
                   widget.network == null
                   ? S.of(context).createNetwork
                   : S.of(context).editNetwork,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 const SizedBox(height: 16),
                 _form (),

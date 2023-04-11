@@ -78,14 +78,14 @@ class _ProgressDialogState extends State<ProgressDialog> {
           children: [
             Text (
               widget.title ?? S.of(context).progress,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(height: 16),
             Visibility (
               visible: widget.message != null,
               child: Text (
                 widget.message ?? "",
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
             ),
             const SizedBox(height: 16),
@@ -122,7 +122,7 @@ class _ProgressDialogState extends State<ProgressDialog> {
                           const SizedBox(height: 8),
                           Text (
                             "${(value * 100).toStringAsFixed(1)}%",
-                            style: Theme.of(context).textTheme.headline4,
+                            style: Theme.of(context).textTheme.headlineMedium,
                           )
                         ],
                       );
@@ -145,7 +145,7 @@ class _ProgressDialogState extends State<ProgressDialog> {
                 },
                 child: Text (
                   S.of(context).okay,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
                     color: Theme.of(context).primaryColor.withOpacity(
                       done ? 1 : 0.5
                     )

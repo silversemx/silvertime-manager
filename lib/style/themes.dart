@@ -4,37 +4,39 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 final TextTheme theme = GoogleFonts.mPlus2TextTheme().copyWith(
-  headline1: const TextStyle(
+  displayLarge: const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 48
   ),
-  headline2: const TextStyle(
+  displayMedium: const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 24
   ),
-  headline3: const TextStyle(
+  displaySmall: const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 18
   ),
-  headline4: const TextStyle(
+  headlineMedium: const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 14
   ),
-  bodyText1: const TextStyle(
+  bodyLarge: const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
   ),
-  bodyText2: const TextStyle(
+  bodyMedium: const TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400
   ),
-  caption: const TextStyle(
+  bodySmall: const TextStyle(
       fontSize: 10,
     ),
 );
 
 final ThemeData lightTheme = ThemeData(
-  colorSchemeSeed: UIColors.primary,
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: UIColors.primary,
+  ),
   scaffoldBackgroundColor: UIColors.lightBackground,
   brightness: Brightness.light,
   textTheme: theme.apply(
@@ -111,7 +113,7 @@ final ThemeData lightTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData (
     style: ButtonStyle (
-      textStyle: MaterialStateProperty.all(theme.headline3)
+      textStyle: MaterialStateProperty.all(theme.displaySmall)
     )
   ),
   checkboxTheme: CheckboxThemeData (
@@ -181,7 +183,7 @@ final ThemeData darkTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData (
     style: ButtonStyle (
-      textStyle: MaterialStateProperty.all(theme.headline3)
+      textStyle: MaterialStateProperty.all(theme.displaySmall)
     )
   )
 );

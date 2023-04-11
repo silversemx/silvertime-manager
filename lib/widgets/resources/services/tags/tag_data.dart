@@ -21,7 +21,7 @@ class ServiceTagData extends StatelessWidget {
         Center (
           child: SelectableText (
             serviceTag.id,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         )
       ),
@@ -32,7 +32,7 @@ class ServiceTagData extends StatelessWidget {
             waitDuration: Duration.zero,
             child: SelectableText (
               serviceTag.name,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         )
@@ -41,7 +41,7 @@ class ServiceTagData extends StatelessWidget {
         Center (
           child: SelectableText (
             serviceTag.value.toString(),
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: UIColors.error
             ),
           ),

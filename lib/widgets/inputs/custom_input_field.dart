@@ -92,7 +92,7 @@ class CustomInputField extends StatelessWidget {
         cursorHeight: 18,
         textInputAction: action,
         obscureText: hideInput,
-        style: textStyle ?? Theme.of(context).textTheme.bodyText1,
+        style: textStyle ?? Theme.of(context).textTheme.bodyLarge,
         onChanged: onChanged,
         maxLength: maxLength,
         onTap: onTap,
@@ -110,7 +110,7 @@ class CustomInputField extends StatelessWidget {
             color: (validation ?? false) ? Theme.of(context).secondaryHeaderColor : null
           ),
           hintText: hint,
-          errorStyle: Theme.of(context).textTheme.caption?.copyWith(
+          errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: Colors.red
           ),
           // enabledBorder: validation 

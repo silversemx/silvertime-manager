@@ -20,28 +20,28 @@ class Footer extends StatelessWidget {
             "silverse",
             style: Theme.of(context).textTheme.merge (
               GoogleFonts.ralewayTextTheme()
-            ).headline2!.copyWith(
+            ).displayMedium!.copyWith(
               color: UIColors.white
             )
           ),
           const SizedBox(height: 16),
           Text (
             "Mexico City",
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               color: UIColors.white
             ),
           ),
           const SizedBox(height: 16),
           Text (
             "silversemx@gmail.com",
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               color: UIColors.white
             ),
           ),
           const SizedBox(height: 16),
           Text (
             "www.silverse.mx",
-            style: Theme.of(context).textTheme.headline4!.copyWith(
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
               color: Theme.of(context).primaryColorDark
             ),
           )
@@ -62,7 +62,7 @@ class Footer extends StatelessWidget {
         children: [
           Text (
             S.of(context).about,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: UIColors.white
             ),
           ),
@@ -90,14 +90,14 @@ class Footer extends StatelessWidget {
         children: [
           Text (
             S.of(context).legal,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: UIColors.white
             ),
           ),
           const SizedBox(height: 16),
           Text (
             S.of(context).cookiesAdvice,
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
               color: UIColors.white
             ),
           )

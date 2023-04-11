@@ -23,7 +23,7 @@ class NetworkData extends StatelessWidget {
         Center (
           child: SelectableText (
             network.id,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         )
       ),
@@ -34,7 +34,7 @@ class NetworkData extends StatelessWidget {
             waitDuration: Duration.zero,
             child: SelectableText (
               network.name,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         )
@@ -43,7 +43,7 @@ class NetworkData extends StatelessWidget {
         Center (
           child: SelectableText (
             network.type.name(context),
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: UIColors.error
             ),
           ),
@@ -53,7 +53,7 @@ class NetworkData extends StatelessWidget {
         Center (
           child: SelectableText (
             network.address,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         )
       ),
@@ -61,7 +61,7 @@ class NetworkData extends StatelessWidget {
         Center (
           child: SelectableText (
             network.region,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         )
       ),
@@ -69,7 +69,7 @@ class NetworkData extends StatelessWidget {
         Center (
           child: SelectableText (
             network.tier.toString(),
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         )
       ),

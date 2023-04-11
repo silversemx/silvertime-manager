@@ -3,7 +3,6 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/models/resources/types.dart';
 import 'package:silvertime/style/container.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
-import 'package:silvertime/widgets/resources/disks/disk_data.dart';
 import 'package:silvertime/widgets/resources/machines/machine_data.dart';
 import 'package:silvertime/widgets/resources/networks/network_data.dart';
 import 'package:silvertime/widgets/resources/services/service_data.dart';
@@ -47,7 +46,7 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
         children: [
           Text (
             S.of (context).resources,
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           Container(
             decoration: containerDecoration,
@@ -61,7 +60,7 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
               value: type,
               items: ResourceType.values,
               label: S.of(context).type,
-              dropdownColor: Theme.of(context).backgroundColor,
+              dropdownColor: Theme.of(context).colorScheme.background,
               name: (val) => val.name (context),
               hintItem: 0,
               margin: EdgeInsets.zero,
@@ -87,8 +86,6 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
         return const ServiceData();
       case ResourceType.serviceTags:
         return const ServiceTagData();
-      case ResourceType.disks:
-        return const DiskData();
       case ResourceType.networks:
         return const NetworkData();
       case ResourceType.machines:

@@ -81,7 +81,7 @@ extension MachineStatusExt on MachineStatus {
       ),
       child: Text (
         name (context),
-        style: Theme.of(context).textTheme.headline4!.copyWith(
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
           color: getColorContrast(color)
         ),
       ),

@@ -24,7 +24,7 @@ class ServiceData extends StatelessWidget {
         Center (
           child: SelectableText (
             service.id,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         )
       ),
@@ -32,7 +32,7 @@ class ServiceData extends StatelessWidget {
         Center (
           child: SelectableText (
             service.alias,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         )
       ),
@@ -43,7 +43,7 @@ class ServiceData extends StatelessWidget {
             waitDuration: Duration.zero,
             child: SelectableText (
               service.name,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         )
@@ -52,7 +52,7 @@ class ServiceData extends StatelessWidget {
         Center (
           child: SelectableText (
             service.type.name(context),
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: UIColors.error
             ),
           ),
@@ -70,13 +70,12 @@ class ServiceData extends StatelessWidget {
             getHistory: () => Provider.of<Services>(
               context, listen: false
             ).getServiceStatusHistory(
-              service.id, null
+              service.id
             ), 
             updateStatus: (status) => Provider.of<Services> (
               context, listen: false
             ).updateServiceStatus(
               service.id, 
-              null, 
               status
             )
           ) 
@@ -105,7 +104,7 @@ class ServiceData extends StatelessWidget {
           data: services.services, 
           cells: (service) => cells (context, service), 
           columns: columns(context),
-          access: (service) {
+          access: (service) async {
             locator<NavigationService> ().navigateTo(
               "/resources/service",
 

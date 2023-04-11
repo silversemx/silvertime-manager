@@ -154,6 +154,7 @@ class _ResourceDataWidgetState<T> extends State<ResourceDataWidget<T>> {
         if (widget.data.length == 1 && _currentPage > 0) {
           _currentPage --;
         }
+        selectedData.clear ();
         fetchResourceData();
       } on HttpException catch (error) {
         showErrorDialog(context, exception: error);
@@ -175,7 +176,7 @@ class _ResourceDataWidgetState<T> extends State<ResourceDataWidget<T>> {
         children: [
           Text (
             widget.title,
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           Row (
             mainAxisAlignment: MainAxisAlignment.end,
@@ -280,7 +281,7 @@ class _ResourceDataWidgetState<T> extends State<ResourceDataWidget<T>> {
             return Center (
               child: Text (
                 S.of(context).noInformation,
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
             );
           } else {

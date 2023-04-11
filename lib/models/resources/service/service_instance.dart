@@ -28,7 +28,7 @@ extension ServiceInstanceTypeExt on ServiceInstanceType {
 class ServiceInstance {
   String id = "";
   String service = "";
-  String machine = "";
+  String machine = "62b27d97890442e063207b48";
   String name = "";
   String description = "";
   ServiceOption? options;

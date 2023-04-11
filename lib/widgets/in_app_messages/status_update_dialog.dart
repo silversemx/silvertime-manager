@@ -91,7 +91,7 @@ class _StatusUpdateDialogState<T> extends State<StatusUpdateDialog<T>> {
           children: [
             Text (
               S.of(context).history,
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.displayMedium,
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -117,7 +117,7 @@ class _StatusUpdateDialogState<T> extends State<StatusUpdateDialog<T>> {
                       ),
                       Text (
                         history[i].date.dateString,
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       )
                     ],
                   );
@@ -127,7 +127,7 @@ class _StatusUpdateDialogState<T> extends State<StatusUpdateDialog<T>> {
             const Divider (),
             Text (
               S.of(context).updateStatus,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(height: 4,),
             SizedBox(

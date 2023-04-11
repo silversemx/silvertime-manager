@@ -21,9 +21,9 @@ Future showConfirmDialog(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(title, style: Theme.of(context).textTheme.headline2),
+            Text(title, style: Theme.of(context).textTheme.displayMedium),
             const SizedBox(height: 16,),
-            Text(body, style: Theme.of(context).textTheme.bodyText1),
+            Text(body, style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: 16,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -34,7 +34,7 @@ Future showConfirmDialog(
                     overlayColor: MaterialStateProperty.all(Colors.transparent)
                   ),
                   child: Text(okay!, 
-                    style: Theme.of(context).textTheme.headline3?.copyWith(
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       color: Theme.of(context).primaryColorDark
                     ) 
                   ),
@@ -47,7 +47,7 @@ Future showConfirmDialog(
                     overlayColor: MaterialStateProperty.all(Colors.transparent)
                   ),
                   child: Text(cancel!, 
-                    style: Theme.of(context).textTheme.headline3?.copyWith(
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       color: UIColors.hint
                     ) 
                   ),

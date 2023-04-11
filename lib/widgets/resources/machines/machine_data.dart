@@ -25,7 +25,7 @@ class MachineData extends StatelessWidget {
         Center (
           child: SelectableText (
             machine.id,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         )
       ),
@@ -33,7 +33,7 @@ class MachineData extends StatelessWidget {
         Center (
           child: SelectableText (
             machine.alias,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         )
       ),
@@ -44,7 +44,7 @@ class MachineData extends StatelessWidget {
             waitDuration: Duration.zero,
             child: SelectableText (
               machine.name,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         )
@@ -53,7 +53,7 @@ class MachineData extends StatelessWidget {
         Center (
           child: SelectableText (
             machine.type.name(context),
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
               color: UIColors.error
             ),
           ),
@@ -63,7 +63,7 @@ class MachineData extends StatelessWidget {
         Center (
           child: SelectableText (
             machine.region,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         )
       ),
@@ -71,7 +71,7 @@ class MachineData extends StatelessWidget {
         Center (
           child: SelectableText (
             machine.zone,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         )
       ),

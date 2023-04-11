@@ -45,7 +45,7 @@ class ConfirmRow extends StatelessWidget {
             size: 16
           )
           : Text(okay ?? S.of (context).okay, 
-            style: Theme.of(context).textTheme.headline3?.copyWith(
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
               color: Theme.of(context).primaryColor.withOpacity(
                 okayActive ? 1 : 0.5
               )
@@ -63,7 +63,7 @@ class ConfirmRow extends StatelessWidget {
             size: 16
           )
           : Text(cancel ?? S.of (context).cancel, 
-            style: Theme.of(context).textTheme.headline3?.copyWith(
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
               color: Theme.of(context).hintColor.withOpacity(
                 cancelActive ? 1 : 0.5
               )

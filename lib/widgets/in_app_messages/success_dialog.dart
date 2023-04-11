@@ -17,13 +17,13 @@ Future showSuccessDialog(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(title!, style: Theme.of(context).textTheme.headline2!.copyWith(
+            Text(title!, style: Theme.of(context).textTheme.displayMedium!.copyWith(
               color: Theme.of(context).primaryColorLight
             )),
             const SizedBox(height: 16,),
             Text(
               body, 
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16,),
@@ -36,7 +36,7 @@ Future showSuccessDialog(
                     overlayColor: MaterialStateProperty.all(Colors.transparent)
                   ),
                   child: Text(okay, 
-                    style: Theme.of(context).textTheme.headline3?.copyWith(
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
                       color: Theme.of(context).primaryColorDark
                     ) 
                   ),

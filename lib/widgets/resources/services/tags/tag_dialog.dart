@@ -116,7 +116,7 @@ class _ServiceTagDialogState extends State<ServiceTagDialog> {
                   widget.serviceTag == null
                   ? S.of(context).createServiceTag
                   : S.of(context).editServiceTag,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 const SizedBox(height: 16),
                 _form (),

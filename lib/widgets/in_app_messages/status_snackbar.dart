@@ -45,7 +45,7 @@ void showStatusSnackbar (
       )
       : Text (
         content, 
-        style: Theme.of(context).textTheme.headline3!.copyWith(
+        style: Theme.of(context).textTheme.displaySmall!.copyWith(
           color: getColorContrast(status.color)
         ),
       ),
