@@ -21,7 +21,7 @@ class Maintenances extends AuthProvider {
   int get pages => _pages;
 
   Future<void> getMaintenances ({int skip = 0, int limit = 20}) async {
-    const url = "$serverURL/api/maintenances";
+    const url = "$serverURL/api/state/maintenances";
 
     Map<String, String> queryParams = {
       "skip": skip.toString(),
@@ -71,7 +71,7 @@ class Maintenances extends AuthProvider {
   );
 
   Future<void> createMaintenance (Maintenance maintenance) async {
-    const url = "$serverURL/api/maintenances/create";
+    const url = "$serverURL/api/state/maintenances/create";
     
     try {
       final res = await http.post(Uri.parse(url), 
@@ -99,7 +99,7 @@ class Maintenances extends AuthProvider {
   }
 
   Future<void> updateMaintenance (String id, Maintenance maintenance) async {
-    final url = "$serverURL/api/maintenances/$id/update";
+    final url = "$serverURL/api/state/maintenances/$id/update";
     
     try {
       final res = await http.put(Uri.parse(url), 
@@ -137,7 +137,7 @@ class Maintenances extends AuthProvider {
   }
 
   Future<void> removeMaintenance (String id) async {
-    const url = "$serverURL/api/maintenances/create";
+    const url = "$serverURL/api/state/maintenances/create";
     
     try {
       final res = await http.delete(Uri.parse(url), 
@@ -166,7 +166,7 @@ class Maintenances extends AuthProvider {
   Future<List<StatusUpdate<MaintenanceStatus>>> getMaintenanceStatusHistory (
     String id
   ) async {
-    final url = "$serverURL/api/maintenances/$id/history";
+    final url = "$serverURL/api/state/maintenances/$id/status/history";
     
     try {
       final res = await http.get(Uri.parse(url), 
@@ -199,7 +199,7 @@ class Maintenances extends AuthProvider {
   Future<void> updateMaintenanceStatus (
     String maintenance, MaintenanceStatus status
   ) async {
-    final url = "$serverURL/api/maintenances/$maintenance/status/update";
+    final url = "$serverURL/api/state/maintenances/$maintenance/status/update";
     
     try {
       final res = await http.put(Uri.parse(url), 
