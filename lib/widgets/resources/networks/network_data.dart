@@ -3,8 +3,8 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/models/resources/network.dart';
 import 'package:silvertime/models/resources/types.dart';
 import 'package:silvertime/providers/resources/networks.dart';
+import 'package:silvertime/widgets/custom_table_full_data.dart';
 import 'package:silvertime/widgets/resources/networks/network_dialog.dart';
-import 'package:silvertime/widgets/resources/resource_data.dart';
 
 class NetworkData extends StatelessWidget {
   const NetworkData({super.key});
@@ -81,7 +81,7 @@ class NetworkData extends StatelessWidget {
     return Consumer<Networks>(
       builder: (context, networks, _) {
         return ResourceDataWidget<Network>(
-          type: ResourceType.networks, 
+          title: ResourceType.networks.name(context), 
           fetch: networks.getNetworks, 
           dismiss: networks.dismiss,
           createSuccessfullyText: S.of(context).networkSuccessfullyCreated, 

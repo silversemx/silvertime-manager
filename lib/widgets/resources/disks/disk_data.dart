@@ -3,9 +3,9 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/models/resources/disk.dart';
 import 'package:silvertime/models/resources/types.dart';
 import 'package:silvertime/providers/resources/disks.dart';
+import 'package:silvertime/widgets/custom_table_full_data.dart';
 import 'package:silvertime/widgets/in_app_messages/status_update_dialog.dart';
 import 'package:silvertime/widgets/resources/disks/disk_dialog.dart';
-import 'package:silvertime/widgets/resources/resource_data.dart';
 
 class DiskData extends StatelessWidget {
   const DiskData({super.key});
@@ -97,7 +97,7 @@ class DiskData extends StatelessWidget {
     return Consumer<Disks>(
       builder: (context, disks, _) {
         return ResourceDataWidget<Disk>(
-          type: ResourceType.disks, 
+          title: ResourceType.disks.name(context), 
           fetch: disks.getDisks, 
           dismiss: disks.dismiss,
           createSuccessfullyText: S.of(context).diskSuccessfullyCreated, 

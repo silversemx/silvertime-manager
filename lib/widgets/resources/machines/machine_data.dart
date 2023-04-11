@@ -3,9 +3,9 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/models/resources/machine/machine.dart';
 import 'package:silvertime/models/resources/types.dart';
 import 'package:silvertime/providers/resources/machines.dart';
+import 'package:silvertime/widgets/custom_table_full_data.dart';
 import 'package:silvertime/widgets/in_app_messages/status_update_dialog.dart';
 import 'package:silvertime/widgets/resources/machines/machine_dialog.dart';
-import 'package:silvertime/widgets/resources/resource_data.dart';
 
 class MachineData extends StatelessWidget {
   const MachineData({super.key});
@@ -105,7 +105,7 @@ class MachineData extends StatelessWidget {
     return Consumer<Machines>(
       builder: (context, machines, _) {
         return ResourceDataWidget<Machine>(
-          type: ResourceType.machines, 
+          title: ResourceType.machines.name(context), 
           fetch: machines.getMachines, 
           dismiss: machines.dismiss,
           createSuccessfullyText: S.of(context).machineSuccessfullyCreated, 

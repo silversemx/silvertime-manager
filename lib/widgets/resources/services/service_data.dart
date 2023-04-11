@@ -3,8 +3,8 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/models/resources/service/service.dart';
 import 'package:silvertime/models/resources/types.dart';
 import 'package:silvertime/providers/resources/services/services.dart';
+import 'package:silvertime/widgets/custom_table_full_data.dart';
 import 'package:silvertime/widgets/in_app_messages/status_update_dialog.dart';
-import 'package:silvertime/widgets/resources/resource_data.dart';
 import 'package:silvertime/widgets/resources/services/service_dialog.dart';
 
 class ServiceData extends StatelessWidget {
@@ -90,8 +90,8 @@ class ServiceData extends StatelessWidget {
     return Consumer<Services>(
       builder: (context, services, _) {
         return ResourceDataWidget<Service>(
-          type: ResourceType.services, 
-          fetch: services.getServices, 
+          title: ResourceType.services.name(context),
+          fetch: services.getServices,
           dismiss: services.dismiss,
           createSuccessfullyText: S.of(context).serviceSuccessfullyCreated, 
           updateSuccessfullyText: S.of(context).serviceSuccessfullyUpdated, 
