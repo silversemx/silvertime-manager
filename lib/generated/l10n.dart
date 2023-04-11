@@ -210,6 +210,16 @@ class S {
     );
   }
 
+  /// `Create Service Tag`
+  String get createServiceTag {
+    return Intl.message(
+      'Create Service Tag',
+      name: 'createServiceTag',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create User`
   String get createUser {
     return Intl.message(
@@ -275,6 +285,16 @@ class S {
     return Intl.message(
       'Deleting services',
       name: 'deletingServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting Service Tags`
+  String get deletingServiceTags {
+    return Intl.message(
+      'Deleting Service Tags',
+      name: 'deletingServiceTags',
       desc: '',
       args: [],
     );
@@ -450,6 +470,16 @@ class S {
     );
   }
 
+  /// `Edit Service Tag`
+  String get editServiceTag {
+    return Intl.message(
+      'Edit Service Tag',
+      name: 'editServiceTag',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Edit User`
   String get editUser {
     return Intl.message(
@@ -545,6 +575,156 @@ class S {
     return Intl.message(
       'Timeout reached, check your internet connection',
       name: 'error_504',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get executionExit_error {
+    return Intl.message(
+      'Error',
+      name: 'executionExit_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interruption`
+  String get executionExit_interruption {
+    return Intl.message(
+      'Interruption',
+      name: 'executionExit_interruption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `None`
+  String get executionExit_none {
+    return Intl.message(
+      'None',
+      name: 'executionExit_none',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get executionExit_other {
+    return Intl.message(
+      'Other',
+      name: 'executionExit_other',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get executionExit_success {
+    return Intl.message(
+      'Success',
+      name: 'executionExit_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Global`
+  String get executionScope_global {
+    return Intl.message(
+      'Global',
+      name: 'executionScope_global',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instance`
+  String get executionScope_instance {
+    return Intl.message(
+      'Instance',
+      name: 'executionScope_instance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `None`
+  String get executionScope_none {
+    return Intl.message(
+      'None',
+      name: 'executionScope_none',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get executionScope_other {
+    return Intl.message(
+      'Other',
+      name: 'executionScope_other',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service`
+  String get executionScope_service {
+    return Intl.message(
+      'Service',
+      name: 'executionScope_service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live`
+  String get executionType_live {
+    return Intl.message(
+      'Live',
+      name: 'executionType_live',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maintenance`
+  String get executionType_maintenance {
+    return Intl.message(
+      'Maintenance',
+      name: 'executionType_maintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `None`
+  String get executionType_none {
+    return Intl.message(
+      'None',
+      name: 'executionType_none',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get executionType_other {
+    return Intl.message(
+      'Other',
+      name: 'executionType_other',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test`
+  String get executionType_test {
+    return Intl.message(
+      'Test',
+      name: 'executionType_test',
       desc: '',
       args: [],
     );
@@ -1060,6 +1240,36 @@ class S {
     );
   }
 
+  /// `Tag successfully created`
+  String get serviceTagSuccessfullyCreated {
+    return Intl.message(
+      'Tag successfully created',
+      name: 'serviceTagSuccessfullyCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tag successfully updated`
+  String get serviceTagSuccessfullyDeleted {
+    return Intl.message(
+      'Tag successfully updated',
+      name: 'serviceTagSuccessfullyDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tag successfully deleted`
+  String get serviceTagSuccessfullyUpdated {
+    return Intl.message(
+      'Tag successfully deleted',
+      name: 'serviceTagSuccessfullyUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Core`
   String get serviceType_core {
     return Intl.message(
@@ -1210,6 +1420,16 @@ class S {
     );
   }
 
+  /// `Done`
+  String get status_done {
+    return Intl.message(
+      'Done',
+      name: 'status_done',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Down`
   String get status_down {
     return Intl.message(
@@ -1255,6 +1475,16 @@ class S {
     return Intl.message(
       'None',
       name: 'status_none',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Progress`
+  String get status_progress {
+    return Intl.message(
+      'Progress',
+      name: 'status_progress',
       desc: '',
       args: [],
     );
@@ -1650,6 +1880,16 @@ class S {
     );
   }
 
+  /// `Value`
+  String get value {
+    return Intl.message(
+      'Value',
+      name: 'value',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Web`
   String get web {
     return Intl.message(
@@ -1835,6 +2075,236 @@ class S {
     return Intl.message(
       'Zone',
       name: 'zone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `None`
+  String get maintenanceTime_none {
+    return Intl.message(
+      'None',
+      name: 'maintenanceTime_none',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free`
+  String get maintenanceTime_free {
+    return Intl.message(
+      'Free',
+      name: 'maintenanceTime_free',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Range`
+  String get maintenanceTime_range {
+    return Intl.message(
+      'Range',
+      name: 'maintenanceTime_range',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get maintenanceTime_other {
+    return Intl.message(
+      'Other',
+      name: 'maintenanceTime_other',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Detected`
+  String get status_detected {
+    return Intl.message(
+      'Detected',
+      name: 'status_detected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Investigating`
+  String get status_investigating {
+    return Intl.message(
+      'Investigating',
+      name: 'status_investigating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monitoring`
+  String get status_monitoring {
+    return Intl.message(
+      'Monitoring',
+      name: 'status_monitoring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Solved`
+  String get status_solved {
+    return Intl.message(
+      'Solved',
+      name: 'status_solved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maintenance`
+  String get maintenance {
+    return Intl.message(
+      'Maintenance',
+      name: 'maintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Interruptions`
+  String get interruptions {
+    return Intl.message(
+      'Interruptions',
+      name: 'interruptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maintenance Successfully Created`
+  String get maintenanceSuccessfullyCreated {
+    return Intl.message(
+      'Maintenance Successfully Created',
+      name: 'maintenanceSuccessfullyCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maintenance Successfully Updated`
+  String get maintenanceSuccessfullyUpdated {
+    return Intl.message(
+      'Maintenance Successfully Updated',
+      name: 'maintenanceSuccessfullyUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maintenance Successfully Deleted`
+  String get maintenanceSuccessfullyDeleted {
+    return Intl.message(
+      'Maintenance Successfully Deleted',
+      name: 'maintenanceSuccessfullyDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting Maintenances`
+  String get deletingMaintenances {
+    return Intl.message(
+      'Deleting Maintenances',
+      name: 'deletingMaintenances',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Maintenance`
+  String get createMaintenance {
+    return Intl.message(
+      'Create Maintenance',
+      name: 'createMaintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Maintenance`
+  String get editMaintenance {
+    return Intl.message(
+      'Edit Maintenance',
+      name: 'editMaintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time`
+  String get time {
+    return Intl.message(
+      'Time',
+      name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scope`
+  String get scope {
+    return Intl.message(
+      'Scope',
+      name: 'scope',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `24hrs format`
+  String get hrs24Format {
+    return Intl.message(
+      '24hrs format',
+      name: 'hrs24Format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hour`
+  String get hour {
+    return Intl.message(
+      'Hour',
+      name: 'hour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minutes`
+  String get minutes {
+    return Intl.message(
+      'Minutes',
+      name: 'minutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start`
+  String get start {
+    return Intl.message(
+      'Start',
+      name: 'start',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End`
+  String get end {
+    return Intl.message(
+      'End',
+      name: 'end',
       desc: '',
       args: [],
     );

@@ -55,8 +55,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Eliminando Discos"),
         "deletingMachines":
             MessageLookupByLibrary.simpleMessage("Eliminando Computadoras"),
+        "deletingMaintenances":
+            MessageLookupByLibrary.simpleMessage("Eliminando mantenimientos"),
         "deletingNetworks":
             MessageLookupByLibrary.simpleMessage("Eliminando redes"),
+        "deletingServiceTags":
+            MessageLookupByLibrary.simpleMessage("Eliminando Tags"),
         "deletingServices":
             MessageLookupByLibrary.simpleMessage("Eliminando servicios"),
         "deletingUsers": MessageLookupByLibrary.simpleMessage("Deleting users"),
@@ -84,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emptyFieldValidation":
             MessageLookupByLibrary.simpleMessage("Campo vacio"),
+        "end": MessageLookupByLibrary.simpleMessage("Fin"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "error_400": MessageLookupByLibrary.simpleMessage(
             "Los datos enviados no fueron validados correctamente"),
@@ -96,14 +101,36 @@ class MessageLookup extends MessageLookupByLibrary {
             "El servidor se encuentra caido o no responde, reintenta en unos minutos"),
         "error_504": MessageLookupByLibrary.simpleMessage(
             "El tiempo de espera se ha sobrepasado, revisa tu conexión de internet"),
+        "executionExit_error": MessageLookupByLibrary.simpleMessage("Error"),
+        "executionExit_interruption":
+            MessageLookupByLibrary.simpleMessage("Interrupción"),
+        "executionExit_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "executionExit_other": MessageLookupByLibrary.simpleMessage("Otro"),
+        "executionExit_success": MessageLookupByLibrary.simpleMessage("Éxito"),
+        "executionScope_global": MessageLookupByLibrary.simpleMessage("Global"),
+        "executionScope_instance":
+            MessageLookupByLibrary.simpleMessage("Instancia"),
+        "executionScope_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "executionScope_other": MessageLookupByLibrary.simpleMessage("Otro"),
+        "executionScope_service":
+            MessageLookupByLibrary.simpleMessage("Servicio"),
+        "executionType_live": MessageLookupByLibrary.simpleMessage("Live"),
+        "executionType_maintenance":
+            MessageLookupByLibrary.simpleMessage("Mantenimiento"),
+        "executionType_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "executionType_other": MessageLookupByLibrary.simpleMessage("Otro"),
+        "executionType_test": MessageLookupByLibrary.simpleMessage("Pruebas"),
         "format": MessageLookupByLibrary.simpleMessage("Formato"),
         "history": MessageLookupByLibrary.simpleMessage("Historial"),
         "home": MessageLookupByLibrary.simpleMessage("inicio"),
+        "hour": MessageLookupByLibrary.simpleMessage("Hora"),
+        "hrs24Format": MessageLookupByLibrary.simpleMessage("formato 24hrs"),
         "image": MessageLookupByLibrary.simpleMessage("Imagen"),
         "inAuthorization":
             MessageLookupByLibrary.simpleMessage("En la autorización"),
         "inDashboard": MessageLookupByLibrary.simpleMessage("en el Dashboard"),
         "inServer": MessageLookupByLibrary.simpleMessage("en el servidor"),
+        "interruptions": MessageLookupByLibrary.simpleMessage("Interrupciones"),
         "invalid": MessageLookupByLibrary.simpleMessage("Inválido"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Email Invalido"),
         "legal": MessageLookupByLibrary.simpleMessage("Legal"),
@@ -121,6 +148,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "machineType_local": MessageLookupByLibrary.simpleMessage("Local"),
         "machineType_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
         "machines": MessageLookupByLibrary.simpleMessage("Maquinas"),
+        "maintenance": MessageLookupByLibrary.simpleMessage("Mantenimiento"),
+        "maintenanceSuccessfullyCreated": MessageLookupByLibrary.simpleMessage(
+            "Mantenimiento creado correctamente"),
+        "maintenanceSuccessfullyDeleted": MessageLookupByLibrary.simpleMessage(
+            "Mantenimiento eliminado correctamente"),
+        "maintenanceSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Mantenimiento actualizado correctamente"),
+        "maintenanceTime_free":
+            MessageLookupByLibrary.simpleMessage("Indefinido"),
+        "maintenanceTime_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "maintenanceTime_other": MessageLookupByLibrary.simpleMessage("Otro"),
+        "maintenanceTime_range": MessageLookupByLibrary.simpleMessage("Rango"),
+        "minutes": MessageLookupByLibrary.simpleMessage("Minutos"),
         "missingValue": MessageLookupByLibrary.simpleMessage("Campo vacío"),
         "mobile": MessageLookupByLibrary.simpleMessage("Móvil"),
         "monthlyAccess":
@@ -147,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "region": MessageLookupByLibrary.simpleMessage("Región"),
         "resources": MessageLookupByLibrary.simpleMessage("recursos"),
         "role": MessageLookupByLibrary.simpleMessage("Rol"),
+        "scope": MessageLookupByLibrary.simpleMessage("Acance"),
         "selectOne": MessageLookupByLibrary.simpleMessage("Selecciona Uno"),
         "serviceInstanceType_cloud":
             MessageLookupByLibrary.simpleMessage("Nube"),
@@ -162,10 +203,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "Servicio eliminado correctamente"),
         "serviceSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
             "Servicio actualizado correctamente"),
+        "serviceTagSuccessfullyCreated":
+            MessageLookupByLibrary.simpleMessage("Tag creada correctamente"),
+        "serviceTagSuccessfullyDeleted":
+            MessageLookupByLibrary.simpleMessage("Tag eliminada correctamente"),
+        "serviceTagSuccessfullyUpdated": MessageLookupByLibrary.simpleMessage(
+            "Tag actualizada correctamente"),
         "serviceTags":
             MessageLookupByLibrary.simpleMessage("Etiquetas de servicios"),
         "services": MessageLookupByLibrary.simpleMessage("Servicios"),
         "size": MessageLookupByLibrary.simpleMessage("Tamaño"),
+        "start": MessageLookupByLibrary.simpleMessage("Inicio"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "status_active": MessageLookupByLibrary.simpleMessage("Activo"),
         "status_available": MessageLookupByLibrary.simpleMessage("Disponible"),
@@ -173,16 +221,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "status_completed": MessageLookupByLibrary.simpleMessage("Completado"),
         "status_created": MessageLookupByLibrary.simpleMessage("Creada"),
         "status_deprecated": MessageLookupByLibrary.simpleMessage("Depreciada"),
+        "status_detected": MessageLookupByLibrary.simpleMessage("Detectado"),
         "status_disabled":
             MessageLookupByLibrary.simpleMessage("Deshabilitada"),
+        "status_done": MessageLookupByLibrary.simpleMessage("Terminado"),
         "status_down": MessageLookupByLibrary.simpleMessage("Abajo"),
         "status_ended": MessageLookupByLibrary.simpleMessage("Terminada"),
         "status_inactive": MessageLookupByLibrary.simpleMessage("Inactivo"),
+        "status_investigating":
+            MessageLookupByLibrary.simpleMessage("Investigando"),
         "status_maintenance":
             MessageLookupByLibrary.simpleMessage("Mantenimiento"),
+        "status_monitoring":
+            MessageLookupByLibrary.simpleMessage("Monitoreando"),
         "status_none": MessageLookupByLibrary.simpleMessage("Ninguno"),
+        "status_progress": MessageLookupByLibrary.simpleMessage("En Proceso"),
         "status_ready": MessageLookupByLibrary.simpleMessage("Listo"),
         "status_removed": MessageLookupByLibrary.simpleMessage("Eliminada"),
+        "status_solved": MessageLookupByLibrary.simpleMessage("Solucionado"),
         "status_stopped": MessageLookupByLibrary.simpleMessage("Detenido"),
         "status_waiting": MessageLookupByLibrary.simpleMessage("Esperando"),
         "status_working": MessageLookupByLibrary.simpleMessage("Trabajando"),
@@ -214,6 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thisActionCantBeUndone": MessageLookupByLibrary.simpleMessage(
             "¡Esta acción no se puede deshacer!"),
         "tier": MessageLookupByLibrary.simpleMessage("Tier"),
+        "time": MessageLookupByLibrary.simpleMessage("Tiempo"),
         "type": MessageLookupByLibrary.simpleMessage("Tipo"),
         "updateStatus":
             MessageLookupByLibrary.simpleMessage("Actualizar Status"),
@@ -228,6 +285,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Usuario actualizado correctamente"),
         "username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "users": MessageLookupByLibrary.simpleMessage("usuarios"),
+        "value": MessageLookupByLibrary.simpleMessage("Valor"),
         "web": MessageLookupByLibrary.simpleMessage("Web"),
         "weeklyAccess":
             MessageLookupByLibrary.simpleMessage("Acceso Semanal Promedio"),
