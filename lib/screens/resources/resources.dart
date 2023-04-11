@@ -7,6 +7,7 @@ import 'package:silvertime/widgets/resources/disks/disk_data.dart';
 import 'package:silvertime/widgets/resources/machines/machine_data.dart';
 import 'package:silvertime/widgets/resources/networks/network_data.dart';
 import 'package:silvertime/widgets/resources/services/service_data.dart';
+import 'package:silvertime/widgets/resources/services/tags/tag_data.dart';
 
 class ResourcesScreen extends StatefulWidget {
   const ResourcesScreen({super.key});
@@ -36,21 +37,26 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
   }
 
   Widget _title () {
-    return Column (
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text (
-          S.of (context).resources,
-          style: Theme.of(context).textTheme.headline1,
-        ),
-        const SizedBox(height: 32),
-        Container(
-          decoration: containerDecoration,
-          padding: const EdgeInsets.all(16),
-          width: MediaQuery.of(context).size.width,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap (
+        alignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 16,
+        runSpacing: 32,
+        children: [
+          Text (
+            S.of (context).resources,
+            style: Theme.of(context).textTheme.headline1,
+          ),
+          Container(
+            decoration: containerDecoration,
+            padding: const EdgeInsets.all(16),
+            width: constrainedWidth(
+              context, 
+              MediaQuery.of(context).size.width * 0.4,
+              shouldConstraint: MediaQuery.of(context).size.width < 800
+            ),
             child: CustomDropdownFormField<ResourceType> (
               value: type,
               items: ResourceType.values,
@@ -66,22 +72,21 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
               },
               validation: false,
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
   Widget _data () {
     switch (type) {
       case ResourceType.none:
-      case ResourceType.serviceTags:
-      case ResourceType.storages:
-      case ResourceType.workerResources:
-      case ResourceType.workers:
+      // case ResourceType.storages:
         return Container();
       case ResourceType.services:
         return const ServiceData();
+      case ResourceType.serviceTags:
+        return const ServiceTagData();
       case ResourceType.disks:
         return const DiskData();
       case ResourceType.networks:
@@ -104,6 +109,10 @@ class _ResourcesScreenState extends State<ResourcesScreen> {
         children: [
           const SizedBox(height: 32),
           _title (),
+          const Divider (
+            height: 48,
+            thickness: 0.5,
+          ),
           const SizedBox(height: 16),
           Visibility(
             visible: type != ResourceType.none,
