@@ -59,53 +59,38 @@ class Services extends AuthProvider {
     _skip = skip;
     _limit = limit;
 
-    _services = [
-      Service(
-        id: "id",
-        alias: "alias",
-        name: "name",
-        description: "description",
-        type: ServiceType.core,
-        status: ServiceStatus.deprecated,
-        date: DateTime.now (),
-        tagsMask: 0
-      )
-    ];
-
-    notifyListeners();
+    try {
+      final res = await http.get(
+        Uri.parse(url).replace(queryParameters: queryParams),
+        headers: {"Authorization": auth.token!}
+      );
     
-    // try {
-    //   final res = await http.get(
-    //     Uri.parse(url).replace(queryParameters: queryParams),
-    //     headers: {"Authorization": auth.token!}
-    //   );
-    
-    //   switch(res.statusCode){
-    //     case 200:
-    //       final decoded = json.decode(res.body);
-    //       _services = decoded['services'].map<Service> (
-    //         (service) => Service.fromJson(service)
-    //       ).toList();
-    //       if (limit > 0) {
-    //         _pages = (decoded ['count'] / limit).ceil ();
-    //       } else {
-    //         _pages = 1;
-    //       }
-    //     break;
-    //     default:
-    //       throw HttpException(
-    //         res.body, route: url, code: Code.request, status: res.statusCode
-    //       );
-    //   }
-    //   notifyListeners();
-    // } on HttpException {
-    //   rethrow;
-    // } catch (error, bt) {
-    //   if(runtime == "Development"){
-    //     Completer().completeError(error, bt);
-    //   }
-    //   throw HttpException(error.toString(), code: Code.system, route: url);
-    // }
+      switch(res.statusCode){
+        case 200:
+          final decoded = json.decode(res.body);
+          _services = decoded['services'].map<Service> (
+            (service) => Service.fromJson(service)
+          ).toList();
+          if (limit > 0) {
+            _pages = (decoded ['count'] / limit).ceil ();
+          } else {
+            _pages = 1;
+          }
+        break;
+        default:
+          throw HttpException(
+            res.body, route: url, code: Code.request, status: res.statusCode
+          );
+      }
+      notifyListeners();
+    } on HttpException {
+      rethrow;
+    } catch (error, bt) {
+      if(runtime == "Development"){
+        Completer().completeError(error, bt);
+      }
+      throw HttpException(error.toString(), code: Code.system, route: url);
+    }
   }
 
   Future<void> _getServicesInternal () => getServices(skip: _skip, limit: _limit);
