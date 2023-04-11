@@ -15,6 +15,10 @@ class ServiceTags extends ServicesProvider {
   int _pages = 0;
   int get pages => _pages;
 
+  void dismiss () {
+    unloadTags();
+  }
+
   Future<void> getServiceTags ({int skip = 0, int limit = 20}) async {
     const url = "$serverURL/api/resources/tags";
 
@@ -119,6 +123,16 @@ class ServiceTags extends ServicesProvider {
       }
       throw HttpException(error.toString(), code: Code.system, route: url);
     }
+  }
+
+  Stream<double> removeServiceTags (Iterable<String> tags) async* {
+    int total = tags.length;
+    int current = 0;
+    for (String tag in tags) {
+      await removeServiceTag(tag);
+      yield ++current / total;
+    }
+    yield 1;
   }
 
   Future<void> removeServiceTag (String id) async {
