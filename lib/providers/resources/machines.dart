@@ -19,8 +19,8 @@ class Machines extends AuthProvider {
 
   void dismiss () {
     _machine = null;
+    _machines = [];
     prefs.remove ("machine");
-    notifyListeners();
   }
 
   Future<void> nullCheck () async {
@@ -272,6 +272,7 @@ class Machines extends AuthProvider {
     
       switch(res.statusCode){
         case 200:
+          _getMachinesInternal();
         break;
         default:
           throw HttpException(

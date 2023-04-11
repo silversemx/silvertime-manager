@@ -231,6 +231,7 @@ class ServiceInstances extends ServicesProvider {
     
       switch(res.statusCode){
         case 200:
+          _getInstancesInternal();
         break;
         default:
           throw HttpException(

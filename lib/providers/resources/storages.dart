@@ -261,6 +261,7 @@ class Storages extends AuthProvider {
     
       switch(res.statusCode){
         case 200:
+          _getStoragesInternal();
         break;
         default:
           throw HttpException(

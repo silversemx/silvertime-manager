@@ -211,6 +211,7 @@ class Maintenances extends AuthProvider {
     
       switch(res.statusCode){
         case 200:
+          _getMaintenancesInternal();
         break;
         default:
           throw HttpException(

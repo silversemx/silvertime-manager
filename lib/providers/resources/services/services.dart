@@ -283,6 +283,7 @@ class Services extends AuthProvider {
     
       switch(res.statusCode){
         case 200:
+          _getServicesInternal();
         break;
         default:
           throw HttpException(
