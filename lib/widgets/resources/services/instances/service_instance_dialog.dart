@@ -1,23 +1,23 @@
 import 'package:http_request_utils/models/http_exception.dart';
 import 'package:provider/provider.dart';
 import 'package:silvertime/include.dart';
-import 'package:silvertime/models/resources/disk.dart';
-import 'package:silvertime/providers/resources/disks.dart';
+import 'package:silvertime/models/resources/service/service_instance.dart';
+import 'package:silvertime/providers/resources/services/instances.dart';
 import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
 import 'package:silvertime/widgets/inputs/custom_input_field.dart';
 import 'package:silvertime/widgets/utils/confirm_row.dart';
 
-class DiskDialog extends StatefulWidget {
-  final Disk? disk;
-  const DiskDialog({super.key, this.disk});
+class ServiceInstanceDialog extends StatefulWidget {
+  final ServiceInstance? instance;
+  const ServiceInstanceDialog({super.key, this.instance});
 
   @override
-  State<DiskDialog> createState() => _DiskDialogState();
+  State<ServiceInstanceDialog> createState() => _ServiceInstanceDialogState();
 }
 
-class _DiskDialogState extends State<DiskDialog> {
-  late Disk disk;
+class _ServiceInstanceDialogState extends State<ServiceInstanceDialog> {
+  late ServiceInstance instance;
   bool _saving = false;
   Map<String, bool> validation = {};
   final _formKey = GlobalKey<FormState> ();
@@ -26,13 +26,13 @@ class _DiskDialogState extends State<DiskDialog> {
   @override
   void initState() {
     super.initState();
-    disk = widget.disk ?? Disk.empty ();
+    instance = widget.instance ?? ServiceInstance.empty ();
   }
 
   void _save () async {
     bool formValidation = _formKey.currentState!.validate();
     setState(() {
-      validation = disk.isComplete();
+      validation = instance.isComplete();
     });
 
     if (validation ["total"]! && formValidation) {
@@ -40,13 +40,17 @@ class _DiskDialogState extends State<DiskDialog> {
         _saving = true;
       });
       try { 
-        if (widget.disk == null) {
-          await Provider.of<Disks> (context, listen: false).createDisk(
-            disk
+        if (widget.instance == null) {
+          await Provider.of<ServiceInstances> (
+            context, listen: false
+          ).createInstance(
+            instance
           );
         } else {
-          await Provider.of<Disks> (context, listen: false).updateDisk (
-            widget.disk!.id, disk
+          await Provider.of<ServiceInstances> (
+            context, listen: false
+          ).updateInstance (
+            widget.instance!.id, instance
           );
         }
 
@@ -71,98 +75,86 @@ class _DiskDialogState extends State<DiskDialog> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CustomInputField (
-            initialValue: disk.name,
+            initialValue: instance.name,
             label: S.of(context).name,
             type: TextInputType.text,
             action: TextInputAction.next,
             onChanged: (val) {
-              disk.name = val;
+              instance.name = val;
             },
             requiredValue: true,
             validation: validation ["name"],
           ),
           CustomInputField (
-            initialValue: disk.description,
+            initialValue: instance.description,
             label: S.of(context).description,
             type: TextInputType.text,
             action: TextInputAction.next,
             onChanged: (val) {
-              disk.description = val;
+              instance.description = val;
             },
             requiredValue: true,
             validation: validation ["description"],
           ),
-          CustomDropdownFormField<DiskType> (
-            value: disk.type,
-            items: DiskType.values,
+          CustomDropdownFormField<ServiceInstanceType> (
+            value: instance.type,
+            items: ServiceInstanceType.values,
             label: S.of(context).type,
             hintItem: 0,
             name: (val) => val.name(context),
             onChanged: (val) {
               setState(() {
-                disk.type = val!;
+                instance.type = val!;
               });
             },
             validation: validation['type'],
           ),
+          //TODO: Add options
+          //TODO: Add machine
           CustomInputField (
-            initialValue: disk.image,
-            label: S.of(context).image,
+            initialValue: instance.publicAddress,
+            label: S.of(context).publicAddress,
             type: TextInputType.text,
             action: TextInputAction.next,
             onChanged: (val) {
-              disk.image = val;
+              instance.publicAddress = val;
             },
-            requiredValue: true,
-            validation: validation ["image"],
+            requiredValue: false,
+            validation: validation ["publicAddress"],
           ),
           CustomInputField (
-            initialValue: disk.size.toString(),
-            label: S.of(context).size,
-            type: TextInputType.number,
+            initialValue: instance.privateAddress,
+            label: S.of(context).privateAddress,
+            type: TextInputType.text,
             action: TextInputAction.next,
-            acceptZeros: false,
             onChanged: (val) {
-              disk.size = num.tryParse(val) ?? 0;
+              instance.privateAddress = val;
             },
-            requiredValue: true,
-            validation: validation ["size"],
+            requiredValue: false,
+            validation: validation ["privateAddress"],
           ),
           CustomInputField (
-            initialValue: disk.deviceName,
-            label: S.of(context).deviceName,
-            type: TextInputType.number,
+            initialValue: instance.internalAddress,
+            label: S.of(context).internalAddress,
+            type: TextInputType.text,
             action: TextInputAction.next,
-            acceptZeros: false,
             onChanged: (val) {
-              disk.deviceName = val;
+              instance.internalAddress = val;
             },
-            requiredValue: true,
-            validation: validation ["deviceName"],
+            requiredValue: false,
+            validation: validation ["internalAddress"],
           ),
           CustomInputField (
-            initialValue: disk.path,
-            label: S.of(context).path,
-            type: TextInputType.number,
+            initialValue: instance.weight.toString(),
+            label: S.of(context).weight,
+            type: TextInputType.text,
             action: TextInputAction.next,
-            acceptZeros: false,
             onChanged: (val) {
-              disk.path = val;
+              instance.weight = num.tryParse(val) ?? 0;
             },
             requiredValue: true,
-            validation: validation ["path"],
-          ),
-          CustomInputField (
-            initialValue: disk.format,
-            label: S.of(context).format,
-            type: TextInputType.number,
-            action: TextInputAction.next,
             acceptZeros: false,
-            onChanged: (val) {
-              disk.format = val;
-            },
-            requiredValue: true,
-            validation: validation ["format"],
+            validation: validation ["weight"],
           ),
         ],
       ),
@@ -186,10 +178,10 @@ class _DiskDialogState extends State<DiskDialog> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text (
-                  widget.disk == null
-                  ? S.of(context).createDisk
-                  : S.of(context).editDisk,
-                  style: Theme.of(context).textTheme.headline2,
+                  widget.instance == null
+                  ? S.of(context).createServiceInstance
+                  : S.of(context).editServiceInstance,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 const SizedBox(height: 16),
                 _form (),
