@@ -16,7 +16,7 @@ class Roles extends AuthProvider {
   int get rolePages => _rolePages;
 
   Future<void> getRoles ({int skip = 0, int limit = 20}) async {
-    const url = "$serverURL/api/roles";
+    const url = "$serverURL/api/admin/roles";
 
     Map<String, String> queryParams = {
       "skip": skip.toString(),
@@ -64,7 +64,7 @@ class Roles extends AuthProvider {
   Future<void> _getRolesInternal () => getRoles(skip: _skip, limit: _limit);
   
   Future<void> createRole (Role role) async {
-    const url = "$serverURL/api/roles/create";
+    const url = "$serverURL/api/admin/roles/create";
     
     try {
       final res = await http.post(Uri.parse(url), 
@@ -92,7 +92,7 @@ class Roles extends AuthProvider {
   }
 
   Future<void> updateRole (String id, Role role) async {
-    final url = "$serverURL/api/roles/$id/update";
+    final url = "$serverURL/api/admin/roles/$id/update";
     
     try {
       final res = await http.put(Uri.parse(url), 
@@ -120,7 +120,7 @@ class Roles extends AuthProvider {
   }
 
   Future<void> removeRole (String id) async {
-    final url = "$serverURL/api/roles/$id/remove";
+    final url = "$serverURL/api/admin/roles/$id/remove";
     
     try {
       final res = await http.get(Uri.parse(url), 
