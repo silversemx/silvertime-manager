@@ -126,6 +126,41 @@ class Interruptions extends AuthProvider {
     }
   }
 
+  Future<void> solveInterruption (
+    String id, String solution, DateTime end, Duration duration
+  ) async {
+    final url = "$serverURL/api/state/interruptions/$id/solved";
+    
+    try {
+      final res = await http.post(Uri.parse(url), 
+        headers: {"Authorization": auth.token!},
+        body: json.encode ({
+          "solution": solution,
+          "end": end.millisecondsSinceEpoch,
+          "duration": duration.inMilliseconds
+        })
+      );
+    
+      switch(res.statusCode){
+        case 200:
+          _getInterruptionsInternal();
+        break;
+        default:
+          throw HttpException(
+            res.body, code: Code.request, status: res.statusCode, route: url
+          );
+      }
+    } on HttpException {
+      rethrow;
+    } catch (error, bt) {
+      if(runtime == "Development"){
+        Completer().completeError(error, bt);
+      }
+      throw HttpException(error.toString(), code: Code.system, route: url);
+    }
+  }
+
+
   Stream<double> removeInterruptions (Iterable<String> interruptions) async* {
     int total = interruptions.length;
     int current = 0;
@@ -211,6 +246,7 @@ class Interruptions extends AuthProvider {
     
       switch(res.statusCode){
         case 200:
+          _getInterruptionsInternal();
         break;
         default:
           throw HttpException(
