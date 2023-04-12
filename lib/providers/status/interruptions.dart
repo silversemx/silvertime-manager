@@ -232,7 +232,7 @@ class Interruptions extends AuthProvider {
   }
 
   Future<void> updateInterruptionStatus (
-    String interruption, InterruptionStatus status
+    String interruption, InterruptionStatus status, String text
   ) async {
     final url = "$serverURL/api/state/interruptions/$interruption/status/update";
     
@@ -240,7 +240,8 @@ class Interruptions extends AuthProvider {
       final res = await http.put(Uri.parse(url), 
         headers: {"Authorization": auth.token!},
         body: json.encode ({
-          "status": status.index
+          "status": status.index,
+          "text": text
         })
       );
     

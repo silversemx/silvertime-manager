@@ -43,7 +43,7 @@ class _InterruptionDataState extends State<InterruptionData> {
         Center (
           child: ConstrainedBox(
             constraints: BoxConstraints (
-              maxWidth: constrainedWidth(context, 80),
+              maxWidth: constrainedWidth(context, 90),
             ),
             child: SelectableText (
               interruption.title,
@@ -127,11 +127,13 @@ class _InterruptionDataState extends State<InterruptionData> {
             ).getInterruptionStatusHistory(
               interruption.id
             ), 
-            updateStatus: (status) => Provider.of<Interruptions> (
+            text: true,
+            updateStatus: (status, [String? text]) => Provider.of<Interruptions> (
               context, listen: false
             ).updateInterruptionStatus(
               interruption.id,
-              status
+              status,
+              text!
             )
           ) 
         )
