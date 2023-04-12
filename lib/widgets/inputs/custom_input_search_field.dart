@@ -19,6 +19,7 @@ class CustomInputSearchField<T> extends StatefulWidget {
   final Function ()? clearSelection;
   final bool? validation;
   final bool fetchAfterSubmission;
+  final Color? color;
 
   /// Custom Input search field to enable continuous writing while searching for a 
   /// value
@@ -39,6 +40,7 @@ class CustomInputSearchField<T> extends StatefulWidget {
     this.maxSuggestionsInViewPort = 5,
     this.seconds = 2,
     this.validation,
+    this.color,
     this.fetchAfterSubmission = false
   }) : assert (
     (
@@ -115,6 +117,8 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField<T>> {
 
   InputDecoration get decoration => InputDecoration (
     labelText: widget.label,
+    fillColor: widget.color,
+    focusColor: widget.color,
     enabledBorder: (widget.validation ?? false)
     ? Theme.of(context).inputDecorationTheme.enabledBorder!.copyWith(
       borderSide: const BorderSide(
@@ -164,11 +168,14 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField<T>> {
                 _textController.selection = TextSelection.collapsed(
                   offset: res.length
                 );
-                setState(() {
-                  _selected = true;
-                });
+                
                 if (widget.fetchAfterSubmission) {
+                  _textController.clear ();
                   _fetchInfo();
+                } else {
+                  setState(() {
+                    _selected = true;
+                  });
                 }
               }
             }
@@ -180,18 +187,21 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField<T>> {
               _textController.selection = TextSelection.collapsed(
                 offset: suggestion.searchKey.length
               );
-              setState(() {
-                _selected = true;
-              });
+              
               if (widget.fetchAfterSubmission) {
+                _textController.clear ();
                 _fetchInfo();
+              } else {
+                setState(() {
+                  _selected = true;
+                });
               }
             }
             unfocus (context);
           },
         ),
         Visibility (
-          visible: _selected,
+          visible: _selected && !widget.fetchAfterSubmission,
           child: TextButton (
             onPressed: () {
               if (widget.showSuggestions) {
