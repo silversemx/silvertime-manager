@@ -48,3 +48,9 @@ class ServiceTag  {
   }
 
 }
+
+List<ServiceTag> tagsFromMask (int tagMask, List<ServiceTag> allTags) {
+  return allTags.where (
+    (tag) => tagMask & tag.value == tag.value
+  ).toList();
+}
