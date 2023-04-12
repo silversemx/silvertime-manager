@@ -5,7 +5,7 @@ import 'package:silvertime/include.dart';
 import 'package:silvertime/models/status/interruption/interruption.dart';
 import 'package:silvertime/providers/status/interruptions.dart';
 import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
-import 'package:silvertime/widgets/quill_editor.dart';
+import 'package:silvertime/widgets/quill/quill_editor.dart';
 import 'package:silvertime/widgets/utils/confirm_row.dart';
 import 'package:silvertime/widgets/utils/time_picker.dart';
 
