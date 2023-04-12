@@ -20,6 +20,7 @@ class Maintenance {
   DateTime? end;
   String title = "";
   String text = "";
+  String? user;
   DateTime date = DateTime.now ();
 
   Maintenance ({
@@ -33,6 +34,7 @@ class Maintenance {
     required this.status,
     this.service,
     this.serviceName,
+    this.user,
     this.end,
   });
 
@@ -58,6 +60,7 @@ class Maintenance {
       ],
       service: jsonField<String> (json, ["service", "_id", "\$oid"]),
       serviceName: jsonField<String> (json, ["service", "name"]),
+      user: jsonField<String> (json, ["user", "\$oid"]),
       end: dateTimefromMillisecondsNoZero(
         jsonField<int> (json, ["end", "\$date"]),
       ),
