@@ -6,6 +6,7 @@ import 'package:silvertime/providers/resources/services/services.dart';
 import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
 import 'package:silvertime/widgets/inputs/custom_input_field.dart';
+import 'package:silvertime/widgets/quill/quill_editor.dart';
 import 'package:silvertime/widgets/utils/confirm_row.dart';
 
 class ServiceDialog extends StatefulWidget {
@@ -92,16 +93,16 @@ class _ServiceDialogState extends State<ServiceDialog> {
             requiredValue: true,
             validation: validation ["name"],
           ),
-          CustomInputField (
-            initialValue: service.description,
-            label: S.of(context).description,
-            type: TextInputType.text,
-            action: TextInputAction.next,
-            onChanged: (val) {
-              service.description = val;
-            },
-            requiredValue: true,
-            validation: validation ["description"],
+          Container (
+            margin: const EdgeInsets.only(bottom: 16),
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: QuillEditorWidget (
+              label: S.of(context).description,
+              initialValue: service.description,
+              onUpdate: (val) {
+                service.description = val;
+              },
+            ),
           ),
           CustomDropdownFormField<ServiceType> (
             value: service.type,
