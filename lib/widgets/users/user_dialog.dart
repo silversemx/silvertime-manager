@@ -114,6 +114,15 @@ class _UserDialogState extends State<UserDialog> {
             },
             action: TextInputAction.next,
           ),
+          CustomInputField (
+            initialValue: user.username,
+            label: S.of(context).username,
+            type: TextInputType.text,
+            onChanged: (val) {
+              user.username = val;
+            },
+            action: TextInputAction.next,
+          ),
           Consumer<Roles>(
             builder: (context, roles, _) {
               if (_loading) {
