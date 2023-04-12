@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Consumer<Auth>(
           builder: (context, auth, _) {
             return Text (
-              S.of (context).welcomeBack (auth.userValues?.firstName ?? "N/A"),
+              S.of (context).welcomeBack (auth.userValues?.username ?? "N/A"),
               style: Theme.of(context).textTheme.displayLarge,
             );
           }
