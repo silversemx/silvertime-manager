@@ -38,13 +38,9 @@ class ServiceData extends StatelessWidget {
       ),
       DataCell(
         Center (
-          child: Tooltip(
-            message: service.description,
-            waitDuration: Duration.zero,
-            child: SelectableText (
-              service.name,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+          child: SelectableText (
+            service.name,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         )
       ),
@@ -72,7 +68,7 @@ class ServiceData extends StatelessWidget {
             ).getServiceStatusHistory(
               service.id
             ), 
-            updateStatus: (status) => Provider.of<Services> (
+            updateStatus: (status, [String? text]) => Provider.of<Services> (
               context, listen: false
             ).updateServiceStatus(
               service.id, 

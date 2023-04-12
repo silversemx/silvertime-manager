@@ -89,7 +89,7 @@ class MachineData extends StatelessWidget {
             ).getMachineStatusHistory(
               machine.id
             ), 
-            updateStatus: (status) => Provider.of<Machines> (
+            updateStatus: (status, [String? text]) => Provider.of<Machines> (
               context, listen: false
             ).updateMachineStatus(
               machine.id, status

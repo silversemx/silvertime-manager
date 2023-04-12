@@ -99,9 +99,9 @@ class MaintenanceData extends StatelessWidget {
             ).getMaintenanceStatusHistory(
               maintenance.id
             ), 
-            updateStatus: (status) => Provider.of<Maintenances> (
+            updateStatus: (status, [String? text]) => Provider.of<Maintenances> (
               context, listen: false
-            ).updateMaintenanceStatus(
+            ).updateMaintenanceStatus (
               maintenance.id,
               status
             )

@@ -99,7 +99,7 @@ class ServiceInstanceData extends StatelessWidget {
             ).getServiceStatusHistory(
               instance.id,
             ), 
-            updateStatus: (status) => Provider.of<ServiceInstances> (
+            updateStatus: (status, [String? text]) => Provider.of<ServiceInstances> (
               context, listen: false
             ).updateServiceStatus(
               instance.id, 
