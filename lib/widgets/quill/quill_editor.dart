@@ -73,8 +73,10 @@ class _QuillEditorWidgetState extends State<QuillEditorWidget> {
                     widget.label, style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(height: 16,),
-                  SizedBox(
-                    height: 50,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints (
+                      minHeight: 50
+                    ),
                     child: quill.QuillToolbar.basic(
                       showCodeBlock: false,
                       showSmallButton: false,
