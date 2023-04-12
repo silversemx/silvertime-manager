@@ -64,6 +64,7 @@ class User {
   String id = "";
   String firstName = "";
   String lastName = "";
+  String username = "";
   String email = "";
   UserStatus status = UserStatus.none;
   String role = "";
@@ -74,6 +75,7 @@ class User {
       required this.role,
       this.firstName = "",
       this.lastName  = "",
+      this.username = "",
       this.email = "",
       this.status = UserStatus.none,
       DateTime? date
@@ -93,8 +95,10 @@ class User {
   User.empty ();
 
   factory User.fromToken (dynamic json) {
+    print (json);
     return User(
       id: jsonField<String> (json, ["user",],  nullable: false),
+      username: jsonField<String> (json, ["username",],  nullable: false),
       role: json["role"] ?? "",
     );
   }
@@ -102,12 +106,14 @@ class User {
   Map<String, bool> isComplete () {
     bool firstName = this.firstName.isNotEmpty;
     bool lastName = this.lastName.isNotEmpty;
+    bool username = this.username.isNotEmpty;
     bool email = this.email.isNotEmpty;
     bool role = this.role.isNotEmpty;
 
     return {
       "firstName": !firstName,
       "lastName": !lastName,
+      "username": !username,
       "role": !role,
       "total": 
         firstName &&
@@ -122,6 +128,7 @@ class User {
       id: jsonField<String> (json, ["_id", "\$oid"], nullable: false),
       firstName: jsonField<String> (json, ["first_name",],  nullable: false),
       lastName: jsonField<String> (json, ["last_name",],  nullable: false),
+      username: jsonField<String> (json, ["usrname",],  defaultValue: ""),
       email: jsonField<String> (json, ["email",]) ?? "",
       status: UserStatus.values [ 
         jsonField<int> (json, ["status",],  nullable: false) 
@@ -133,18 +140,6 @@ class User {
     );
   }
 
-  factory User.from (User user) {
-    return User (
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      role: user.role,
-      email: user.email,
-      date: user.date,
-      status: user.status
-    );
-  }
-
   @override
   int get hashCode => Object.hash (id, firstName, lastName, email);
 
@@ -153,6 +148,7 @@ class User {
     return other.id == id &&
       other.firstName == firstName && 
       other.lastName == lastName && 
+      other.username == username &&
       other.email == email;
   }
 
@@ -161,6 +157,7 @@ class User {
       "first_name": firstName,
       "last_name": lastName,
       "email": email,
+      "username": username,
       "user_type": 1
     };
   }
