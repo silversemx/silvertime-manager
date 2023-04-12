@@ -18,6 +18,7 @@ class CustomInputSearchField<T> extends StatefulWidget {
   final SearchFieldListItem<T> Function (T)? searchFieldMap;
   final Function ()? clearSelection;
   final bool? validation;
+  final bool fetchAfterSubmission;
 
   /// Custom Input search field to enable continuous writing while searching for a 
   /// value
@@ -37,7 +38,8 @@ class CustomInputSearchField<T> extends StatefulWidget {
     this.showSuggestions = true,
     this.maxSuggestionsInViewPort = 5,
     this.seconds = 2,
-    this.validation
+    this.validation,
+    this.fetchAfterSubmission = false
   }) : assert (
     (
       showSuggestions 
@@ -165,6 +167,9 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField<T>> {
                 setState(() {
                   _selected = true;
                 });
+                if (widget.fetchAfterSubmission) {
+                  _fetchInfo();
+                }
               }
             }
           },
@@ -178,6 +183,9 @@ class _CustomInputSearchFieldState<T> extends State<CustomInputSearchField<T>> {
               setState(() {
                 _selected = true;
               });
+              if (widget.fetchAfterSubmission) {
+                _fetchInfo();
+              }
             }
             unfocus (context);
           },
