@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http_request_utils/models/http_exception.dart';
 import 'package:silvertime/include.dart';
 import 'package:silvertime/models/history/status_update.dart';
+import 'package:silvertime/style/container.dart';
 import 'package:silvertime/widgets/in_app_messages/confirm_dialog.dart';
 import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
 import 'package:silvertime/widgets/quill/quill_editor.dart';
@@ -84,7 +85,7 @@ class _StatusUpdateDialogState<T> extends State<StatusUpdateDialog<T>> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row (
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             widget.getWidget (data.previousStatus),
@@ -97,8 +98,18 @@ class _StatusUpdateDialogState<T> extends State<StatusUpdateDialog<T>> {
           ],
         ),
         widget.text && data.text != null
-        ? QuillReaderWidget (
-          value: data.text,
+        ? Container (
+          margin: const EdgeInsets.symmetric(
+            vertical: 16
+          ),
+          width: double.infinity,
+          decoration: containerDecoration.copyWith(
+            color: Theme.of(context).scaffoldBackgroundColor
+          ),
+          padding: const EdgeInsets.all(16),
+            child: QuillReaderWidget (
+            value: data.text,
+          ),
         )
         : Container (),
         Text (
