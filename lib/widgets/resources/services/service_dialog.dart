@@ -90,17 +90,117 @@ class _ServiceDialogState extends State<ServiceDialog> {
   }
 
   Widget _tag (ServiceTag tag) {
-    return Container (
-      decoration: containerDecoration.copyWith(
-        color: UIColors.primary
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Text (
-        tag.name,
-        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: UIColors.white
+    return InkWell(
+      onTap: () {
+        service.removeTagValue (tag.value);
+
+        setState(() {});
+      },
+      child: Container (
+        decoration: containerDecoration.copyWith(
+          color: UIColors.primary
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Text (
+          tag.name,
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+            color: UIColors.white
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _tagsInput () {
+    return Consumer<ServiceTags>(
+      builder: (context, tags, _) {
+        if (_loading) {
+          return SkeletonAvatar (
+            style: SkeletonAvatarStyle (
+              borderRadius: BorderRadius.circular(20),
+              height: 52,
+              width: double.infinity
+            ),
+          );
+        } else if (tags.tags.isEmpty) {
+          return Container(
+            decoration: containerDecoration,
+            padding: const EdgeInsets.all(16),
+            child: Text (
+              S.of (context).noInformation,
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+          );
+        }
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomInputSearchField<ServiceTag>  (
+              label: S.of(context).serviceTags,
+              fetchAfterSubmission: true,
+              fetch: (String? text) async {
+                return tags.tags.where (
+                  (tag) => (
+                    (text?.isEmpty ?? true) ||
+                    tag.name.formattedSearchText.contains(
+                      text?.formattedSearchText ?? ""
+                    ) 
+                  ) && !tagsFromMask(service.tagsMask, tags.tags).contains (
+                    tag
+                  )
+                
+                ).toList();
+              },
+              onSuggestionTap: (suggestion) {
+                setState(() {
+                  service.addTagValue(suggestion.value);
+                });
+              },
+              onSubmit: (text) async {
+                ServiceTag? tag = tags.tags.firstWhereOrNull(
+                  (element) => element.name.formattedSearchText.contains(
+                    text.formattedSearchText
+                  )
+                );
+
+                if (tag != null) {
+                  setState(() {
+                    service.addTagValue(tag.value);
+                  });
+                  
+                  return tag.name;
+                }
+
+                return null;
+              },
+              searchFieldMap: (tag) => SearchFieldListItem(
+                tag.name,
+                item: tag
+              ),
+              clearSelection: () {},
+            ),
+            const SizedBox(height: 16),
+            Container (
+              width: double.infinity,
+              constraints: BoxConstraints (
+                maxHeight: MediaQuery.of(context).size.height * 0.2,
+              ),
+              child: SingleChildScrollView (
+                child: Wrap (
+                  alignment: WrapAlignment.spaceEvenly,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: tagsFromMask(
+                    service.tagsMask, tags.tags
+                  ).map<Widget> (
+                    (tag) => _tag (tag)
+                  ).toList(),
+                ),
+              ),
+            )
+          ],
+        );
+      }
     );
   }
 
@@ -157,96 +257,7 @@ class _ServiceDialogState extends State<ServiceDialog> {
             },
             validation: validation['type'],
           ),
-          Consumer<ServiceTags>(
-            builder: (context, tags, _) {
-              if (_loading) {
-                return SkeletonAvatar (
-                  style: SkeletonAvatarStyle (
-                    borderRadius: BorderRadius.circular(20),
-                    height: 52,
-                    width: double.infinity
-                  ),
-                );
-              } else if (tags.tags.isEmpty) {
-                return Container(
-                  decoration: containerDecoration,
-                  padding: const EdgeInsets.all(16),
-                  child: Text (
-                    S.of (context).noInformation,
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                );
-              }
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomInputSearchField<ServiceTag>  (
-                    label: S.of(context).serviceTags,
-                    fetchAfterSubmission: true,
-                    fetch: (String? text) async {
-                      return tags.tags.where (
-                        (tag) => (
-                          (text?.isEmpty ?? true) ||
-                          tag.name.formattedSearchText.contains(
-                            text?.formattedSearchText ?? ""
-                          ) 
-                        ) && !tagsFromMask(service.tagsMask, tags.tags).contains (
-                          tag
-                        )
-                      
-                      ).toList();
-                    },
-                    onSuggestionTap: (suggestion) {
-                      setState(() {
-                        service.tagsMask = service.tagsMask | suggestion.value;
-                      });
-                    },
-                    onSubmit: (text) async {
-                      ServiceTag? tag = tags.tags.firstWhereOrNull(
-                        (element) => element.name.formattedSearchText.contains(
-                          text.formattedSearchText
-                        )
-                      );
-
-                      if (tag != null) {
-                        setState(() {
-                          service.tagsMask = service.tagsMask | tag.value;
-                        });
-                        
-                        return tag.name;
-                      }
-
-                      return null;
-                    },
-                    searchFieldMap: (tag) => SearchFieldListItem(
-                      tag.name,
-                      item: tag
-                    ),
-                    clearSelection: () {},
-                  ),
-                  const SizedBox(height: 16),
-                  Container (
-                    width: double.infinity,
-                    constraints: BoxConstraints (
-                      maxHeight: MediaQuery.of(context).size.height * 0.2,
-                    ),
-                    child: SingleChildScrollView (
-                      child: Wrap (
-                        alignment: WrapAlignment.spaceEvenly,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: tagsFromMask(
-                          service.tagsMask, tags.tags
-                        ).map<Widget> (
-                          (tag) => _tag (tag)
-                        ).toList(),
-                      ),
-                    ),
-                  )
-                ],
-              );
-            }
-          )
+          _tagsInput()
         ],
       ),
     );
