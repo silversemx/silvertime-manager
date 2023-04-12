@@ -109,8 +109,7 @@ class _ServiceInstanceDialogState extends State<ServiceInstanceDialog> {
             },
             validation: validation['type'],
           ),
-          //TODO: Add options
-          //TODO: Add machine
+          //TODO: Add machine and options
           CustomInputField (
             initialValue: instance.publicAddress,
             label: S.of(context).publicAddress,
