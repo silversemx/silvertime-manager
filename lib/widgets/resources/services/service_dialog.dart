@@ -1,13 +1,19 @@
 import 'package:http_request_utils/models/http_exception.dart';
 import 'package:provider/provider.dart';
+import 'package:searchfield/searchfield.dart';
 import 'package:silvertime/include.dart';
 import 'package:silvertime/models/resources/service/service.dart';
+import 'package:silvertime/models/resources/service/service_tag.dart';
 import 'package:silvertime/providers/resources/services/services.dart';
+import 'package:silvertime/providers/resources/services/tags.dart';
+import 'package:silvertime/style/container.dart';
 import 'package:silvertime/widgets/in_app_messages/error_dialog.dart';
 import 'package:silvertime/widgets/inputs/custom_dropdown_form.dart';
 import 'package:silvertime/widgets/inputs/custom_input_field.dart';
+import 'package:silvertime/widgets/inputs/custom_input_search_field.dart';
 import 'package:silvertime/widgets/quill/quill_editor.dart';
 import 'package:silvertime/widgets/utils/confirm_row.dart';
+import 'package:skeletons/skeletons.dart';
 
 class ServiceDialog extends StatefulWidget {
   final Service? service;
@@ -19,6 +25,7 @@ class ServiceDialog extends StatefulWidget {
 
 class _ServiceDialogState extends State<ServiceDialog> {
   late Service service;
+  bool _loading = true;
   bool _saving = false;
   Map<String, bool> validation = {};
   final _formKey = GlobalKey<FormState> ();
@@ -28,6 +35,24 @@ class _ServiceDialogState extends State<ServiceDialog> {
   void initState() {
     super.initState();
     service = widget.service ?? Service.empty ();
+    Future.microtask(() => _fetchInfo ());
+  }
+
+  void _fetchInfo() async {
+    setState(() {
+      _loading = true;
+    });
+    try {
+      await Provider.of<ServiceTags> (context, listen: false).getServiceTags(
+        limit: 0
+      );
+    } on HttpException catch(error) {
+      showErrorDialog(context, exception: error);
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
   }
 
   void _save () async {
@@ -62,6 +87,21 @@ class _ServiceDialogState extends State<ServiceDialog> {
         }
       }
     }
+  }
+
+  Widget _tag (ServiceTag tag) {
+    return Container (
+      decoration: containerDecoration.copyWith(
+        color: UIColors.primary
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Text (
+        tag.name,
+        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: UIColors.white
+        ),
+      ),
+    );
   }
 
   Widget _form () {
@@ -116,6 +156,96 @@ class _ServiceDialogState extends State<ServiceDialog> {
               });
             },
             validation: validation['type'],
+          ),
+          Consumer<ServiceTags>(
+            builder: (context, tags, _) {
+              if (_loading) {
+                return SkeletonAvatar (
+                  style: SkeletonAvatarStyle (
+                    borderRadius: BorderRadius.circular(20),
+                    height: 52,
+                    width: double.infinity
+                  ),
+                );
+              } else if (tags.tags.isEmpty) {
+                return Container(
+                  decoration: containerDecoration,
+                  padding: const EdgeInsets.all(16),
+                  child: Text (
+                    S.of (context).noInformation,
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                );
+              }
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomInputSearchField<ServiceTag>  (
+                    label: S.of(context).serviceTags,
+                    fetchAfterSubmission: true,
+                    fetch: (String? text) async {
+                      return tags.tags.where (
+                        (tag) => (
+                          (text?.isEmpty ?? true) ||
+                          tag.name.formattedSearchText.contains(
+                            text?.formattedSearchText ?? ""
+                          ) 
+                        ) && !tagsFromMask(service.tagsMask, tags.tags).contains (
+                          tag
+                        )
+                      
+                      ).toList();
+                    },
+                    onSuggestionTap: (suggestion) {
+                      setState(() {
+                        service.tagsMask = service.tagsMask | suggestion.value;
+                      });
+                    },
+                    onSubmit: (text) async {
+                      ServiceTag? tag = tags.tags.firstWhereOrNull(
+                        (element) => element.name.formattedSearchText.contains(
+                          text.formattedSearchText
+                        )
+                      );
+
+                      if (tag != null) {
+                        setState(() {
+                          service.tagsMask = service.tagsMask | tag.value;
+                        });
+                        
+                        return tag.name;
+                      }
+
+                      return null;
+                    },
+                    searchFieldMap: (tag) => SearchFieldListItem(
+                      tag.name,
+                      item: tag
+                    ),
+                    clearSelection: () {},
+                  ),
+                  const SizedBox(height: 16),
+                  Container (
+                    width: double.infinity,
+                    constraints: BoxConstraints (
+                      maxHeight: MediaQuery.of(context).size.height * 0.2,
+                    ),
+                    child: SingleChildScrollView (
+                      child: Wrap (
+                        alignment: WrapAlignment.spaceEvenly,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: tagsFromMask(
+                          service.tagsMask, tags.tags
+                        ).map<Widget> (
+                          (tag) => _tag (tag)
+                        ).toList(),
+                      ),
+                    ),
+                  )
+                ],
+              );
+            }
           )
         ],
       ),
