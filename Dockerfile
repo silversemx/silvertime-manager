@@ -1,4 +1,4 @@
-FROM cirrusci/flutter:3.3.7 as builder
+FROM cirrusci/flutter:3.7.10 as builder
 
 WORKDIR "/home/silvertime"
 
@@ -22,6 +22,6 @@ RUN flutter build web --dart-define=RUNTIME=${RUNTIME} \
 FROM nginx
 
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /home/percepthor/build/web /usr/share/nginx/html
+COPY --from=builder /home/silvertime/build/web /usr/share/nginx/html
 
 EXPOSE 3001
