@@ -41,9 +41,15 @@ dependency_overrides:
   collection: ^1.16.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.9.2
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: false
+  ios: false
+  image_path: "assets/logos/logo.png"
 
 flutter:
 
