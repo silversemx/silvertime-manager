@@ -1,8 +1,8 @@
 #!/bin/bash
 
 flutter run -d chrome --web-hostname 0.0.0.0 --web-port 3001 \
---dart-define=RUNTIME=Development --dart-define=SERVER_URL=https://service.silverse.com \
---dart-define=FORCE_BEARER_TOKEN=NONE \
+--dart-define=RUNTIME=Development --dart-define=SERVER_URL=https://time.silverse.mx \
+--dart-define=FORCE_BEARER_TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODExODg0NDUsImlkIjoiNjQzNGU2NWQwNWYxNTUyYjVmMTc1YTVjIiwicm9sZSI6IjYxNjlhMGMxMjgzZmJlMzFhZjU1YWI4MiIsInRfdHlwZSI6NCwidXNlciI6IjYzNmU3MzAxMzc0OTEyYmUxOTA1YTNmOSIsInVzZXJuYW1lIjoiZXJtaXJ5In0.LF1F5EGha9E74v-wt0lALCUV88T4i-h_cwxOfAobFVNh9g7wTVzihNs9TioXHf30uBC9jRCJ9iXrrFiSgaR1oyisMN9QaMp_Aqtxkn6Zy9ZQDpR2msehSRgEgYTPRPhNiKwtdThdFknyZ1fPKgaI2HzIn-8_IddgoSwily8ATH2rv6OuXPIyCM31QVihTn-DYXqZ0azXE4p5u_5yJ7vxjPnNbhasmnHAKVEmBDZ8_hpo5bCchVpU8V9EwEHWcf0mdKsKR_y3aBGJfKc-5BrqvYWXtGXmsbm83tYogdtBK9x5JlueT818393re5DHmV2xpSLEVQShmkbl8p_y9nDlcEDmavTJnoJFVQBRiiDJcIxtIITSaTjSkbDhVQ9vhQs2YiqwmkVDp-OX6nIDXk4Ak3SnRjpkjT7Uq1XZqYh6rursf_kmeFV8WvzC2Z17N5c_Qm3KBejPhaOqdWklz1sH8KpYfvg-0MO6leOl0jXhRDxWHRozM-vpLWPL5A7dTA08lMj75jtrknSeKg3PSPxubjSVlrk-hqZTCInjtfWP2l0cPY-KunPxdNW7Iczwz3miSwDryGAU55rSgRLAZf-oruYCSr_RinblgMqU7hQ1Pnl4rqmn95IkBowGbHs0bAkIfd3FFZo3DW_ZQc2CxnqBcNseWOi4-Es1JeRpCvrOqEw \
 --dart-define=LOGIN_URL=http://login.localhost.com \
 --dart-define=DOMAIN=0.0.0.0 \
 --dart-define=JWT_KEY=silverse-dev-jwt \
