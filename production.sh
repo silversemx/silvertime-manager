@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo docker build -t itpercepthor/admin-dashboard:latest -f Dockerfile .
+sudo docker build -t ermiry/silvertime-admin:latest -f Dockerfile .
 
-sudo docker push itpercepthor/admin-dashboard
+sudo docker push ermiry/silvertime-admin
