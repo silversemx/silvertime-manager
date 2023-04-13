@@ -1,5 +1,6 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:silvertime/include.dart';
+import 'package:silvertime/version.dart';
 
 
 class Footer extends StatelessWidget {
@@ -134,15 +135,28 @@ class Footer extends StatelessWidget {
         vertical: 24
       ),
       width: double.infinity,
-      child: Wrap (
-        alignment: WrapAlignment.spaceAround,
-        crossAxisAlignment: WrapCrossAlignment.start,
-        spacing: 8,
-        runSpacing: 16,
+      child: Column(
         children: [
-          _silverseColumn(context),
-          _legalColumn(context),
-          _astraColumn(context),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap (
+              alignment: WrapAlignment.spaceAround,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              spacing: 8,
+              runSpacing: 16,
+              children: [
+                _silverseColumn(context),
+                _legalColumn(context),
+                _astraColumn(context),
+              ],
+            ),
+          ),
+          Text (
+            "$versionName - $versionDate",
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: UIColors.white
+            ),
+          )
         ],
       ),
     );
