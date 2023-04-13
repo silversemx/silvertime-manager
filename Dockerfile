@@ -1,12 +1,12 @@
-FROM cirrusci/flutter:3.7.10 as builder
+FROM cirrusci/flutter:latest as builder
 
 WORKDIR "/home/silvertime"
 
 ENV RUNTIME=Production
-ENV SERVER_URL="https://time.silverse.mx"
+ENV SERVER_URL="https://admin.time.silverse.mx"
 ENV LOGIN_URL="https://login.silverse.mx"
 ENV DOMAIN=".silverse.mx"
-ENV JWT_KEY="silverse-jwt"
+ENV JWT_KEY="silvertime-jwt"
 ENV APP_NAME="Silverse Admin"
 
 COPY . .
@@ -16,7 +16,7 @@ RUN flutter build web --dart-define=RUNTIME=${RUNTIME} \
 	--dart-define=SERVER_URL=${SERVER_URL} \
 	--dart-define=LOGIN_URL=${LOGIN_URL} \
 	--dart-define=JWT_KEY=${JWT_KEY} \
-	--dart-define=APP_NAME=${APP_NAME} \
+	--dart-define=APP_NAME="${APP_NAME}" \
 	--dart-define=DOMAIN=${DOMAIN}
 
 FROM nginx
