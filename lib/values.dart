@@ -1,5 +1,5 @@
 const String serverURL = String.fromEnvironment(
-  "SERVER_URL", defaultValue: "https://time.silverse.mx"
+  "SERVER_URL", defaultValue: "https://admin.time.silverse.mx"
 );
 
 const String loginURL = String.fromEnvironment(
