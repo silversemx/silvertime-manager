@@ -116,7 +116,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
             width: 250,
             height: 250,
             child: RangePicker (
-              firstDate: firstDate,
+              firstDate: today.subtract(const Duration (days: 365)),
               lastDate: inAYear,
               onChanged: (DatePeriod period) {
                 maintenance.start = period.start;
@@ -238,7 +238,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
           width: 250,
           height: 250,
           child: DayPicker.single (
-            firstDate: firstDate,
+            firstDate: today.subtract(const Duration (days: 365)),
             lastDate: inAYear,
             onChanged: (DateTime day) {
               if (day.equalsIgnoreTime(DateTime.now ())){
@@ -273,7 +273,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
               maintenance.start = val;
             });
           },
-          allowPastDates: false,
+          allowPastDates: true,
         ),
         const SizedBox(height: 16),
       ],
