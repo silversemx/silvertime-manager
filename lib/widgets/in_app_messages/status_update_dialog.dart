@@ -192,16 +192,19 @@ class _StatusUpdateDialogState<T> extends State<StatusUpdateDialog<T>> {
           ),
         ),
         const SizedBox(height: 16),
-        Container (
-          height: MediaQuery.of(context).size.height * 0.4,
-          padding: const EdgeInsets.all(16),
-          child: QuillEditorWidget (
-            label: S.of (context).description,
-            onUpdate: (val) {
-              setState(() {
-                text = val;
-              });
-            },
+        Visibility(
+          visible: widget.text,
+          child: Container (
+            height: MediaQuery.of(context).size.height * 0.4,
+            padding: const EdgeInsets.all(16),
+            child: QuillEditorWidget (
+              label: S.of (context).description,
+              onUpdate: (val) {
+                setState(() {
+                  text = val;
+                });
+              },
+            ),
           ),
         ),
         const SizedBox(height: 16),
